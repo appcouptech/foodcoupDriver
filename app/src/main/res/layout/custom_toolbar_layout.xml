@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/custom_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="right|center"
+                android:background="@color/white"
+                tools:ignore="RtlHardcoded">
+
+                <ImageView
+                    android:id="@+id/img_currentTask"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:src="@drawable/confirm_orders"/>
+
+                <ImageView
+                    android:id="@+id/img_notification"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:src="@drawable/notofication"/>
+
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <ImageView
+            android:id="@+id/img_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:src="@drawable/menu_white"
+            android:visibility="gone"
+            tools:ignore="RtlHardcoded" />
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:src="@drawable/back_white"
+            tools:ignore="RtlHardcoded"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center|left"
+            android:layout_marginStart="@dimen/_60sdp"
+            android:layout_marginEnd="@dimen/_70sdp">
+
+            <foodcoup.driver.demand.FCDViews.AC_Textview
+                android:id="@+id/txt_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"/>
+
+            <foodcoup.driver.demand.FCDViews.AC_Textview
+                android:id="@+id/txt_toolbarOrderNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:textColor="@color/txt_site_red_color"
+                android:textSize="@dimen/_12ssp"/>
+
+        </LinearLayout>
+
+
+
+    </FrameLayout>
+
+</LinearLayout>

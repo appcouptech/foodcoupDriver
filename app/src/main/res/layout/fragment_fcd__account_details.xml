@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FCDFragment.FCD_AccountDetails">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:id="@+id/ll_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                tools:ignore="DisableBaselineAlignment">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.2"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    tools:ignore="UselessLeaf">
+
+                    <foodcoup.driver.demand.FCDViews.CircleImageView
+                        android:id="@+id/lc_circleDriver"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:src="@mipmap/ic_launcher" />
+
+                    <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                        android:id="@+id/lt_driverName"
+                        style="@style/FCD_RegularThickTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:text="James" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/_1sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@color/view_color" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_weight=".8"
+                    android:orientation="vertical"
+                    tools:ignore="UselessLeaf">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:src="@drawable/mail_id" />
+
+                        <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                            android:id="@+id/lt_Email"
+                            style="@style/FCD_SmallTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:text="James@gmail.com" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:src="@drawable/call" />
+
+                        <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                            android:id="@+id/lt_phone"
+                            style="@style/FCD_SmallTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:text="+91 1234567890" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:src="@drawable/address" />
+
+                        <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                            android:id="@+id/lt_address"
+                            style="@style/FCD_SmallTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:text="25th,RajaStreet,Ram Nagar,coimbatore,Tamil Nadu,India" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/view_color_lite"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <foodcoup.driver.demand.FCDViews.AC_Textview
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_10sdp"
+                    android:text="@string/account_details" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <foodcoup.driver.demand.FCDViews.AC_Textview
+                    style="@style/FCD_SmallTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/account_holder_name" />
+
+                <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                    android:id="@+id/lt_accountName"
+                    style="@style/FCD_SmallThickTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="James" />
+
+                <foodcoup.driver.demand.FCDViews.AC_Textview
+                    style="@style/FCD_SmallTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/account_number" />
+
+                <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                    android:id="@+id/lt_accountNumber"
+                    style="@style/FCD_SmallThickTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="ABCD123456789" />
+
+                <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                    style="@style/FCD_SmallTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/bank_name" />
+
+                <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                    android:id="@+id/lt_bankName"
+                    style="@style/FCD_SmallThickTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="HDFC" />
+
+                <foodcoup.driver.demand.FCDViews.AC_Textview
+                    style="@style/FCD_SmallTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/ifsc_code" />
+
+            <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                android:id="@+id/lt_IFSC"
+                    style="@style/FCD_SmallThickTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="ABHDFC1258" />
+
+                <foodcoup.driver.demand.FCDViews.AC_Textview
+                    style="@style/FCD_SmallTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/pan_card_number" />
+
+                <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                    android:id="@+id/lt_panCard"
+                    style="@style/FCD_SmallThickTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="ABCD16789" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/view_color_lite"
+                android:orientation="vertical">
+
+                <foodcoup.driver.demand.FCDViews.AC_Textview
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_10sdp"
+                    android:text="@string/vehicle_details" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <foodcoup.driver.demand.FCDViews.AC_Textview
+                    style="@style/FCD_SmallTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/vehicle_brand" />
+
+                <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                    android:id="@+id/lt_vehicleName"
+                    style="@style/FCD_SmallThickTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="Royal Enfield" />
+
+                <foodcoup.driver.demand.FCDViews.AC_Textview
+                    style="@style/FCD_SmallTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/vehicle_model" />
+
+                <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                    android:id="@+id/lt_vehicleModel"
+                    style="@style/FCD_SmallThickTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="2019" />
+
+                <foodcoup.driver.demand.FCDViews.AC_Textview
+                    style="@style/FCD_SmallTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/vehicle_number" />
+
+               <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                   android:id="@+id/lt_vehicleNumber"
+                    style="@style/FCD_SmallThickTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="AB-12 / CD -3456" />
+
+
+                <foodcoup.driver.demand.FCDViews.AC_Textview
+                    style="@style/FCD_SmallTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/engine_number" />
+
+                <foodcoup.driver.demand.FCDViews.AC_Textview
+                    style="@style/FCD_SmallThickTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="ABCD123456789" />
+
+
+                <foodcoup.driver.demand.FCDViews.AC_Textview
+                    style="@style/FCD_SmallTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/vehicle_insurance" />
+
+                <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                    android:id="@+id/lt_vehicleInsurance"
+                    style="@style/FCD_SmallThickTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="ABCD1006789" />
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

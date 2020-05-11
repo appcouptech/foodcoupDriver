@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/login_bg_sw_600"
+    tools:context=".FCDActivity.FCDLoginActivity.FCD_LoginActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_loginMain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+
+            <LinearLayout
+                android:id="@+id/linmain"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/margin10"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_launcher_background"
+                    android:visibility="gone"
+                    tools:ignore="ContentDescription" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linmain1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true"
+                    tools:ignore="UselessParent">
+
+                    <LinearLayout
+                        android:id="@+id/ll_field"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txt_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_18sdp"
+                            android:layout_marginTop="@dimen/_30sdp"
+                            android:layout_marginRight="@dimen/_18sdp"
+                            android:layout_marginBottom="@dimen/_18sdp"
+                            android:cursorVisible="true"
+                            android:drawablePadding="@dimen/_10sdp"
+                            android:hint="@string/mobile"
+                            android:inputType="number"
+                            android:padding="@dimen/_8sdp"
+                            android:background="@drawable/login_cardview_bg"
+                            android:textColor="@color/apptextcolor"
+                            android:textColorHint="@color/apptextcolor"
+                            android:textSize="@dimen/_12ssp"
+                             android:visibility="gone"/>
+
+                        <LinearLayout
+                            android:id="@+id/lin_country"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:layout_marginTop="@dimen/_35sdp"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:background="@drawable/login_cardview_bg"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/_5sdp"
+                            android:visibility="visible">
+
+                            <foodcoup.driver.demand.FCDUtils.CountryPicker.CountryCodePicker
+                                android:id="@+id/countrypicker"
+                                android:layout_width="@dimen/_70sdp"
+                                android:layout_height="wrap_content" />
+
+
+                            <EditText
+                                android:id="@+id/txt_countrywithnumber"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:background="@null"
+                                android:cursorVisible="true"
+                                android:hint="@string/mobile"
+                                android:inputType="number"
+                                android:padding="@dimen/_3sdp"
+                                style="@style/FC_SmallThickTextView"/>
+
+
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/txtotp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:background="@null"
+                            android:cursorVisible="true"
+                            android:hint="@string/otp"
+                            android:inputType="number"
+                            android:padding="@dimen/_3sdp"
+                            style="@style/FC_SmallThickTextView"
+                            android:visibility="invisible"/>
+
+                        <View
+                            android:id="@+id/view_otp"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:visibility="invisible"
+                            android:background="@color/txt_lite_gray_color"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:orientation="horizontal"
+                            android:gravity="right"
+                            tools:ignore="RtlHardcoded">
+
+                            <LinearLayout
+                                android:id="@+id/ll_login"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/_5sdp"
+                                android:background="@drawable/login_btn_bg"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:id="@+id/txtsignin"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/login"
+                                    style="@style/FC_SmallThickTextView"
+                                    android:paddingLeft="@dimen/_20sdp"
+                                    android:layout_marginEnd="@dimen/_5sdp"
+                                    tools:ignore="RtlSymmetry" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/_14sdp"
+                                    android:layout_height="@dimen/_14sdp"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:src="@drawable/login_arrow" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/ll_recentOtp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/_5sdp"
+                                android:visibility="gone"
+                                android:background="@drawable/login_btn_bg">
+
+                                <TextView
+                                    android:id="@+id/resendotp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/recent_otp"
+                                    android:paddingLeft="@dimen/_20sdp"
+                                    android:layout_marginEnd="@dimen/_5sdp"
+                                    android:textAlignment="center"
+                                    style="@style/FC_SmallThickTextView"/>
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/txtotpverify"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/_18sdp"
+                            android:padding="@dimen/_8sdp"
+                            android:text="Submit"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+
+
+                        <TextView
+                            android:id="@+id/counttime"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/_20sdp"
+                            android:padding="@dimen/_8sdp"
+                            android:text="@string/count_time"
+                            android:textAlignment="center"
+                            style="@style/FC_SmallThickTextView"
+                            android:visibility="gone" />
+
+
+                        <TextView
+                            android:id="@+id/txtsignup"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/margin20"
+                            android:layout_marginTop="@dimen/margin10"
+                            android:layout_marginRight="@dimen/margin20"
+                            android:layout_marginBottom="@dimen/margin20"
+                            android:background="@color/btnbackground"
+                            android:padding="@dimen/padding10"
+                            android:text="signup"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorwhite"
+                            android:textSize="@dimen/textsize15"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </ScrollView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linnonet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@color/colorwhite"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/padding10"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/imgnonet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_launcher_background"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/nonet"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding10"
+            android:layout_marginLeft="@dimen/padding10"
+            android:layout_marginTop="@dimen/padding10"
+            android:gravity="center"
+            android:text="nonet"
+            android:textColor="@color/colorblack"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/txtnonet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/padding30"
+            android:gravity="center"
+            android:padding="@dimen/padding10"
+            android:text="retry"
+            android:textAlignment="center"
+            android:textColor="@color/colorwhite"
+            android:textSize="@dimen/textsize20" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/ll_noInternetConnection"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorwhite"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="MissingDefaultResource">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin30"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:layout_marginRight="@dimen/_18sdp"
+            android:background="@drawable/layout_rectangle_top_lr"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <foodcoup.driver.demand.FCDViews.AC_BoldTextview
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:text="@string/app_name"
+                android:textColor="@color/colorAppBackground"
+                android:textSize="@dimen/_14ssp" />
+
+            <foodcoup.driver.demand.FCDViews.AC_Textview
+                android:id="@+id/txt_alertMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_18sdp"
+                android:gravity="center"
+                android:maxLines="2"
+                android:textSize="@dimen/_10ssp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_18sdp"
+            android:layout_marginTop="-5dp"
+            android:layout_marginRight="@dimen/_18sdp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/layout_rectengle_bottom_left_bg"
+                android:layout_weight="1">
+
+                <foodcoup.driver.demand.FCDViews.AC_BoldTextview
+                    android:id="@+id/txt_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/_3sdp"
+                    android:textSize="@dimen/_12ssp"
+                    android:text="@string/alert_cancel"
+                    android:textColor="@color/txt_alltxtcolor" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/layout_rectengle_bottom_right_bg"
+                android:layout_weight="1">
+
+                <foodcoup.driver.demand.FCDViews.AC_BoldTextview
+                    android:id="@+id/txt_yes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_3sdp"
+                    android:textSize="@dimen/_12ssp"
+                    android:gravity="center"
+                    android:text="@string/alert_exit"
+                    android:textColor="@color/mb_white" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

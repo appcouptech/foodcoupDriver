@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_newOrderRequestLoader"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:orientation="vertical"
+        android:background="@color/txt_lite_gray_color"
+        tools:ignore="UselessParent"/>
+
+    <LinearLayout
+        android:id="@+id/ll_newOrderRequest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/rec_layout_live_order_bg1">
+
+            <foodcoup.driver.demand.FCDViews.AC_Textview
+                android:id="@+id/txt_cashCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/new_order_request"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold" />
+            <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                android:id="@+id/lt_orderNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_10sdp"
+                android:gravity="right"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                tools:ignore="RtlHardcoded" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-1dp"
+            android:background="@drawable/rec_layout_live_order_bg2"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                tools:ignore="DisableBaselineAlignment,UselessLeaf,UselessParent">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".7"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:src="@drawable/pick_up"
+                            tools:ignore="ContentDescription" />
+                        <ImageView
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginTop="@dimen/_80sdp"
+                            android:src="@drawable/deliver"
+                            tools:ignore="ContentDescription" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:src="@drawable/tasks"
+                            tools:ignore="ContentDescription" />
+
+                        <View
+                            android:layout_width="@dimen/_5sdp"
+                            android:layout_height="@dimen/_80sdp"
+                            android:layout_gravity="center"
+                            android:background="@color/txt_lite_gray_color" />
+
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:src="@drawable/tasks"
+                            tools:ignore="ContentDescription" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.3"
+                    android:orientation="vertical">
+
+                    <foodcoup.driver.demand.FCDViews.AC_Textview
+                        android:id="@+id/txt_restaurantPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/pick_up"
+                        android:drawableEnd="@drawable/res_call"
+                        android:textColor="@color/txt_site_red_color"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <foodcoup.driver.demand.FCDViews.AC_Textview
+                        android:id="@+id/txt_restaurantName"
+                        style="@style/FCD_RegularThickTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Holiday Food"
+                        android:textStyle="bold"/>
+
+                    <foodcoup.driver.demand.FCDViews.AC_Textview
+                        android:id="@+id/txt_restaurantAddress"
+                        style="@style/FCD_SmallTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_55sdp"
+                        android:text="13 Bore st,Ramnagar,Coimbatore,Tamil nadu,India"
+                        android:textStyle="bold"/>
+
+
+                    <foodcoup.driver.demand.FCDViews.AC_Textview
+                        android:id="@+id/txt_customerPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:text="@string/deliver_to"
+                        android:drawableEnd="@drawable/res_call"
+                        android:textColor="@color/txt_site_red_color"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <foodcoup.driver.demand.FCDViews.AC_Textview
+                        android:id="@+id/txt_customerName"
+                        style="@style/FCD_RegularThickTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Grayson"
+                        android:textStyle="bold"/>
+
+                    <foodcoup.driver.demand.FCDViews.AC_Textview
+                        android:id="@+id/txt_customerAddress"
+                        style="@style/FCD_SmallTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_55sdp"
+                        android:text="25th kayan jwellers st,Gandhipuram Coimbatore ,Tamil nadu,India"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <foodcoup.driver.demand.FCDViews.AC_Textview
+                    android:id="@+id/txt_rejected"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple_start_duty_bg_red"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:text="@string/reject"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp"/>
+
+                <foodcoup.driver.demand.FCDViews.AC_Textview
+                    android:id="@+id/txt_confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple_start_duty_bg_green"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:text="@string/confirm"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

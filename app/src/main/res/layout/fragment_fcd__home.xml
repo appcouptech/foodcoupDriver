@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".FCDFragment.FCD_HomeFragment">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_20sdp"
+        tools:ignore="UselessParent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/ll_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="UselessLeaf">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_200sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:orientation="vertical"
+                android:background="@drawable/rec_boarder_grey_bg_white">
+
+                <LinearLayout
+                    android:id="@+id/ll_dudyStarted"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_2sdp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                            android:id="@+id/lt_currency"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:gravity="right"
+                            android:text="₹"
+                            android:textStyle="bold"
+                            android:textColor="@color/txt_site_red_color"
+                            android:textSize="@dimen/_25ssp"/>
+
+                        <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                            android:id="@+id/lt_amt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:textStyle="bold"
+                            android:textColor="@color/colordarkgrey"
+                            android:textSize="@dimen/_25ssp"/>
+
+                    </LinearLayout>
+
+                    <foodcoup.driver.demand.FCDViews.AC_Textview
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:text="@string/so_for_this_week"
+                        android:textStyle="bold"
+                        android:textColor="@color/view_color"
+                        android:textSize="@dimen/_15ssp"/>
+
+
+                    <foodcoup.driver.demand.FCDViews.AC_Textview
+                        android:id="@+id/txt_startDuty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ripple_start_duty_bg_green"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_40sdp"
+                        android:layout_marginEnd="@dimen/_40sdp"
+                        android:gravity="center"
+                        android:text="@string/start_duty"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_15ssp"/>
+
+
+                    <foodcoup.driver.demand.FCDViews.AC_Textview
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:text="@string/complete_more_task"
+                        android:textStyle="bold"
+                        android:textColor="@color/colordarkgrey"
+                        android:textSize="@dimen/_15ssp"/>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_searchOrders"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:padding="@dimen/_2sdp">
+
+                    <ImageView
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/search_orders"/>
+
+                    <foodcoup.driver.demand.FCDViews.AC_Textview
+                        android:id="@+id/txt_searchOrders"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ripple_start_duty_bg_green"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_40sdp"
+                        android:layout_marginEnd="@dimen/_40sdp"
+                        android:gravity="center"
+                        android:text="@string/search_orders"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_15ssp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@color/txt_lite_gray_color">
+
+                <foodcoup.driver.demand.FCDViews.AC_Textview
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/quick_links"
+                    android:textStyle="bold"
+                    android:textColor="@color/colordarkgrey"
+                    android:textSize="@dimen/_15ssp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_20sdp"
+                tools:ignore="DisableBaselineAlignment">
+
+                <LinearLayout
+                    android:id="@+id/ll_todaysEarnings"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_130sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="@drawable/rec_boarder_grey_bg_white">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/todays_earning"
+                        tools:ignore="ContentDescription" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/txt_lite_gray_color"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"/>
+
+                    <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                        android:id="@+id/lt_todayEarning"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/colordarkgrey"
+                        android:textSize="@dimen/_15ssp"/>
+
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp">
+
+                        <foodcoup.driver.demand.FCDViews.AC_Textview
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text="@string/todays_earnings"
+                            android:textStyle="bold"
+                            android:textColor="@color/colordarkgrey"
+                            android:textSize="@dimen/_9ssp"/>
+
+                        <ImageView
+                            android:layout_width="@dimen/_10sdp"
+                            android:layout_height="@dimen/_10sdp"
+                            android:src="@drawable/arrow"
+                            android:layout_gravity="right|center"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            tools:ignore="ContentDescription,RtlHardcoded" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_weeksEarnings"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_130sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="@drawable/rec_boarder_grey_bg_white">
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/weekly_earning"
+                        tools:ignore="ContentDescription" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/txt_lite_gray_color"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"/>
+
+                    <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                        android:id="@+id/lt_weekEarning"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/colordarkgrey"
+                        android:textSize="@dimen/_15ssp"/>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp">
+
+                        <foodcoup.driver.demand.FCDViews.AC_Textview
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text="@string/weeks_earnings"
+                            android:textStyle="bold"
+                            android:textColor="@color/colordarkgrey"
+                            android:textSize="@dimen/_9ssp"/>
+
+                        <ImageView
+                            android:layout_width="@dimen/_10sdp"
+                            android:layout_height="@dimen/_10sdp"
+                            android:src="@drawable/arrow"
+                            android:layout_gravity="right|center"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            tools:ignore="RtlHardcoded" />
+
+                    </FrameLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                tools:ignore="DisableBaselineAlignment">
+
+                <LinearLayout
+                    android:id="@+id/ll_loginDuration"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_130sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="@drawable/rec_boarder_grey_bg_white">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/login_duration"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/txt_lite_gray_color"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"/>
+
+                    <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                        android:id="@+id/lt_loginDuration"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/colordarkgrey"
+                        android:textSize="@dimen/_15ssp"/>
+
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp">
+
+                        <foodcoup.driver.demand.FCDViews.AC_Textview
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text="@string/login_duration"
+                            android:textStyle="bold"
+                            android:textColor="@color/colordarkgrey"
+                            android:textSize="@dimen/_9ssp"/>
+
+                        <ImageView
+                            android:layout_width="@dimen/_10sdp"
+                            android:layout_height="@dimen/_10sdp"
+                            android:src="@drawable/arrow"
+                            android:layout_gravity="right|center"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            tools:ignore="ContentDescription,RtlHardcoded" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_floatingCash"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_130sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="@drawable/rec_boarder_grey_bg_white">
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/floating_cash"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/txt_lite_gray_color"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"/>
+
+                    <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                        android:id="@+id/lt_floatCash"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/colordarkgrey"
+                        android:textSize="@dimen/_15ssp"/>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp">
+
+                        <foodcoup.driver.demand.FCDViews.AC_Textview
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text="@string/floating_cash"
+                            android:textStyle="bold"
+                            android:textColor="@color/colordarkgrey"
+                            android:textSize="@dimen/_9ssp"/>
+
+                        <ImageView
+                            android:layout_width="@dimen/_10sdp"
+                            android:layout_height="@dimen/_10sdp"
+                            android:src="@drawable/arrow"
+                            android:layout_gravity="right|center"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            tools:ignore="ContentDescription,RtlHardcoded" />
+
+                    </FrameLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

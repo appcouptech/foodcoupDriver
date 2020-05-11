@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/ll_main"
+    tools:context=".FCDFragment.FCD_ReferAFriend">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:background="@drawable/rec_bg_stroke_gray_layout"
+        android:orientation="vertical"
+        android:padding="@dimen/_10sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_250sdp"
+            android:src="@drawable/refer_a_friend" />
+
+
+        <foodcoup.driver.demand.FCDViews.AC_Textview
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/your_referral_code"
+            android:textColor="@color/colordarkgrey"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/dashed_boarder_red"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/_30sdp"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_30sdp"
+            android:paddingBottom="@dimen/_5sdp">
+
+            <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
+                android:id="@+id/lt_referralCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/colordarkgrey"
+                android:textSize="@dimen/_16ssp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <foodcoup.driver.demand.FCDViews.AC_Textview
+        android:id="@+id/txt_inviteFrnds"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:background="@drawable/rec_bg_green_layout"
+        android:gravity="center"
+        android:text="@string/refer_your_friends"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12ssp" />
+
+
+</LinearLayout>

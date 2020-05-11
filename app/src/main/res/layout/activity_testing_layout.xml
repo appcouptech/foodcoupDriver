@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FCDActivity.Testing.TestingLayout">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Swipe Demo"
+            android:gravity="center"
+            android:layout_margin="10dip" />
+
+        <LinearLayout
+            android:id="@+id/ll_gesture"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_marginTop="@dimen/_200sdp"
+            android:visibility="gone"
+            android:background="@drawable/rec_boarder_grey_bg_white"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_margin="10dip"
+                    android:id="@+id/image_place_holder"/>
+        </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/rec_bg_green_layout_top_lr"
+        android:padding="@dimen/_10sdp"
+        android:weightSum="2">
+
+        <foodcoup.driver.demand.FCDViews.AC_Textview
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".6"
+            android:text="Sunday,22 Mar "
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <foodcoup.driver.demand.FCDViews.AC_Textview
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.4"
+            android:gravity="right"
+            android:text="10h 35m"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+</LinearLayout>

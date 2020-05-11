@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:showIn="navigation_view">
+
+        <group android:checkableBehavior="single">
+
+            <item
+                android:id="@+id/profile"
+                android:icon="@drawable/profile"
+                android:title="@string/profile"
+                android:checked="true"/>
+
+            <item
+                android:id="@+id/referAFriend"
+                android:icon="@drawable/referal"
+                android:title="@string/refer_a_friend" />
+
+            <item
+                android:id="@+id/help"
+                android:icon="@drawable/help"
+                android:title="@string/help" />
+
+        </group>
+
+        <item android:title="@string/status">
+            <menu>
+                <item
+                    android:id="@+id/today_earning"
+                    android:icon="@drawable/todays_earning"
+                    android:title="@string/todays_earnings" />
+
+                <item
+                    android:id="@+id/weekly_earning"
+                    android:icon="@drawable/weekly_earning"
+                    android:title="@string/weeks_earnings" />
+
+                <item
+                    android:id="@+id/login_duration"
+                    android:icon="@drawable/login_duration"
+                    android:title="@string/login_duration" />
+
+                <item
+                    android:id="@+id/floating_cash"
+                    android:icon="@drawable/floating_cash"
+                    android:title="@string/floating_cash" />
+                <item
+                    android:id="@+id/logout"
+                    android:icon="@drawable/logout"
+                    android:title="@string/logout" />
+            </menu>
+        </item>
+
+    </menu>

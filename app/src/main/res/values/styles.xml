@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -6,6 +6,278 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="FCDAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- enable window content transition-->
+        <item name="android:windowActivityTransitions" tools:targetApi="lollipop">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="p">shortEdges</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:windowEnableSplitTouch">false</item>
+
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <!-- <item name="android:windowTranslucentNavigation">true</item>-->
+    </style>
+
+    <style name="FCDAppStatusBarChange" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!-- <item name="android:statusBarColor" tools:targetApi="lollipop">@color/white</item>
+         <item name="android:textColor">@color/black</item>
+         <item name="android:windowBackground">@color/white</item>
+         <item name="android:colorBackground">@color/white</item>-->
+
+        <!-- Status bar stuff. -->
+
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/txt_lite_gray_color</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+
+    </style>
+
+    <style name="FCDAppSetOfHotelsToolbar" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/white</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+
+    </style>
+
+    <style name="FCDFullAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- enable window content transition-->
+        <item name="android:windowActivityTransitions" tools:targetApi="lollipop">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="p">shortEdges</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:windowEnableSplitTouch">false</item>
+        <!-- <item name="android:windowTranslucentNavigation">true</item>-->
+    </style>
+
+
+    <style name="FCD_RegularTextView" parent="Widget.AppCompat.TextView">
+
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">@color/colorgrey</item>
+    </style>
+
+    <style name="FCD_RegularEditextView" parent="Widget.AppCompat.EditText">
+
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">@color/colorgrey</item>
+    </style>
+
+    <style name="FCD_RegularThickTextView" parent="Widget.AppCompat.TextView">
+
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">@color/colordarkgrey</item>
+    </style>
+
+    <style name="FCD_BoldTextView" parent="Widget.AppCompat.TextView">
+
+        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:textColor">@color/colordarkgrey</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="FCD_SmallThickTextView" parent="Widget.AppCompat.TextView">
+
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:textColor">@color/colordarkgrey</item>
+    </style>
+
+    <style name="FCD_SmallTextView" parent="Widget.AppCompat.TextView">
+
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:textColor">@color/colorAppBackground_lite</item>
+    </style>
+
+    <style name="FCD_verySmallTextView" parent="Widget.AppCompat.TextView">
+
+        <item name="android:textSize">@dimen/_8ssp</item>
+        <item name="android:textColor">@color/colorAppBackground_lite</item>
+    </style>
+
+
+    <style name="FCD_verySmallThickTextView" parent="Widget.AppCompat.TextView">
+
+        <item name="android:textSize">@dimen/_8ssp</item>
+        <item name="android:textColor">@color/colordarkgrey</item>
+    </style>
+
+
+    <style name="FCD_RegularLiteTextView" parent="Widget.AppCompat.TextView">
+
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">@color/colorAppBackground_lite</item>
+    </style>
+
+    <!--Loader TextView-->
+
+    <style name="menu_text_style" parent="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Menu">
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">@color/colordarkgrey</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:padding">@dimen/_5sdp</item>
+    </style>
+
+
+
+    <!---->
+
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="FCAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- enable window content transition-->
+        <item name="android:windowActivityTransitions" tools:targetApi="lollipop">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="p">shortEdges</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:windowEnableSplitTouch">false</item>
+
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <!-- <item name="android:windowTranslucentNavigation">true</item>-->
+    </style>
+
+    <style name="FCAppStatusBarChange" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!-- <item name="android:statusBarColor" tools:targetApi="lollipop">@color/white</item>
+         <item name="android:textColor">@color/black</item>
+         <item name="android:windowBackground">@color/white</item>
+         <item name="android:colorBackground">@color/white</item>-->
+
+        <!-- Status bar stuff. -->
+
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+
+    </style>
+
+    <style name="FCAppSetOfHotelsToolbar" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+
+    </style>
+
+    <style name="FCFullAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- enable window content transition-->
+        <item name="android:windowActivityTransitions" tools:targetApi="lollipop">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="p">shortEdges</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:windowEnableSplitTouch">false</item>
+        <!-- <item name="android:windowTranslucentNavigation">true</item>-->
+    </style>
+
+
+    <style name="FC_RegularTextView" parent="Widget.AppCompat.TextView">
+
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">@color/colorgrey</item>
+    </style>
+
+    <style name="FC_RegularEditextView" parent="Widget.AppCompat.EditText">
+
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">@color/colorgrey</item>
+    </style>
+
+    <style name="FC_RegularThickTextView" parent="Widget.AppCompat.TextView">
+
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">@color/colordarkgrey</item>
+    </style>
+
+    <style name="FC_BoldTextView" parent="Widget.AppCompat.TextView">
+
+        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:textColor">@color/colordarkgrey</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="FC_SmallThickTextView" parent="Widget.AppCompat.TextView">
+
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:textColor">@color/colordarkgrey</item>
+    </style>
+
+    <style name="FC_SmallTextView" parent="Widget.AppCompat.TextView">
+
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:textColor">@color/colorAppBackground_lite</item>
+    </style>
+
+    <style name="FC_verySmallTextView" parent="Widget.AppCompat.TextView">
+
+        <item name="android:textSize">@dimen/_8ssp</item>
+        <item name="android:textColor">@color/colorAppBackground_lite</item>
+    </style>
+
+
+    <style name="FC_verySmallThickTextView" parent="Widget.AppCompat.TextView">
+
+        <item name="android:textSize">@dimen/_7ssp</item>
+        <item name="android:textColor">@color/colordarkgrey</item>
+    </style>
+
+
+    <style name="FC_RegularLiteTextView" parent="Widget.AppCompat.TextView">
+
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">@color/colorAppBackground_lite</item>
+    </style>
+
+    <style name="FC_DasboardBottomTextview" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/_8ssp</item>
+        <item name="android:textColor">@color/colorgrey</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <!--Loader TextView-->
+
+    <style name="loader_RegularThickTextView" parent="Widget.AppCompat.TextView" >
+
+        <item name="android:textSize">@dimen/_8ssp</item>
+        <item name="android:textColor">@color/colordarkgrey</item>
+
+    </style>
+
+    <style name="BrandedSwitch.control" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">#e6e600</item>
+        <item name="colorSwitchThumbNormal">#cc0000</item>
+    </style>
+
+    <!--Tooltip-->
+
+
+
+    <style name="Tooltip2">
+        <item name="android:text">qwqwrqwfqwfqwfqwfqwf</item>
+        <item name="android:textColor">?android:textColorPrimaryInverse</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:lineSpacingExtra">5dp</item>
+        <item name="backgroundColor">@color/colorPrimary</item>
+        <item name="cornerRadius">10dp</item>
+    </style>
+    <style name="Tooltip">
+        <item name="android:textColor">?android:textColorPrimaryInverse</item>
+        <item name="android:lineSpacingExtra">5dp</item>
+        <item name="android:text">TESSSSSS</item>
+        <item name="android:textSize">18sp</item>
+        <item name="backgroundColor">@color/colorAccent</item>
+        <item name="cornerRadius">10dp</item>
     </style>
 
 </resources>

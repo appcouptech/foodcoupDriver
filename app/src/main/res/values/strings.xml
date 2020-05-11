@@ -1,3 +1,427 @@
-<resources>
-    <string name="app_name">FoodcoupDriver</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">FoodCoupDriver</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- DashboardMenu -->
+
+    <string name="home">Home</string>
+    <string name="confirm_order">Confirm Order</string>
+    <string name="live_order">Live Orders</string>
+    <string name="account">Account Details</string>
+    <string name="picked_up_order">Picked Up Order</string>
+    <string name="notification">Notification</string>
+    <string name="duty_status">Duty Status</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
+    <string name="status">Status</string>
+
+    <!-- HomeFragment-->
+
+    <string name="so_for_this_week">So For This Week</string>
+    <string name="start_duty">START DUTY</string>
+    <string name="complete_more_task">Complete more task &amp; earn more !!!</string>
+    <string name="quick_links">QUICK LINKS</string>
+    <string name="todays_earnings">Today\'s Earnings</string>
+    <string name="weeks_earnings">Week\'s Earnings</string>
+    <string name="login_duration">Login Duration</string>
+    <string name="floating_cash">Floating Cash</string>
+    <string name="search_orders">SEARCH ORDERS</string>
+    <string name="week_earning">Week Earning\'s</string>
+
+    <!-- Bottom Sheet Start Duty-->
+
+    <string name="Get_set_go">Get  - Set -  Go  !!</string>
+    <string name="get_order_soon">You Will Start Getting  Orders Soon !!</string>
+
+
+    <!--Live Orders-->
+    <string name="new_orders">NEW ORDERS</string>
+    <string name="new_order_request">NEW ORDER REQUEST</string>
+    <string name="rejected">REJECTED</string>
+    <string name="reject">REJECT</string>
+    <string name="confirm">CONFIRM</string>
+
+    <!--confirmOrder-->
+
+    <string name="your_order">YOUR ORDER</string>
+    <string name="food_order">FOOD ORDER</string>
+    <string name="current_task">Current Task</string>
+    <string name="next_task">Next Task</string>
+    <string name="refer_a_friend">Refer a Friend</string>
+
+    <!--PickUpOrder-->
+    <string name="first_mile_stone">FIRST MILE DISTANCE</string>
+    <string name="direction">DIRECTION</string>
+    <string name="order_details">ORDER DETAILS</string>
+    <string name="customer_details">CUSTOMER DETAILS</string>
+    <string name="res_details">RESTAURANT DETAILS</string>
+    <string name="arived_at_restaurant">ARRIVED AT RESTAURANT</string>
+    <string name="customer">CUSTOMER</string>
+    <string name="collect_from_customer">COLLECT FROM CUSTOMER</string>
+    <string name="from_customer">FROM CUSTOMER</string>
+    <string name="collect">COLLECT </string>
+    <string name="last_mile_distance">LAST MILE DISTANCE</string>
+    <string name="are_you_sure_deliver">Are you sure delivered the order ?</string>
+
+    <!--Confirmation Alert-->
+
+    <string name="confirmation">Confirmation</string>
+    <string name="sure_arrived_at_restaurant">Are you sure you arrived at the restaurant ?</string>
+    <string name="sure_picked_up_the_order">Are you sure you Picked-up the order ?</string>
+    <string name="are_you_sure_collect_the_cash">Are you sure collect the cash from customer ?</string>
+    <string name="currently_offline">You\'re currently OFF DUTY,please</string>
+    <string name="go_online">go ON DUTY to start earning</string>
+    <string name="cancel_btn" tools:ignore="ButtonCase">CANCEL</string>
+    <string name="confirm_btn">CONFIRM</string>
+    <string name="call_btn">CALL</string>
+    <string name="attention">Attention</string>
+    <string name="attention1">Your are currently in online Order</string>
+    <string name="attention2">you can\'t go Offline</string>
+    <!--OrderPickedFromRes-->
+
+    <string name="order_pick_up">ORDER PICK UP</string>
+
+    <!--COnfirmation order from hotel-->
+
+    <string name="new_task">NEW TASK</string>
+    <string name="complete_task">Complete Task</string>
+
+    <!--Pick up task to deliver-->
+
+    <string name="reached_customer_location">REACHED CUSTOMER LOCATION</string>
+    <string name="payment_successfull">PAYMENT SUCCESSFUL</string>
+    <string name="delivery_complete">DELIVERY COMPLETE</string>
+
+
+    <!--Account/Profile Fragament-->
+
+    <string name="account_details">ACCOUNT DETAILS</string>
+    <string name="vehicle_details">VEHICLE DETAILS</string>
+    <string name="account_holder_name">ACCOUNT HOLDER NAME</string>
+    <string name="account_number">ACCOUNT NUMBER</string>
+    <string name="bank_name">BANK NAME</string>
+    <string name="ifsc_code">IFSC CODE</string>
+    <string name="pan_card_number">PAN CARD NUMBER</string>
+    <string name="vehicle_brand">VEHICLE BRAND</string>
+    <string name="vehicle_model">VEHICLE MODEL</string>
+    <string name="vehicle_number">VEHICLE NUMBER</string>
+    <string name="vehicle_insurance">VEHICLE INSURANCE</string>
+    <string name="engine_number">ENGINE NUMBER</string>
+
+    <!--TodaysEariningsFragment-->
+    <string name="today">Today </string>
+    <string name="rupees_symbol">₹</string>
+    <string name="eaqrnings">Earnings</string>
+    <string name="incentives">Incentives</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="delivered">Delivered</string>
+    <string name="dialy_incentives">Daily incentives for earnings ₹ 350</string>
+
+
+    <!--WeeksEarning-->
+
+    <string name="this_week">This Week</string>
+    <string name="privous_week">PREVIOUS WEEK</string>
+
+    <!--LoginDuration-->
+
+    <string name="past_login_information">PAST LOGIN INFORMATION</string>
+
+    <!--FloatingCash-->
+
+    <string name="current_balance">Current Balance</string>
+    <string name="limit">Limit</string>
+
+    <!--Refer A Friend-->
+
+    <string name="your_referral_code">Your Referral Code</string>
+    <string name="refcode">FoodCoup Referral Code</string>
+    <string name="refer_your_friends">REFER YOUR FRIENDS</string>
+
+    <!--Connection failure-->
+
+    <string name="conn_failure">Connection Failure</string>
+    <string name="conn_check">Check your connection</string>
+    <string name="conn_try_again">or try again</string>
+    <string name="title_activity_maps">Map</string>
+
+
+
+
+    ///
+
+    <string name="title_activity_google_maps">Map</string>
+    <string name="title_activity_distance__maos_new">Distance_Maos_new</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Tap two locations in the map</string>
+    <string name="str_tv_distance_time">Distance</string>
+
+
+    <!-- Fc Intro Profile-->
+
+    <string name="profile">Profile</string>
+    <string name="name">Name</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="mobile">Mobile Number</string>
+    <string name="email">Email</string>
+    <string name="save">SAVE</string>
+
+    <!--country Picker-->
+
+    <string name="search_hint" tools:ignore="TypographyEllipsis">Search...</string>
+    <string name="no_result_found">Results not found</string>
+    <string name="select_country">Select a county</string>
+
+    <!--Fc intro Address Activity-->
+
+    <string name="house_flat">HOUSE/FLAT/BLOCK NO.</string>
+    <string name="landmark">Landmark</string>
+    <string name="save_as">SAVE AS</string>
+    <string name="other">Other</string>
+    <string name="work">Work</string>
+    <string name="save_address">SAVE ADDRESS</string>
+    <string name="address">ADDRESS</string>
+    <string name="change">CHANGE</string>
+    <string name="current">Use Current Location</string>
+    <string name="enable_location_service">Enable Location Service</string>
+    <string name="change_locatin">Change Location</string>
+
+    <!--FC Dashboard Activity-->
+
+    <string name="d_home">HOME</string>
+    <string name="d_explore">EXPLORE</string>
+    <string name="d_cart">CART</string>
+    <string name="d_account">ACCOUNT</string>
+
+
+    <!--EXitAlert-->
+    <string name="alert_exit">Exit</string>
+    <string name="alert_cancel">Cancel</string>
+    <string name="alert_confirm">Confirm</string>
+
+    <!--FC Home Fragment-->
+
+    <string name="set_location">Set Location</string>
+    <string name="offers">Offers</string>
+    <string name="search_restaurant">Search for a restaurant or dish </string>
+    <string name="filter_and_sort">Filter &amp; Sort by</string>
+    <string name="vegonly">Veg Only</string>
+    <string name="price_range">Price Range</string>
+    <string name="rating">Rating</string>
+    <string name="cuisines">Cuisines</string>
+    <string name="see_all">See All</string>
+    <string name="hot_sellers">HOT SELLERS</string>
+    <string name="currency">₹ </string>
+    <string name="preorder">PreOrder</string>
+    <string name="currency_minus">-</string>
+    <string name="rate_res">Rate Restaurant</string>
+    <string name="rate_driver">Rate Driver</string>
+    <string name="rating_res_driver">Provide Rating</string>
+    <string name="top_pic">Top Picks For You</string>
+    <string name="noitem">No Item Found Please try Again</string>
+    <string name="pastorders">No Past Orders</string>
+    <string name="noorders">No Orders</string>
+    <string name="nodatas">No Datas found</string>
+    <string name="favouritelist">No Favourite Hotels</string>
+    <string name="use_coad">USE CODE</string>
+    <string name="all_restaurant">All Restaurants</string>
+    <string name="view_on_map">View On Map</string>
+    <string name="see_all_restaurant">See all Restaurant</string>
+
+
+    <!-- FC Item Activity-->
+
+    <string name="special_instructions">Special Instructions</string>
+    <string name="add_note">Add a note (extra sauce,no onions, etc.,)</string>
+    <string name="view_cart">VIEW CART</string>
+
+    <!--FC Cart Activity-->
+
+    <string name="item_carts">Item Carts</string>
+    <string name="enter_coupon_code">Enter Coupon Code</string>
+    <string name="apply">APPLY</string>
+    <string name="bill_details">Bill Details</string>
+    <string name="PayTm">PayTm</string>
+    <string name="payUmoney">PayUMoney</string>
+    <string name="cashon">cash On delivery</string>
+    <string name="alreadyitem">Item already added in cart do You want to Clear</string>
+    <string name="item_total">Item Total</string>
+    <string name="total"> Total</string>
+    <string name="delivery_fee">Delivery Fee</string>
+    <string name="total_discount">Total Discount</string>
+    <string name="taxes_and_charges">Taxes and Charges</string>
+    <string name="to_pay">To Pay</string>
+    <string name="unavailable">Currently UnAvailable</string>
+    <string name="seem_to_new_location">You seem to be in a new location</string>
+    <string name="multiple_address">Multiple address in this location </string>
+    <string name="add_address_to_process">ADD ADDRESS TO PROCESS</string>
+    <string name="add_address">ADD ADDRESS</string>
+    <string name="select_address">SELECT ADDRESS</string>
+    <string name="cart_change">Change</string>
+    <string name="process_to_pay">PROCESSED TO PAY</string>
+
+    <!--BottomSheet-->
+
+    <string name="b_choose_address">Choose a delivery address</string>
+    <string name="b_home">Home</string>
+    <string name="b_other">Other</string>
+    <string name="b_work">Work</string>
+    <string name="b_add_new">ADD NEW ADDRESS</string>
+
+    <!--FC Camera-->
+
+    <string name="camera">CAMERA</string>
+    <string name="gallery">GALLERY</string>
+
+    <!--FC Account Fragment-->
+
+    <string name="my_account">My Account</string>
+    <string name="my_desc">Address,Payment,Favorites,Referrals</string>
+    <string name="manage_address">Manage Address</string>
+    <string name="payment">Payment</string>
+    <string name="pay">Payment : </string>
+    <string name="paymentmode">Choose Your Payment Mode</string>
+    <string name="favorites">Favorites</string>
+    <string name="referrals">Referrals</string>
+    <string name="my_offers">Offers</string>
+    <string name="help">Help</string>
+    <string name="order_history">Order History</string>
+    <string name="past_orders">Your Past Orders</string>
+    <string name="your_orders">Your  Orders</string>
+    <string name="reorder">Re Order</string>
+    <string name="delete">Delete  </string>
+    <string name="logout">LOGOUT</string>
+
+
+    <!--FC Order History-->
+    <string name="order_h">Order History</string>
+    <string name="view">View More</string>
+
+    <!-- FC Managa Address-->
+
+    <string name="saved_address">Saved Addresses</string>
+    <string name="edit">Edit</string>
+
+
+    <!--  FC Hotel Details-->
+
+    <string name="restaurant_info">Restaurant Info</string>
+    <string name="include_egg">Include Egg</string>
+    <string name="veg_only">Veg Only</string>
+    <string name="veg_nonveg">Veg/Nonveg</string>
+    <string name="recommended">Recommended</string>
+    <string name="add">ADD</string>
+    <string name="delivery_time">Delivery Time</string>
+    <string name="every_day">Every Day</string>
+    <string name="menu">MENU</string>
+    <string name="nextavailable">Next Available Time : </string>
+
+
+    <!-- Referrals Activity-->
+
+    <string name="r_referrals">Referrals</string>
+    <string name="r_refer_frnd">Refer a friend &amp; we\'ll give you &amp; your buddy RS.50 off on your next orders above RS.250</string>
+    <string name="r_invite">INVITE AND EARN</string>
+
+    <!--OrderPickedUP-->
+
+    <string name="order_picked_up">Order Picked Up</string>
+
+    <!--    View on map Restaurants-->
+
+    <string name="restaurants">Restaurants</string>
+
+
+    <!--HotSellersHotel Activity-->
+
+    <string name="hot_sellers_res">Hot Sellers Restaurant</string>
+
+    <!-- location alert Home Fragment-->
+
+    <string name="ok_got_it">OK,GOT IT</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+
+    <!--location off home fragment-->
+
+    <string name="device_location_off"> Device location off</string>
+    <string name="location_improve"> Switch on your device location to improve your food ordering experience</string>
+    <string name="no_thanks"> NO THANKS!</string>
+    <string name="enable_location"> ENABLE LOCATION</string>
+    <string name="conform_logout">Are You Sure Want To Logout</string>
+
+
+
+    <!--bottom sheet dailog for filter-->
+
+    <string name="f_apply">Apply</string>
+    <string name="f_clearall">CLEAR ALL</string>
+    <string name="f_clearcart">CLEAR CART</string>
+
+    <string name="min">Min</string>
+    <string name="max">Max</string>
+
+    <string name="popularity">Popularity</string>
+    <string name="rating_h_to_l">Rating : High To Low</string>
+    <string name="delivery_t">Delivery Time</string>
+    <string name="cost_l_to_h">Cost : Low To High</string>
+    <string name="cost_h_to_l">Cost : High To Low</string>
+
+    <string name="search_here">Search Here</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="estimated_arrival">Estimated Arrival</string>
+
+    <!--Intro Screen-->
+
+    <string name="s1_title">Select Food Items</string>
+    <string name="s2_title">Make Payments</string>
+    <string name="s3_title">Fast &amp; Free Delivery</string>
+
+    <string name="s1_desc">You can order what you need and were u need then enjoy your food  </string>
+    <string name="s2_desc">your payment were more secure and its very easy to transaction</string>
+    <string name="s3_desc">We deliver your items on time were u need and free delivery for you</string>
+
+    <string name="next">NEXT</string>
+
+    <!--CartAddOnProduct -->
+    <string name="ingredients">INGREDIENTS</string>
+    <string name="preparation">PREPARATIONS</string>
+    <string name="pricing">PRICING</string>
+    <string name="addon">ADDON</string>
+    <string name="submit">SUBMIT</string>
+    <!--Login Activity-->
+
+    <string name="login">LOGIN</string>
+    <string name="otp">OTP</string>
+    <string name="recent_otp">RESEND OTP</string>
+    <string name="count_time">Count Time</string>
+    <string name="tryagain">Something Went wrong please Try Again</string>
+    <string name="restaurant_rating">Restaurant Rating</string>
+    <string name="driver_rating">Driver Rating</string>
+    <string name="comments">Restaurant Comments</string>
+    <string name="drivercomments">Driver Comments</string>
+    <string name="pick_up">Pick up - </string>
+    <string name="orderno">ORD.No : </string>
+    <string name="register">Register</string>
+    <string name="deliver_to">Deliver To-</string>
+    <string name="registerdriver">Your number is not registered \n Register to continue Your duty "</string>
+    <string name="current_loc">Current location is Off kindly Enable the current Location</string>
+    <string name="logincount">Login Count : </string>
+    <string name="floatlimit">Limit :</string>
+    <string name="driverdelivered">Delivered : </string>
+    <string name="change_price">Change Price</string>
+    <string name="from_date">From Date</string>
+    <string name="to_date">To Date</string>
+    <string name="total_login">Total Login</string>
+    <string name="total_order">Total Order</string>
+    <string name="start_time">Start time</string>
+    <string name="end_time">End time</string>
+    <string name="total_hrs">Total HRS</string>
+    <string name="res_rating">Restaurant Rating</string>
+
 </resources>

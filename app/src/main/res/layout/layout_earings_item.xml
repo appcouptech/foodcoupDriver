@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_10sdp">
+
+<!--
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/rec_bg_green_layout_top_lr"
+        android:padding="@dimen/_10sdp"
+        android:weightSum="2">
+
+        <foodcoup.driver.demand.FCDViews.AC_Textview
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".6"
+            android:text="Sunday,22 Mar "
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <foodcoup.driver.demand.FCDViews.AC_Textview
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.4"
+            android:gravity="right"
+            android:text="₹ 300.0"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+    </LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="-1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:weightSum="2">
+
+
+            <foodcoup.driver.demand.FCDViews.AC_Textview
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="King's Lee"
+                style="@style/FCD_RegularThickTextView"
+                android:textStyle="bold"/>
+
+            <foodcoup.driver.demand.FCDViews.AC_Textview
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:gravity="right"
+                android:text="₹ 10.0"
+                style="@style/FCD_RegularThickTextView"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:weightSum="2">
+
+
+            <foodcoup.driver.demand.FCDViews.AC_Textview
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="10:00 AM"
+                style="@style/FCD_SmallTextView"
+                android:textStyle="bold"/>
+
+            <foodcoup.driver.demand.FCDViews.AC_Textview
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:gravity="right"
+                android:text="@string/cancelled"
+                style="@style/FCD_SmallTextView"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/viewLine"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/view_color_lite"
+            android:layout_marginTop="@dimen/_5sdp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

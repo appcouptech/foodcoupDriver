@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">@dimen/_160sdp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+
+
+    <!-- Bitmap Icon Size-->
+
+    <dimen name="bitmap_iconSize">@dimen/_15sdp</dimen>
+
+
+
+
+
+
+
+
+
+
+    <dimen name="padding10">@dimen/_10sdp</dimen>
+    <dimen name="padding15">@dimen/_15sdp</dimen>
+    <dimen name="padding20">@dimen/_20sdp</dimen>
+    <dimen name="padding2">@dimen/_2sdp</dimen>
+    <dimen name="padding5">@dimen/_5sdp</dimen>
+    <dimen name="drawablepadding10">@dimen/_10sdp</dimen>
+    <dimen name="margin20">@dimen/_20sdp</dimen>
+    <dimen name="margin30">@dimen/_30sdp</dimen>
+    <dimen name="margin10">@dimen/_10sdp</dimen>
+    <dimen name="textsize8">@dimen/_8ssp</dimen>
+    <dimen name="textsize5">@dimen/_5ssp</dimen>
+    <dimen name="textsize10">@dimen/_10ssp</dimen>
+    <dimen name="textsize12">@dimen/_12ssp</dimen>
+    <dimen name="textsize14">@dimen/_14ssp</dimen>
+    <dimen name="textsize15">@dimen/_15ssp</dimen>
+    <dimen name="textsizeapp">@dimen/_50ssp</dimen>
+    <dimen name="textsize20">@dimen/_20ssp</dimen>
+    <dimen name="textsize30">@dimen/_30ssp</dimen>
+    <dimen name="padding30">@dimen/_30sdp</dimen>
+    <dimen name="margin75">@dimen/_75sdp</dimen>
+    <dimen name="margin15">@dimen/_15sdp</dimen>
+    <dimen name="margin5">@dimen/_5sdp</dimen>
+    <dimen name="camera_title">250dp</dimen>
+    <dimen name="bottom_height">150dp</dimen>
+    <dimen name="mb_corner_radius_2">2dp</dimen>
+    <dimen name="mb_width_200">200dp</dimen>
+    <dimen name="mb_height_56">56dp</dimen>
+    <integer name="mb_animation">500</integer>
+
+    <!-- country picker-->
+
+    <dimen name="google_1x">8dp</dimen>
+
+
+
+</resources>
