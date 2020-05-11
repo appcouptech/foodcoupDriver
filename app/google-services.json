@@ -1,0 +1,105 @@
+{
+  "project_info": {
+    "project_number": "68435001561",
+    "firebase_url": "https://foodorder-6f90a.firebaseio.com",
+    "project_id": "foodorder-6f90a",
+    "storage_bucket": "foodorder-6f90a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:68435001561:android:409cc70757a409781cbec8",
+        "android_client_info": {
+          "package_name": "food.user.demand"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "68435001561-ihe6fnqbnidc74or2lvt3j3t6choqo79.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "food.user.demand",
+            "certificate_hash": "a7e6c0fa48f025a60ae23493d80d38ae863c0955"
+          }
+        },
+        {
+          "client_id": "68435001561-4hvgdhv2okahspejffu00j7n7aisolrl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHMt8kGGgqUc11TluyJOgMrqFJfdaPbYQ"
+        },
+        {
+          "current_key": "AIzaSyBUj3_ktkREGDLSuYB-0Xf5ChZ2J1xj_tM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "68435001561-4hvgdhv2okahspejffu00j7n7aisolrl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "68435001561-g2kvhadl2s73cq821doc4hma3sc9oicg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.appcoup.fooddriver"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:68435001561:android:170bfb65155e0ec31cbec8",
+        "android_client_info": {
+          "package_name": "foodcoup.driver.demand"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "68435001561-l5jmt4o8i5mgnbl0piq8buqr5catojii.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "foodcoup.driver.demand",
+            "certificate_hash": "a7e6c0fa48f025a60ae23493d80d38ae863c0955"
+          }
+        },
+        {
+          "client_id": "68435001561-4hvgdhv2okahspejffu00j7n7aisolrl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHMt8kGGgqUc11TluyJOgMrqFJfdaPbYQ"
+        },
+        {
+          "current_key": "AIzaSyBUj3_ktkREGDLSuYB-0Xf5ChZ2J1xj_tM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "68435001561-4hvgdhv2okahspejffu00j7n7aisolrl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "68435001561-g2kvhadl2s73cq821doc4hma3sc9oicg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.appcoup.fooddriver"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
