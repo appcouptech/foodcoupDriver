@@ -141,7 +141,8 @@ public class FCD_PickUpTaskToDeliver extends Fragment implements OnMapReadyCallb
     private Context context;
     private AlertDialog alertDialog;
     private AC_Edittext edt_price;
-    DatabaseReference dbRef;
+    DatabaseReference mDatabase;
+    private Handler handler;
     public FCD_PickUpTaskToDeliver() {
         // Required empty public constructor
     }
@@ -538,21 +539,26 @@ public class FCD_PickUpTaskToDeliver extends Fragment implements OnMapReadyCallb
                 latLng = new LatLng(latitude, longitude);
                 Log.d("zoom", " latLng: " + latLng);
 
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                dbRef = database.getReference("/dev/drivers");
-              /*  Map<String, Object> childUpdates = new HashMap<>();
 
-                childUpdates.put("device_id", FCD_Common.device_id);
-                childUpdates.put("driver_id", FCD_Common.confirmdriver_id);
-                childUpdates.put("latitude", FCD_Common.confirmlatitude);
-                childUpdates.put("longitude",FCD_Common.confirmlongitude);
 
-                dbRef.updateChildren(childUpdates);*/
+                handler = new Handler();
+                int delay = 35000; //milliseconds
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        //do something
+                        mDatabase = FirebaseDatabase.getInstance().getReference();
 
-                WriteDatabase_Driver profile = new WriteDatabase_Driver(FCD_Common.device_id, FCD_Common.confirmdriver_id,
-                        FCD_Common.confirmlatitude,FCD_Common.confirmlongitude);
-                dbRef = database.getReference();
-                dbRef.setValue(profile);
+                        Log.d("dfgdfgsd","dgdsfg"+FCD_Common.device_id);
+                        Log.d("dfgdfgsd","dgdsfg"+FCD_Common.confirmdriver_id);
+                        Log.d("dfgdfgsd","dgdsfg"+FCD_Common.confirmlatitude);
+                        Log.d("dfgdfgsd","dgdsfg"+FCD_Common.confirmlongitude);
+                        writeNewPost(FCD_Common.confirmdriver_id, FCD_Common.device_id,
+                                String.valueOf(FCD_Common.latitude),String.valueOf(FCD_Common.longitude));
+
+                        // ItemViewList();
+                        handler.postDelayed(this, delay);
+                    }
+                }, delay);
 
                 int height = (int) FCD_DashboardActivity.dashContext.getResources().getDimension(R.dimen.bitmap_iconSize);
                 int width = (int) FCD_DashboardActivity.dashContext.getResources().getDimension(R.dimen.bitmap_iconSize);
@@ -586,6 +592,26 @@ public class FCD_PickUpTaskToDeliver extends Fragment implements OnMapReadyCallb
             }
         }
     };
+
+    private void writeNewPost(String userId, String username, String title, String body) {
+        // Create new post at /user-posts/$userid/$postid and at
+        // /posts/$postid simultaneously
+        //String key = mDatabase.child("posts").push().getKey();
+        WriteDatabase_Driver post = new WriteDatabase_Driver(userId, username, title, body);
+        Map<String, Object> postValues = post.toMap();
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        /*childUpdates.put("/dev/" + key, postValues);
+        childUpdates.put("/drivers/" + userId + "/" + key, postValues);*/
+       /* childUpdates.put("/foodcoup/" +  userId,postValues);
+        childUpdates.put("/dev/" +  userId,postValues);
+        childUpdates.put("/drivers/" + userId + "/" , postValues);*/
+        /*childUpdates.put("/foodcoup/" +  userId,postValues);
+        childUpdates.put("/foodcoup/"+"/dev/"+"/drivers/" +  userId,postValues);*/
+        childUpdates.put("/foodcoup/"+"/dev/"+"/drivers/" + userId + "/" , postValues);
+
+        mDatabase.updateChildren(childUpdates);
+    }
 
     private Bitmap getBitmapFromDrawable(Drawable drawable) {
         final Bitmap bmp = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);

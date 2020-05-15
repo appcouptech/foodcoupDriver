@@ -553,15 +553,6 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
 
         mDatabase.updateChildren(childUpdates);
     }
-   /* private void writeNewUser(String device_id, String confirmdriver_id, String confirmlatitude,String confirmlongitude) {
-        WriteDatabase_Driver user = new WriteDatabase_Driver(device_id,confirmdriver_id,confirmlatitude, confirmlongitude);
-
-        mDatabase.child("users").child(confirmdriver_id).setValue(user);
-        mDatabase.child("users").child(device_id).child("device_id").setValue(device_id);
-        mDatabase.child("users").child(device_id).child("confirmdriver_id").setValue(confirmdriver_id);
-        mDatabase.child("users").child(device_id).child("confirmlatitude").setValue(confirmlatitude);
-        mDatabase.child("users").child(device_id).child("confirmlongitude").setValue(confirmlongitude);
-    }*/
     private Bitmap getBitmapFromDrawable(Drawable drawable) {
         final Bitmap bmp = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
         final Canvas canvas = new Canvas(bmp);
