@@ -53,6 +53,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
@@ -136,6 +137,17 @@ public class FCD_SplashActivity extends AppCompatActivity implements NetworkChan
         FCD_Common.access_token = String.valueOf(user.getaccess_token());
 
 
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        return;
+                    }
+                    FCD_Common.devicetoken = task.getResult().getToken();
+                    Log.d("sdgsdgsdgsd",""+FCD_Common.devicetoken);
+                    // Log and toast
+                    @SuppressLint({"StringFormatInvalid", "LocalSuppress"})
+                    String msg = getString(R.string.app_name, FCD_Common.devicetoken);
+                });
         boolean isConnected = NetworkChangeReceiver.isConnected(this);
         isOnline(isConnected);
 

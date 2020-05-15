@@ -47,8 +47,6 @@ import foodcoup.driver.demand.R;
  * A simple {@link Fragment} subclass.
  */
 public class FCD_AccountDetails extends Fragment {
-
-
     private Context context;
     private Snackbar bar;
     private CircleImageView lc_circleDriver;

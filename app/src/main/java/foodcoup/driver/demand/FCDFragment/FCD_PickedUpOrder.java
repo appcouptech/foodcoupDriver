@@ -76,11 +76,17 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.DataOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -88,6 +94,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import foodcoup.driver.demand.FCDActivity.FCDDashboardActivity.FCD_DashboardActivity;
+import foodcoup.driver.demand.FCDPojo.WriteDatabase_Driver;
 import foodcoup.driver.demand.FCDUtils.HttpConnection;
 import foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView;
 import foodcoup.driver.demand.FCDUtils.PathJSONParser;
@@ -98,6 +105,8 @@ import foodcoup.driver.demand.FCDViews.FCD_URL;
 import foodcoup.driver.demand.FCDViews.FCD_User;
 import foodcoup.driver.demand.FCDViews.Utils;
 import foodcoup.driver.demand.R;
+
+import static foodcoup.driver.demand.FCDViews.FCD_Common.username;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -110,6 +119,8 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
     private ScrollView sv_pickedUp ;
     private Context context;
     Snackbar bar;
+    DatabaseReference mDatabase;
+    DatabaseReference dbRef;
     private  LoaderTextView lt_orderNo,lt_restaurantName,lt_restaurantAddress,lt_item,lt_customerName,lt_customerAddress,lt_currency ,lt_distance;
     private GoogleMap mGoogleMap;
     private LocationRequest mLocationRequest;
@@ -128,7 +139,7 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
     private LatLngBounds bounds;
     private LatLng latLng;
     private Polyline polyline ;
-
+    private Handler handler;
     public FCD_PickedUpOrder() {
         // Required empty public constructor
     }
@@ -150,6 +161,7 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
         FCD_Common.id = String.valueOf(user.getid());
         FCD_Common.token_type = String.valueOf(user.gettoken_type());
         FCD_Common.access_token = String.valueOf(user.getaccess_token());
+        FCD_Common.device_id = String.valueOf(user.getdevice_id());
         FindViewById(view);
 
         FCD_Common.currentTask =  5;
@@ -290,6 +302,25 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
                 }
             }
         });
+
+      /*  myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+               // Log.d("Value is: " + value);
+                Log.d("dfgdfgfdg","dfgfdgfdg"+value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+              //  Log.w(TAG, "Failed to read value.", error.toException());
+                Log.d("dfgdfgfdg","dfgfdgfdg"+error.toException());
+            }
+        });*/
+
     }
 
     @SuppressLint("SetTextI18n")
@@ -411,6 +442,7 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
         }
     }
 
+
     private LocationCallback mLocationCallback = new LocationCallback() {
         @Override
         public void onLocationResult(LocationResult locationResult) {
@@ -464,13 +496,72 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
                     mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 0));
                 }
                 animateMarker(latLng,false);
-                OrderDetail();
+
+
+               /* FirebaseDatabase database = FirebaseDatabase.getInstance();
+                dbRef = database.getReference("/dev/drivers");
+                WriteDatabase_Driver profile = new WriteDatabase_Driver(FCD_Common.device_id, FCD_Common.confirmdriver_id,
+                        FCD_Common.confirmlatitude,FCD_Common.confirmlongitude);
+                dbRef = database.getReference();
+                dbRef.setValue(profile);*/
+
+
+// ...
+
+                handler = new Handler();
+                int delay = 35000; //milliseconds
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        //do something
+                        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+                        Log.d("dfgdfgsd","dgdsfg"+FCD_Common.device_id);
+                        Log.d("dfgdfgsd","dgdsfg"+FCD_Common.confirmdriver_id);
+                        Log.d("dfgdfgsd","dgdsfg"+FCD_Common.confirmlatitude);
+                        Log.d("dfgdfgsd","dgdsfg"+FCD_Common.confirmlongitude);
+                        writeNewPost(FCD_Common.confirmdriver_id, FCD_Common.device_id,
+                                String.valueOf(FCD_Common.latitude),String.valueOf(FCD_Common.longitude));
+
+                        // ItemViewList();
+                        handler.postDelayed(this, delay);
+                    }
+                }, delay);
+
+               // OrderDetail();
                 DestinationRestaurantMarkerPlace();
 
             }
         }
     };
 
+    private void writeNewPost(String userId, String username, String title, String body) {
+        // Create new post at /user-posts/$userid/$postid and at
+        // /posts/$postid simultaneously
+        //String key = mDatabase.child("posts").push().getKey();
+        WriteDatabase_Driver post = new WriteDatabase_Driver(userId, username, title, body);
+        Map<String, Object> postValues = post.toMap();
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        /*childUpdates.put("/dev/" + key, postValues);
+        childUpdates.put("/drivers/" + userId + "/" + key, postValues);*/
+       /* childUpdates.put("/foodcoup/" +  userId,postValues);
+        childUpdates.put("/dev/" +  userId,postValues);
+        childUpdates.put("/drivers/" + userId + "/" , postValues);*/
+        /*childUpdates.put("/foodcoup/" +  userId,postValues);
+        childUpdates.put("/foodcoup/"+"/dev/"+"/drivers/" +  userId,postValues);*/
+        childUpdates.put("/foodcoup/"+"/dev/"+"/drivers/" + userId + "/" , postValues);
+
+        mDatabase.updateChildren(childUpdates);
+    }
+   /* private void writeNewUser(String device_id, String confirmdriver_id, String confirmlatitude,String confirmlongitude) {
+        WriteDatabase_Driver user = new WriteDatabase_Driver(device_id,confirmdriver_id,confirmlatitude, confirmlongitude);
+
+        mDatabase.child("users").child(confirmdriver_id).setValue(user);
+        mDatabase.child("users").child(device_id).child("device_id").setValue(device_id);
+        mDatabase.child("users").child(device_id).child("confirmdriver_id").setValue(confirmdriver_id);
+        mDatabase.child("users").child(device_id).child("confirmlatitude").setValue(confirmlatitude);
+        mDatabase.child("users").child(device_id).child("confirmlongitude").setValue(confirmlongitude);
+    }*/
     private Bitmap getBitmapFromDrawable(Drawable drawable) {
         final Bitmap bmp = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
         final Canvas canvas = new Canvas(bmp);

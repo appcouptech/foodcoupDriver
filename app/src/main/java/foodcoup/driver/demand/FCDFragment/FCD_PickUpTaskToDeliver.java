@@ -76,6 +76,11 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
@@ -89,6 +94,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import foodcoup.driver.demand.FCDActivity.FCDDashboardActivity.FCD_DashboardActivity;
+import foodcoup.driver.demand.FCDPojo.WriteDatabase_Driver;
 import foodcoup.driver.demand.FCDUtils.BottomSheet.BottomSheetDeliverd.DeliverdTheOrderDialog;
 import foodcoup.driver.demand.FCDUtils.HttpConnection;
 import foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView;
@@ -114,7 +120,7 @@ public class FCD_PickUpTaskToDeliver extends Fragment implements OnMapReadyCallb
     private ImageView player_col, player_expand;
     private ScrollView sv_pickedUp;
     private LoaderTextView lt_orderNo,lt_customerName, lt_customerAddress, lt_currency, lt_item, lt_restaurantName, lt_restaurantAddress ,lt_distance;
-
+   // DatabaseReference myRef;
     private GoogleMap mGoogleMap;
     private LocationRequest mLocationRequest;
     private final static int REQUEST_LOCATION = 199;
@@ -135,7 +141,7 @@ public class FCD_PickUpTaskToDeliver extends Fragment implements OnMapReadyCallb
     private Context context;
     private AlertDialog alertDialog;
     private AC_Edittext edt_price;
-
+    DatabaseReference dbRef;
     public FCD_PickUpTaskToDeliver() {
         // Required empty public constructor
     }
@@ -351,6 +357,23 @@ public class FCD_PickUpTaskToDeliver extends Fragment implements OnMapReadyCallb
 
         Log.d("fgjhfghfg", "fghfghfg" + FCD_Common.confirmorderstatus);
 
+      /*  myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                // Log.d("Value is: " + value);
+                Log.d("dfgdfgfdg","dfgfdgfdg"+value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                //  Log.w(TAG, "Failed to read value.", error.toException());
+                Log.d("dfgdfgfdg","dfgfdgfdg"+error.toException());
+            }
+        });*/
 
     }
 
@@ -496,7 +519,8 @@ public class FCD_PickUpTaskToDeliver extends Fragment implements OnMapReadyCallb
                 FCD_Common.latitude = location.getLatitude();
                 FCD_Common.longitude = location.getLongitude();
 
-                OrderDetail();
+
+                //OrderDetail();
 
                 mLastLocation = location;
                 if (mCurrLocationMarker != null) {
@@ -513,6 +537,22 @@ public class FCD_PickUpTaskToDeliver extends Fragment implements OnMapReadyCallb
 
                 latLng = new LatLng(latitude, longitude);
                 Log.d("zoom", " latLng: " + latLng);
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                dbRef = database.getReference("/dev/drivers");
+              /*  Map<String, Object> childUpdates = new HashMap<>();
+
+                childUpdates.put("device_id", FCD_Common.device_id);
+                childUpdates.put("driver_id", FCD_Common.confirmdriver_id);
+                childUpdates.put("latitude", FCD_Common.confirmlatitude);
+                childUpdates.put("longitude",FCD_Common.confirmlongitude);
+
+                dbRef.updateChildren(childUpdates);*/
+
+                WriteDatabase_Driver profile = new WriteDatabase_Driver(FCD_Common.device_id, FCD_Common.confirmdriver_id,
+                        FCD_Common.confirmlatitude,FCD_Common.confirmlongitude);
+                dbRef = database.getReference();
+                dbRef.setValue(profile);
 
                 int height = (int) FCD_DashboardActivity.dashContext.getResources().getDimension(R.dimen.bitmap_iconSize);
                 int width = (int) FCD_DashboardActivity.dashContext.getResources().getDimension(R.dimen.bitmap_iconSize);

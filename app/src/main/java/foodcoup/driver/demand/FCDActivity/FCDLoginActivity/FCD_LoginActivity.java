@@ -19,6 +19,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.Spannable;
@@ -46,6 +47,7 @@ import com.google.android.gms.auth.api.credentials.Credentials;
 import com.google.android.gms.auth.api.credentials.CredentialsClient;
 import com.google.android.gms.auth.api.credentials.HintRequest;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,6 +58,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import foodcoup.driver.demand.FCDActivity.FCDDashboardActivity.FCD_DashboardActivity;
+import foodcoup.driver.demand.FCDActivity.FCDSplashActivity.FCD_SplashActivity;
 import foodcoup.driver.demand.FCDUtils.CountryPicker.CountryCodePicker;
 import foodcoup.driver.demand.FCDUtils.NetworkChecking.NetworkChangeReceiver;
 import foodcoup.driver.demand.FCDViews.AC_BoldTextview;
@@ -88,6 +91,7 @@ public class FCD_LoginActivity extends AppCompatActivity implements NetworkChang
     FCD_User user;
     View view_otp ;
     Context context;
+    @SuppressLint("HardwareIds")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,7 +116,7 @@ public class FCD_LoginActivity extends AppCompatActivity implements NetworkChang
         FCD_Common.email = String.valueOf(user.getemail());
         FCD_Common.email = String.valueOf(user.getemail());
         FCD_Common.location_lng = String.valueOf(user.getlocation_lng());
-        FCD_Common.device_id = String.valueOf(user.getdevice_id());
+       // FCD_Common.device_id = String.valueOf(user.getdevice_id());
         FCD_Common.token_type = String.valueOf(user.gettoken_type());
         FCD_Common.access_token = String.valueOf(user.getaccess_token());
 
@@ -139,6 +143,21 @@ public class FCD_LoginActivity extends AppCompatActivity implements NetworkChang
         selected_country_code = countrypicker.getDefaultCountryCode();
         Log.d("fghdgdfgdfg","dgsfgsdfs"+selected_country_code);
 
+        @SuppressLint("HardwareIds") String token = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        Log.d("sdgsdgsd", "dfdf" + token);
+        FCD_Common.device_id = Settings.Secure.getString(FCD_LoginActivity.this.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        return;
+                    }
+                    FCD_Common.devicetoken = task.getResult().getToken();
+                    Log.d("sdgsdgsdgsd",""+FCD_Common.devicetoken);
+                    // Log and toast
+                    @SuppressLint({"StringFormatInvalid", "LocalSuppress"})
+                    String msg = getString(R.string.app_name, FCD_Common.devicetoken);
+                });
         countrypicker.setOnCountryChangeListener(() -> {
             //Alert.showMessage(RegistrationActivity.this, countrypicker.getSelectedCountryCodeWithPlus());
             selected_country_code= countrypicker.getSelectedCountryCode();
@@ -458,6 +477,8 @@ public class FCD_LoginActivity extends AppCompatActivity implements NetworkChang
                 Map<String, String> params = new HashMap<>();
                 Log.d("fgjfghfghfg","dfhgfhfghf"+ FCD_Common.mobilenumber);
                 params.put("mobile", FCD_Common.mobilenumber);
+                params.put("device_token", FCD_Common.devicetoken);
+                params.put("device_id", FCD_Common.device_id);
                 Log.d("getParams: ", "" + params);
                 return params;
             }
@@ -539,6 +560,8 @@ public class FCD_LoginActivity extends AppCompatActivity implements NetworkChang
                 Log.d("fgjfghfghfg","dfhgfhfghf"+ FCD_Common.mobilenumber);
                 params.put("mobile", FCD_Common.mobilenumber);
                 params.put("otp", FCD_Common.otp);
+                params.put("device_token", FCD_Common.devicetoken);
+                params.put("device_id", FCD_Common.device_id);
                 Log.d("getParams: ", "" + params);
                 return params;
             }

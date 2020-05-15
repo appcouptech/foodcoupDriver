@@ -38,6 +38,7 @@ public class FCD_Common extends Activity {
     public static String last_online = "";
     public static String device_token = "";
     public static String device_id = "";
+    public static String driver_id = "";
     public static String device_type = "";
     public static String login_by = "";
     public static String social_unique_id = "";
@@ -62,6 +63,7 @@ public class FCD_Common extends Activity {
     public static String usermobile = "";
     public static String useremail = "";
     public static String usergender = "";
+    public static String devicetoken = "";
     public static String devicetype = "android";
     public static String homeaddress = "";
     public static String Locality = "";
