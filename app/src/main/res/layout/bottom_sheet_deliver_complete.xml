@@ -18,6 +18,7 @@
             android:layout_marginTop="@dimen/_10sdp"/>
 
         <foodcoup.driver.demand.FCDViews.AC_Textview
+            android:id="@+id/txt_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_30sdp"
@@ -26,6 +27,41 @@
             android:textSize="@dimen/_14ssp"
             android:textColor="@color/colorAppBackground_lite"
             android:textStyle="bold"/>
+
+        <LinearLayout
+            android:id="@+id/ll_request"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20ssp"
+            android:visibility="gone"
+            android:orientation="horizontal">
+            <foodcoup.driver.demand.FCDViews.AC_Textview
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="@string/request_amt"
+                android:textSize="@dimen/_14ssp"
+                android:textColor="@color/colorAppBackground_lite"
+                android:textStyle="bold"/>
+            <foodcoup.driver.demand.FCDViews.AC_Edittext
+                android:id="@+id/edt_commentres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:background="@drawable/rec_bg_stroke_gray_layout"
+                android:cursorVisible="true"
+                android:hint="@string/request_amt"
+                android:gravity="center"
+                android:layout_margin="@dimen/_10sdp"
+                android:padding="@dimen/_5sdp"
+                style="@style/FC_SmallThickTextView"/>
+        </LinearLayout>
+
+
 
         <FrameLayout
             android:layout_width="match_parent"

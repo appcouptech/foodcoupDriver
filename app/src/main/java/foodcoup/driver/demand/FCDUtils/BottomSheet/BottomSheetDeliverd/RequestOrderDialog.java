@@ -6,26 +6,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentTransaction;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
-import foodcoup.driver.demand.FCDActivity.FCDDashboardActivity.FCD_DashboardActivity;
-import foodcoup.driver.demand.FCDFragment.FCD_LiveOrders;
+import foodcoup.driver.demand.FCDViews.AC_Edittext;
 import foodcoup.driver.demand.FCDViews.AC_Textview;
 import foodcoup.driver.demand.FCDViews.FCD_Common;
 import foodcoup.driver.demand.FCDViews.FCD_SharedPrefManager;
@@ -34,15 +28,15 @@ import foodcoup.driver.demand.FCDViews.FCD_User;
 import foodcoup.driver.demand.FCDViews.Utils;
 import foodcoup.driver.demand.R;
 
-import static foodcoup.driver.demand.FCDActivity.FCDDashboardActivity.FCD_DashboardActivity.fragmentManager;
-
-public class DeliverdTheOrderDialog extends BottomSheetDialogFragment {
+public class RequestOrderDialog extends BottomSheetDialogFragment {
 
 
-    private AC_Textview txt_cancel ,txt_confirm ;
+    private AC_Textview txt_cancel;
+    private AC_Textview txt_confirm;
+    private AC_Edittext edt_commentres;
 
-    public static DeliverdTheOrderDialog newInstance() {
-        return new DeliverdTheOrderDialog();
+    public static RequestOrderDialog newInstance() {
+        return new RequestOrderDialog();
     }
 
     @Nullable
@@ -67,25 +61,33 @@ public class DeliverdTheOrderDialog extends BottomSheetDialogFragment {
         Log.d("dfgdfgdfg","dfgdfgdfg"+FCD_Common.totalamt);
         Log.d("dfgdfgdfg","sdsdsf");
         FindViewById(view);
-
         txt_cancel.setOnClickListener(view12 -> dismiss());
-
         txt_confirm.setOnClickListener(view1 -> {
-            ConfirmOrder();
+
+
+            FCD_Common.wallet_amt= edt_commentres.getText().toString();
+            if ( FCD_Common.wallet_amt.equalsIgnoreCase("0")|| FCD_Common.wallet_amt.equalsIgnoreCase(""))
+            {
+                Utils.toast(context,"Wallent Amount cannot be Empty");
+            }
+            else {
+                ConfirmOrder();
+            }
         });
-
     }
-
     private void FindViewById(View view) {
-
         txt_cancel = view.findViewById(R.id.txt_cancel);
         txt_confirm = view.findViewById(R.id.txt_confirm);
+        AC_Textview txt_header = view.findViewById(R.id.txt_header);
+        LinearLayout ll_request = view.findViewById(R.id.ll_request);
+        edt_commentres = view.findViewById(R.id.edt_commentres);
+        txt_header.setText(getResources().getString(R.string.are_you_sure_request));
+        ll_request.setVisibility(View.VISIBLE);
     }
-
 
     private void ConfirmOrder() {
         Utils.playProgressBar(getActivity());
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, FCD_URL.URL_UPDATESTATUS,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, FCD_URL.ROOTWITHDRAW_REQUEST,
                 ServerResponse -> {
 
                     Log.d("ServerResponse", "PickedUp" + ServerResponse);
@@ -98,14 +100,6 @@ public class DeliverdTheOrderDialog extends BottomSheetDialogFragment {
                             Utils.stopProgressBar();
 
                             dismiss();
-                            FCD_Common.count=0;
-                            FCD_Common.currentTask =  0;
-                            FCD_LiveOrders liveOrderFragment = new FCD_LiveOrders();
-                            FragmentTransaction fragmentTransactionLiveOrder = fragmentManager.beginTransaction();
-                            fragmentTransactionLiveOrder.replace(R.id.content_frame, liveOrderFragment);
-                            fragmentTransactionLiveOrder.commit();
-                            FCD_DashboardActivity.txt_toolbar.setText(R.string.live_order);
-                            FCD_DashboardActivity.txt_toolbarOrderNo.setVisibility(View.GONE);
                         }
                         else {
                             Utils.toast(getActivity(),getResources().getString(R.string.enable_location));
@@ -116,19 +110,14 @@ public class DeliverdTheOrderDialog extends BottomSheetDialogFragment {
                     }
                 }, volleyError -> {
             String value = volleyError.toString();
-            Log.d("dfgfdgfd","sgd"+value);
+            Log.d("fghdfg","fdg"+value);
             // snackBar(value);
         }) {
 
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("order_id", FCD_Common.orderid);
-                params.put("order_status", "COMPLETED");
-                params.put("latitude", String.valueOf(FCD_Common.latitude));
-                params.put("longitude", String.valueOf(FCD_Common.longitude));
-                params.put("total_pay", FCD_Common.totalamt);
-                params.put("current_task", String.valueOf(FCD_Common.currentTask));
+                params.put("amount", FCD_Common.wallet_amt);
                 return params;
             }
 

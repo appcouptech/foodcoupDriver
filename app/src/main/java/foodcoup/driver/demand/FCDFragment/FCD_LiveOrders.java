@@ -61,9 +61,7 @@ import foodcoup.driver.demand.FCDViews.Utils;
 import foodcoup.driver.demand.R;
 
 import static android.content.Context.VIBRATOR_SERVICE;
-
 public class FCD_LiveOrders extends Fragment {
-
     private NewOrdersAdapter newOrdersAdapter;
     private ArrayList<LiveOrdersObject> liveOrdersObjects;
     private AlertDialog alertDialog;
@@ -74,12 +72,10 @@ public class FCD_LiveOrders extends Fragment {
     private RecyclerView rv_newOrders;
     private AC_Textview txt_emptyview;
     private DutyStartedLiveOrder dutyStartedLiveOrder;
-
     private int  check =0;
     private int  check_new ;
     private int  order_check ;
     private Vibrator vibrator;
-
     public FCD_LiveOrders() {
         // Required empty public constructor
     }

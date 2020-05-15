@@ -16,6 +16,7 @@ public class FCD_Common extends Activity {
     public static int count = 0;
 
     public static String success = "";
+    public static String wallet_amt = "";
     public static String phone = "";
     public static String mobilenumber = "";
     public static String address_set = "";

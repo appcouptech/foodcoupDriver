@@ -44,8 +44,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -86,7 +84,9 @@ import foodcoup.driver.demand.FCDFragment.FCD_PickUpTaskToDeliver;
 import foodcoup.driver.demand.FCDFragment.FCD_PickedUpOrder;
 import foodcoup.driver.demand.FCDFragment.FCD_ReferAFriend;
 import foodcoup.driver.demand.FCDFragment.FCD_TodaysEarnings;
+import foodcoup.driver.demand.FCDFragment.FCD_WithDrawRequest;
 import foodcoup.driver.demand.FCDFragment.FCD_orderPickedUpFromHotel;
+import foodcoup.driver.demand.FCDUtils.BottomSheet.BottomSheetDeliverd.RequestOrderDialog;
 import foodcoup.driver.demand.FCDUtils.BottomSheet.BottomSheetHomeStartDuty.StartDutyDialog;
 import foodcoup.driver.demand.FCDUtils.FCD_Logout;
 import foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView;
@@ -117,6 +117,7 @@ public class FCD_DashboardActivity extends AppCompatActivity implements Navigati
     LinearLayout ll_profile;
     private CircleImageView imageView;
     public static FragmentManager fragmentManager;
+    @SuppressLint("StaticFieldLeak")
     public static Context dashContext;
     ImageView img_currentTask, img_notification;
     private LoaderTextView lt_driverName,lt_driveremail;
@@ -226,7 +227,13 @@ public class FCD_DashboardActivity extends AppCompatActivity implements Navigati
             }
         });
 
-
+        img_notification.setOnClickListener(v -> {
+            FCD_WithDrawRequest withdraw = new FCD_WithDrawRequest();
+            FragmentTransaction fragmentTransactionliveOrders = fragmentManager.beginTransaction();
+            fragmentTransactionliveOrders.replace(R.id.content_frame, withdraw);
+            fragmentTransactionliveOrders.commit();
+            txt_toolbar.setText(R.string.withdraw_request);
+        });
         sw_dutyStatus.setOnCheckedChangeListener((compoundButton, isChecked) -> {
 
             if (isChecked) {
@@ -605,8 +612,9 @@ public class FCD_DashboardActivity extends AppCompatActivity implements Navigati
                 .requestEmail()
                 .build();
 
+        Log.d("ghghfg","fdgfd"+gso);
         // Build a GoogleSignInClient with the options specified by gso.
-        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+       // GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         LocationRequest locationRequest = LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -784,6 +792,12 @@ public class FCD_DashboardActivity extends AppCompatActivity implements Navigati
             fragmentTransactionfloatingCash.commit();
             txt_toolbar.setText(R.string.floating_cash);
         }
+        else if (id == R.id.withdraw_request) {
+            RequestOrderDialog deliverdTheOrderDialog = RequestOrderDialog.newInstance();
+            deliverdTheOrderDialog.show(Objects.requireNonNull(FCD_DashboardActivity.this).getSupportFragmentManager(),
+                    "requestOrderDialog");
+            txt_toolbar.setText(R.string.home);
+        }
         else if (id==R.id.logout){
             androidx.appcompat.app.AlertDialog.Builder dialogBuilder = new androidx.appcompat.app.AlertDialog.Builder(Objects.requireNonNull(FCD_DashboardActivity.this));
             LayoutInflater inflater = FCD_DashboardActivity.this.getLayoutInflater();
@@ -831,7 +845,7 @@ public class FCD_DashboardActivity extends AppCompatActivity implements Navigati
                             FCD_SharedPrefManager.deleteAllSharePrefs();// Deleting all shared preference data
                             SharedPreferences sharedPreferences = getSharedPreferences("MyLogin.txt", Context.MODE_PRIVATE);
                             sharedPreferences.edit().clear().apply();
-                            boolean loginCheck = sharedPreferences.getBoolean("FirstLogin", false);
+                           // boolean loginCheck = sharedPreferences.getBoolean("FirstLogin", false);
                             FCD_Logout preferenceManager = new FCD_Logout(getApplicationContext());
                             preferenceManager.setFirstTimeLaunch(true);
 
@@ -859,7 +873,7 @@ public class FCD_DashboardActivity extends AppCompatActivity implements Navigati
         }) {
             @Override
             public Map<String, String> getHeaders() {
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 Log.d("fdgdfgfdg","sdfgsdgs"+FCD_Common.token_type+" "+FCD_Common.access_token);
                 params.put("Authorization", FCD_Common.token_type+" "+FCD_Common.access_token);
                 return params;
@@ -1002,10 +1016,7 @@ public class FCD_DashboardActivity extends AppCompatActivity implements Navigati
                 }
 
             } else {
-
-                // permission denied, boo! Disable the
-                // functionality that depends on this permission.
-               // Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show();
+              Log.d("fhdfgfdg","fdgfdg");
             }
         }
         if (requestCode == 9) {

@@ -27,6 +27,7 @@
     <string name="weeks_earnings">Week\'s Earnings</string>
     <string name="login_duration">Login Duration</string>
     <string name="floating_cash">Floating Cash</string>
+    <string name="withdraw_request">WithDraw Request</string>
     <string name="search_orders">SEARCH ORDERS</string>
     <string name="week_earning">Week Earning\'s</string>
 
@@ -64,6 +65,9 @@
     <string name="collect">COLLECT </string>
     <string name="last_mile_distance">LAST MILE DISTANCE</string>
     <string name="are_you_sure_deliver">Are you sure delivered the order ?</string>
+    <string name="are_you_sure_request">Are you sure Request the Amount ?</string>
+    <string name="request_amt">Request Amount</string>
+    <string name="wallet_amt">Wallet Amount</string>
 
     <!--Confirmation Alert-->
 

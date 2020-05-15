@@ -45,6 +45,10 @@
                     android:icon="@drawable/floating_cash"
                     android:title="@string/floating_cash" />
                 <item
+                    android:id="@+id/withdraw_request"
+                    android:icon="@drawable/floating_cash"
+                    android:title="@string/withdraw_request" />
+                <item
                     android:id="@+id/logout"
                     android:icon="@drawable/logout"
                     android:title="@string/logout" />

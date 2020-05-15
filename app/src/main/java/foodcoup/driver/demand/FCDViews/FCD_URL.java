@@ -31,6 +31,8 @@ public class FCD_URL
     public static final String URL_EARNING= ROOT_URL+"/earning"+ROOT_PHP;
     public static final String URL_RATE= ROOT_URL+"/rate"+ROOT_PHP;
     public static final String URL_LOGOUT= ROOT_URL+"/logout"+ROOT_PHP;
+    public static final String ROOTWITHDRAW_REQUEST= ROOT_URL+"/withdraw-request"+ROOT_PHP;
+    public static final String ROOTWITHDRAW_LIST= ROOT_URL+"/withdraw-list"+ROOT_PHP;
 
     //ROOT_URL + ROOT_DUTY//
     public static final String URL_DRIVER_DUTY_STARTED= ROOT_URL+ROOT_DUTY+"/update"+ROOT_PHP;
