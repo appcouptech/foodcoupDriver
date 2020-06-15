@@ -72,6 +72,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import foodcoup.driver.demand.FCDActivity.FCDSplashActivity.FCD_SplashActivity;
+import foodcoup.driver.demand.FCDFragment.FCDIncentives.FCD_Incentives;
 import foodcoup.driver.demand.FCDFragment.FCDLoginDuration.FCD_LoginDuration;
 import foodcoup.driver.demand.FCDFragment.FCDWeeklyEarnings.FCD_WeeklyEarnings;
 import foodcoup.driver.demand.FCDFragment.FCD_AccountDetails;
@@ -83,10 +84,10 @@ import foodcoup.driver.demand.FCDFragment.FCD_LiveOrders;
 import foodcoup.driver.demand.FCDFragment.FCD_PickUpTaskToDeliver;
 import foodcoup.driver.demand.FCDFragment.FCD_PickedUpOrder;
 import foodcoup.driver.demand.FCDFragment.FCD_ReferAFriend;
+import foodcoup.driver.demand.FCDFragment.FCD_RideHistory;
 import foodcoup.driver.demand.FCDFragment.FCD_TodaysEarnings;
-import foodcoup.driver.demand.FCDFragment.FCD_WithDrawRequest;
+import foodcoup.driver.demand.FCDFragment.FCD_WalletHistory;
 import foodcoup.driver.demand.FCDFragment.FCD_orderPickedUpFromHotel;
-import foodcoup.driver.demand.FCDUtils.BottomSheet.BottomSheetDeliverd.RequestOrderDialog;
 import foodcoup.driver.demand.FCDUtils.BottomSheet.BottomSheetHomeStartDuty.StartDutyDialog;
 import foodcoup.driver.demand.FCDUtils.FCD_Logout;
 import foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView;
@@ -100,6 +101,7 @@ import foodcoup.driver.demand.FCDViews.FCD_SharedPrefManager;
 import foodcoup.driver.demand.FCDViews.FCD_URL;
 import foodcoup.driver.demand.FCDViews.FCD_User;
 import foodcoup.driver.demand.FCDViews.Utils;
+import foodcoup.driver.demand.FCDWallet.FCD_Wallet;
 import foodcoup.driver.demand.R;
 
 /**
@@ -228,11 +230,8 @@ public class FCD_DashboardActivity extends AppCompatActivity implements Navigati
         });
 
         img_notification.setOnClickListener(v -> {
-            FCD_WithDrawRequest withdraw = new FCD_WithDrawRequest();
-            FragmentTransaction fragmentTransactionliveOrders = fragmentManager.beginTransaction();
-            fragmentTransactionliveOrders.replace(R.id.content_frame, withdraw);
-            fragmentTransactionliveOrders.commit();
-            txt_toolbar.setText(R.string.withdraw_request);
+            Intent intent =new Intent(FCD_DashboardActivity.this, FCD_WalletHistory.class);
+            startActivity(intent);
         });
         sw_dutyStatus.setOnCheckedChangeListener((compoundButton, isChecked) -> {
 
@@ -583,11 +582,15 @@ public class FCD_DashboardActivity extends AppCompatActivity implements Navigati
         });
         ll_profile.setOnClickListener(view -> {
 
-            FCD_AccountDetails accountFragment = new FCD_AccountDetails();
+            /*FCD_AccountDetails accountFragment = new FCD_AccountDetails();
             FragmentTransaction fragmentTransactionAccountDetails = fragmentManager.beginTransaction();
             fragmentTransactionAccountDetails.replace(R.id.content_frame, accountFragment);
             fragmentTransactionAccountDetails.commit();
-            txt_toolbar.setText(R.string.profile);
+            txt_toolbar.setText(R.string.profile);*/
+
+            Intent intent = new Intent(FCD_DashboardActivity.this, FCD_AccountDetails.class);
+            //Intent intent = new Intent(FCD_DashboardActivity.this, FCD_WithDrawRequest.class);
+            startActivity(intent);
             drawer.closeDrawer(GravityCompat.START);
         });
 
@@ -711,17 +714,24 @@ public class FCD_DashboardActivity extends AppCompatActivity implements Navigati
         int id = menuItem.getItemId();
 
         if (id == R.id.profile) {
-            FCD_AccountDetails accountFragment = new FCD_AccountDetails();
+            /*FCD_AccountDetails accountFragment = new FCD_AccountDetails();
             FragmentTransaction fragmentTransactionAccountDetails = fragmentManager.beginTransaction();
             fragmentTransactionAccountDetails.replace(R.id.content_frame, accountFragment);
             fragmentTransactionAccountDetails.commit();
-            txt_toolbar.setText(R.string.profile);
+            txt_toolbar.setText(R.string.profile);*/
+
+            Intent intent = new Intent(FCD_DashboardActivity.this, FCD_AccountDetails.class);
+            startActivity(intent);
+
         } else if (id == R.id.referAFriend) {
-            FCD_ReferAFriend referAFriend = new FCD_ReferAFriend();
+            /*FCD_ReferAFriend referAFriend = new FCD_ReferAFriend();
             FragmentTransaction fragmentTransactionreferAFriend = fragmentManager.beginTransaction();
             fragmentTransactionreferAFriend.replace(R.id.content_frame, referAFriend);
             fragmentTransactionreferAFriend.commit();
-            txt_toolbar.setText(R.string.refer_a_friend);
+            txt_toolbar.setText(R.string.refer_a_friend);*/
+            Intent intent = new Intent(FCD_DashboardActivity.this, FCD_ReferAFriend.class);
+            //Intent intent = new Intent(FCD_DashboardActivity.this, FCD_WithDrawRequest.class);
+            startActivity(intent);
         } else if (id == R.id.help) {
           /*  FCD_Help fcdHelp = new FCD_Help();
             FragmentTransaction fragmentTransactionfcdHelp = fragmentManager.beginTransaction();
@@ -767,36 +777,76 @@ public class FCD_DashboardActivity extends AppCompatActivity implements Navigati
             alertDialog.show();
 
         } else if (id == R.id.today_earning) {
-            FCD_TodaysEarnings todaysEarnings = new FCD_TodaysEarnings();
+           /* FCD_TodaysEarnings todaysEarnings = new FCD_TodaysEarnings();
             FragmentTransaction fragmentTransactiontodaysEarnings = fragmentManager.beginTransaction();
             fragmentTransactiontodaysEarnings.replace(R.id.content_frame, todaysEarnings);
             fragmentTransactiontodaysEarnings.commit();
-            txt_toolbar.setText(R.string.todays_earnings);
+            txt_toolbar.setText(R.string.todays_earnings);*/
+
+            Intent intent = new Intent(FCD_DashboardActivity.this, FCD_TodaysEarnings.class);
+            startActivity(intent);
 
         } else if (id == R.id.weekly_earning) {
-            FCD_WeeklyEarnings fcdWeeklyEarningsc = new FCD_WeeklyEarnings();
+            /*FCD_WeeklyEarnings fcdWeeklyEarningsc = new FCD_WeeklyEarnings();
             FragmentTransaction fragmentTransactionfcdWeeklyEarningsc = fragmentManager.beginTransaction();
             fragmentTransactionfcdWeeklyEarningsc.replace(R.id.content_frame, fcdWeeklyEarningsc, "weeklyEarnings");
             fragmentTransactionfcdWeeklyEarningsc.commit();
-            txt_toolbar.setText(R.string.weeks_earnings);
-        } else if (id == R.id.login_duration) {
-            FCD_LoginDuration loginDuration = new FCD_LoginDuration();
+            txt_toolbar.setText(R.string.weeks_earnings);*/
+
+            Intent intent = new Intent(FCD_DashboardActivity.this, FCD_WeeklyEarnings.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.incentive) {
+           /* FCD_Incentives fcdincentives = new FCD_Incentives();
+            FragmentTransaction fragmentTransactionfcdincentives = fragmentManager.beginTransaction();
+            fragmentTransactionfcdincentives.replace(R.id.content_frame, fcdincentives, "incentives");
+            fragmentTransactionfcdincentives.commit();
+            txt_toolbar.setText(R.string.incentives);*/
+
+            Intent intent = new Intent(FCD_DashboardActivity.this, FCD_Incentives.class);
+            startActivity(intent);
+        }
+        else if(id == R.id.wallethistory)
+        {
+           /* FCD_History fcdhistory = new FCD_History();
+            FragmentTransaction fragmentTransactionfcdWallethistory = fragmentManager.beginTransaction();
+            fragmentTransactionfcdWallethistory.replace(R.id.content_frame, fcdhistory, "History");
+            fragmentTransactionfcdWallethistory.commit();
+            txt_toolbar.setText(R.string.wallet_history);*/
+            Intent intent = new Intent(FCD_DashboardActivity.this, FCD_RideHistory.class);
+            startActivity(intent);
+
+        }
+        else if (id == R.id.login_duration) {
+            /*FCD_LoginDuration loginDuration = new FCD_LoginDuration();
             FragmentTransaction fragmentTransactionloginDuration = fragmentManager.beginTransaction();
             fragmentTransactionloginDuration.replace(R.id.content_frame, loginDuration, "loginDuration");
             fragmentTransactionloginDuration.commit();
-            txt_toolbar.setText(R.string.login_duration);
+            txt_toolbar.setText(R.string.login_duration);*/
+            Intent intent = new Intent(FCD_DashboardActivity.this, FCD_LoginDuration.class);
+            startActivity(intent);
         } else if (id == R.id.floating_cash) {
-            FCD_FloatingCash floatingCash = new FCD_FloatingCash();
+            /*FCD_FloatingCash floatingCash = new FCD_FloatingCash();
             FragmentTransaction fragmentTransactionfloatingCash = fragmentManager.beginTransaction();
             fragmentTransactionfloatingCash.replace(R.id.content_frame, floatingCash, "floatingCash");
             fragmentTransactionfloatingCash.commit();
-            txt_toolbar.setText(R.string.floating_cash);
+            txt_toolbar.setText(R.string.floating_cash);*/
+            Intent intent = new Intent(FCD_DashboardActivity.this, FCD_FloatingCash.class);
+            startActivity(intent);
         }
-        else if (id == R.id.withdraw_request) {
-            RequestOrderDialog deliverdTheOrderDialog = RequestOrderDialog.newInstance();
+        else if (id == R.id.wallet) {
+           /* RequestOrderDialog deliverdTheOrderDialog = RequestOrderDialog.newInstance();
             deliverdTheOrderDialog.show(Objects.requireNonNull(FCD_DashboardActivity.this).getSupportFragmentManager(),
                     "requestOrderDialog");
-            txt_toolbar.setText(R.string.home);
+            txt_toolbar.setText(R.string.wallet);*/
+
+           Intent intent = new Intent(FCD_DashboardActivity.this, FCD_Wallet.class);
+           startActivity(intent);
+           /* FCD_WithDrawRequest withdraw = new FCD_WithDrawRequest();
+            FragmentTransaction fragmentTransactionliveOrders = fragmentManager.beginTransaction();
+            fragmentTransactionliveOrders.replace(R.id.content_frame, withdraw);
+            fragmentTransactionliveOrders.commit();
+            txt_toolbar.setText(R.string.withdraw_request);*/
         }
         else if (id==R.id.logout){
             androidx.appcompat.app.AlertDialog.Builder dialogBuilder = new androidx.appcompat.app.AlertDialog.Builder(Objects.requireNonNull(FCD_DashboardActivity.this));

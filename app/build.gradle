@@ -106,5 +106,12 @@ dependencies {
     implementation 'com.android.support:palette-v7:23.1.1'
     implementation 'me.bendik.simplerangeview:simplerangeview:0.2.0'
     implementation 'com.github.vihtarb:tooltip:0.1.9'
+    implementation 'com.stripe:stripe-android:14.4.1'
+    implementation 'com.stripe:stripe-android:13.3.0'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:customtabs:28.0.0'
+    //  implementation(name: 'razorpay-amazonpay-debug', ext: 'aar')
+    // implementation(name: 'PayWithAmazon', ext: 'aar')
+    implementation 'com.razorpay:checkout:1.5.8'
 }
 apply plugin: 'com.google.gms.google-services'

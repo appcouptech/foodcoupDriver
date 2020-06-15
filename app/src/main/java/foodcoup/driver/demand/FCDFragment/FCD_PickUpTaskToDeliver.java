@@ -26,8 +26,6 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
@@ -76,23 +74,17 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-
 import foodcoup.driver.demand.FCDActivity.FCDDashboardActivity.FCD_DashboardActivity;
 import foodcoup.driver.demand.FCDPojo.WriteDatabase_Driver;
 import foodcoup.driver.demand.FCDUtils.BottomSheet.BottomSheetDeliverd.DeliverdTheOrderDialog;
@@ -108,11 +100,6 @@ import foodcoup.driver.demand.FCDViews.FCD_User;
 import foodcoup.driver.demand.FCDViews.Utils;
 import foodcoup.driver.demand.R;
 
-import static foodcoup.driver.demand.FCDActivity.FCDDashboardActivity.FCD_DashboardActivity.fragmentManager;
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class FCD_PickUpTaskToDeliver extends Fragment implements OnMapReadyCallback {
 
     private LinearLayout ll_changeAmt, ll_customer, mBottomSheet, ll_direction, ll_paymentSuccessful;
@@ -594,22 +581,11 @@ public class FCD_PickUpTaskToDeliver extends Fragment implements OnMapReadyCallb
     };
 
     private void writeNewPost(String userId, String username, String title, String body) {
-        // Create new post at /user-posts/$userid/$postid and at
-        // /posts/$postid simultaneously
-        //String key = mDatabase.child("posts").push().getKey();
         WriteDatabase_Driver post = new WriteDatabase_Driver(userId, username, title, body);
         Map<String, Object> postValues = post.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();
-        /*childUpdates.put("/dev/" + key, postValues);
-        childUpdates.put("/drivers/" + userId + "/" + key, postValues);*/
-       /* childUpdates.put("/foodcoup/" +  userId,postValues);
-        childUpdates.put("/dev/" +  userId,postValues);
-        childUpdates.put("/drivers/" + userId + "/" , postValues);*/
-        /*childUpdates.put("/foodcoup/" +  userId,postValues);
-        childUpdates.put("/foodcoup/"+"/dev/"+"/drivers/" +  userId,postValues);*/
         childUpdates.put("/foodcoup/"+"/dev/"+"/drivers/" + userId + "/" , postValues);
-
         mDatabase.updateChildren(childUpdates);
     }
 
@@ -844,6 +820,7 @@ public class FCD_PickUpTaskToDeliver extends Fragment implements OnMapReadyCallb
             return routes;
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
         protected void onPostExecute(List<List<HashMap<String, String>>> routes) {
             ArrayList<LatLng> points = new ArrayList<>();
@@ -1055,7 +1032,7 @@ public class FCD_PickUpTaskToDeliver extends Fragment implements OnMapReadyCallb
                     }
                 }, volleyError -> {
             String value = volleyError.toString();
-
+Log.d("dfhdfgdf","dfgdf"+value);
             // snackBar(value);
         }) {
 

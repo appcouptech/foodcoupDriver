@@ -481,7 +481,7 @@ public class FCD_LiveOrders extends Fragment {
                     if (FCD_Common.dutyStarted == 1) {
 
                         FCD_Common.orderid = String.valueOf(liveOrdersObjects.get(position).getId());
-                        FCD_Common.currentTask = 4;
+
                         FCD_Common.count=2;
                         Utils.toast(getActivity(),"Your Order Confirming Loading please Wait");
                         ConfirmOrder();
@@ -534,7 +534,58 @@ public class FCD_LiveOrders extends Fragment {
                 });
 
                 holder.txt_rejected.setOnClickListener(view -> {
+                    if (FCD_Common.dutyStarted == 1) {
 
+                        FCD_Common.orderid = String.valueOf(liveOrdersObjects.get(position).getId());
+
+                        FCD_Common.count=2;
+                        Utils.toast(getActivity(),"Your Order Rejecting Loading please Wait");
+                        RejectOrder();
+
+                    } else {
+
+                        FCD_Common.currentTask = 1;
+                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+                        LayoutInflater inflater = getLayoutInflater();
+                        @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.confirmation_alert, null);
+                        dialogBuilder.setView(dialogView);
+
+                        AC_Textview txt_alertDesc = dialogView.findViewById(R.id.txt_alertDesc);
+                        AC_Textview txt_alertDesc1 = dialogView.findViewById(R.id.txt_alertDesc1);
+                        txt_alertDesc1.setVisibility(View.VISIBLE);
+                        AC_Textview txt_cancel = dialogView.findViewById(R.id.txt_cancel);
+                        AC_Textview txt_confirm = dialogView.findViewById(R.id.txt_confirm);
+
+                        final AlertDialog alertDialog = dialogBuilder.create();
+                        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        alertDialog.setCancelable(false);
+                        Objects.requireNonNull(alertDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                        colorSpan = new SpannableString(getActivity().getResources().getString(R.string.currently_offline));
+                        colorSpan.setSpan(new ForegroundColorSpan(getActivity().getResources().getColor(R.color.txt_site_red_color)), 17, 25, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        txt_alertDesc.setText(colorSpan);
+
+                        colorSpan = new SpannableString(getActivity().getResources().getString(R.string.go_online));
+                        colorSpan.setSpan(new ForegroundColorSpan(getActivity().getResources().getColor(R.color.txt_site_green_color)), 3, 10, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        txt_alertDesc1.setText(colorSpan);
+
+                        txt_cancel.setOnClickListener(view12 -> alertDialog.dismiss());
+
+                        txt_confirm.setOnClickListener(view1 -> {
+                            //snackBar("Loading please Wait");
+                            Utils.toast(getActivity(),"Loading please Wait");
+                            FCD_HomeFragment homeFragment = new FCD_HomeFragment();
+                            FragmentTransaction fragmentTransactionHome = FCD_DashboardActivity.fragmentManager.beginTransaction();
+                            fragmentTransactionHome.replace(R.id.content_frame, homeFragment, "homeFragment");
+                            fragmentTransactionHome.commit();
+                            FCD_DashboardActivity.txt_toolbar.setText(R.string.home);
+                            FCD_Common.currentTask = 2;
+
+                            alertDialog.dismiss();
+                        });
+                        alertDialog.show();
+
+                    }
                 });
             } else {
                 Log.d("dfgsfdgfdg","dfgdfgfdg");
@@ -559,6 +610,7 @@ public class FCD_LiveOrders extends Fragment {
 
                               //  snackBar("Loading please Wait");
                                 //Utils.toast(getActivity(),"Loading please Wait");
+                                FCD_Common.currentTask = 4;
                                 Utils.stopProgressBar();
                                 FCD_ConfirmOrders confirmFragment = new FCD_ConfirmOrders();
                                 FragmentTransaction fragmentTransactionConfirmOrder = FCD_DashboardActivity.fragmentManager.beginTransaction();
@@ -566,12 +618,18 @@ public class FCD_LiveOrders extends Fragment {
                                 fragmentTransactionConfirmOrder.commit();
                                 FCD_DashboardActivity.txt_toolbar.setText(R.string.confirm_order);
                             }
+                            else {
+                                Utils.stopProgressBar();
+                                FCD_Common.message = jsonResponse1.getString("message");
+                                Utils.toast(context,FCD_Common.message);
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Log.d("xcgsdgsdgsd", "dfhdf" + e);
                         }
                     }, volleyError -> {
                 String value = volleyError.toString();
+                Log.d("sdgsdfsdf","sdfds"+value);
                 //Utils.toast(getActivity(),value);
                 //snackBar(value);
             }) {
@@ -600,6 +658,61 @@ public class FCD_LiveOrders extends Fragment {
             requestQueue.getCache().clear();
 
         }
+        private void RejectOrder() {
+            Utils.playProgressBar(getActivity());
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, FCD_URL.URL_REJECT_ORDER,
+                    ServerResponse -> {
+
+                        Log.d("ServerResponse", "Liveorderscheck" + ServerResponse);
+                        try {
+
+                            JSONObject jsonResponse1 = new JSONObject(ServerResponse);
+                            FCD_Common.status = jsonResponse1.getString("success");
+                            if (FCD_Common.status.equalsIgnoreCase("1")) {
+
+                                Utils.stopProgressBar();
+                                liveOrdersListDetails();
+                            }
+                            else {
+                                Utils.stopProgressBar();
+                                FCD_Common.message = jsonResponse1.getString("message");
+                                Utils.toast(context,FCD_Common.message);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.d("xcgsdgsdgsd", "dfhdf" + e);
+                        }
+                    }, volleyError -> {
+                String value = volleyError.toString();
+                Log.d("sdgsdfsdf","sdfds"+value);
+                //Utils.toast(getActivity(),value);
+                //snackBar(value);
+            }) {
+
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("order_id", String.valueOf(FCD_Common.orderid));
+                    params.put("latitude", String.valueOf(FCD_Common.latitude));
+                    params.put("longitude", String.valueOf(FCD_Common.longitude));
+                    return params;
+                }
+
+                @Override
+                public Map<String, String> getHeaders() {
+                    Map<String, String> params = new HashMap<>();
+                    Log.d("fdgdfgfdg", "sdfgsdgs" + FCD_Common.token_type + " " + FCD_Common.access_token);
+                    params.put("Authorization", FCD_Common.token_type + " " + FCD_Common.access_token);
+                    return params;
+                }
+
+            };
+            RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
+            requestQueue.add(stringRequest);
+            requestQueue.getCache().clear();
+
+        }
+
 
         @Override
         public int getItemCount() {

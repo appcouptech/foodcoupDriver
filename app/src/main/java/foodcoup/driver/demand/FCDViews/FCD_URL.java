@@ -4,8 +4,8 @@ public class FCD_URL
 
     //URL//
     //private static final String ROOT_URL = "http://192.168.21.248/api/user";
-   private static final String ROOT_URL = "https://foodcoup.appcoup.com/api/driver";
-   // private static final String ROOT_URL = "https://foodcoupdemo1.appcoup.com/api/driver";
+   //private static final String ROOT_URL = "https://foodcoup.appcoup.com/api/driver";
+    private static final String ROOT_URL = "https://foodcoupdemo3.appcoup.com/api/driver";
     //private static final String ROOT_URL = "https://foodcoupdemo4.appcoup.com/api/driver";
 
     //Headers//
@@ -23,9 +23,13 @@ public class FCD_URL
     private static final String ROOTWEEK= "/week";
     private static final String ROOTTOKEN= "/token";
     private static final String ROOTCURRENT= "/current";
+    private static final String ROOTREJECT= "/reject";
+    private static final String ROOTWALLET= "/wallet";
+    private static final String ROOTINCENTIVE= "/incentive";
 
     //ROOT_URL //
     public static final String URL_LOGIN= ROOT_URL+"/login"+ROOT_PHP;
+    public static final String URL_HISTORY= ROOT_URL+"/history"+ROOT_PHP;
     public static final String URL_LOGINOTP= ROOT_URL+"/otp"+ROOT_PHP;
     public static final String URL_DETAILUSER= ROOT_URL+"/detail"+ROOT_PHP;
     public static final String URL_EARNING= ROOT_URL+"/earning"+ROOT_PHP;
@@ -33,6 +37,7 @@ public class FCD_URL
     public static final String URL_LOGOUT= ROOT_URL+"/logout"+ROOT_PHP;
     public static final String ROOTWITHDRAW_REQUEST= ROOT_URL+"/withdraw-request"+ROOT_PHP;
     public static final String ROOTWITHDRAW_LIST= ROOT_URL+"/withdraw-list"+ROOT_PHP;
+    public static final String ROOTSTRIPE= ROOT_URL+"/stripekey"+ROOT_PHP;
 
     //ROOT_URL + ROOT_DUTY//
     public static final String URL_DRIVER_DUTY_STARTED= ROOT_URL+ROOT_DUTY+"/update"+ROOT_PHP;
@@ -40,6 +45,7 @@ public class FCD_URL
     public static final String URL_LOCATION_BASED_LIST= ROOT_URL+ROOT_LIST +"/list"+ROOT_PHP;
     public static final String URL_DRIVER_STATUS_CHECK= ROOT_URL+ROOT_DUTY +"/status"+ROOT_PHP;
     public static final String URL_CONFIRM_ORDER= ROOT_URL+ROOTACCEPT +"/order"+ROOT_PHP;
+    public static final String URL_REJECT_ORDER= ROOT_URL+ROOTREJECT +"/order"+ROOT_PHP;
 
 
     /*ROOT_URL + ROOTORDER*/
@@ -67,7 +73,12 @@ public static final String URL_UPDATESTATUS= ROOT_URL+ROOTUPDATE +"/status"+ROOT
     /*ROOT_URL + ROOTWEEK*/
     public static final String URL_CURRENTTASK= ROOT_URL+ROOTCURRENT +"/task"+ROOT_PHP;
 
+    /*ROOT_URL + ROOTINCENTIVE*/
+    public static final String URL_INCENTIVE= ROOT_URL+ROOTINCENTIVE +"/history"+ROOT_PHP;
 
-
+    /*ROOT_URL + ROOTWALLET*/
+    public static final String URL_WALLETINFO= ROOT_URL+ROOTWALLET +"/info"+ROOT_PHP;
+    public static final String URL_WALLETPAYMENT= ROOT_URL+ROOTWALLET +"/payment"+ROOT_PHP;
+    public static final String URL_WALLETHISTORY= ROOT_URL+ROOTWALLET +"/history"+ROOT_PHP;
 
 }

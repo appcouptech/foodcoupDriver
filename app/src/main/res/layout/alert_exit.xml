@@ -83,6 +83,24 @@
                     android:textColor="@color/mb_white" />
 
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:background="@drawable/layout_rectengle_bottom_right_bg"
+                >
+
+                <foodcoup.driver.demand.FCDViews.AC_BoldTextview
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_3sdp"
+                    android:textSize="@dimen/_12ssp"
+                    android:gravity="center"
+                    android:text="@string/alert_exit"
+                    android:textColor="@color/mb_white" />
+
+            </LinearLayout>
         </LinearLayout>
 
 

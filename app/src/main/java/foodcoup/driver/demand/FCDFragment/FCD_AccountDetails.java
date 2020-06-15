@@ -3,17 +3,14 @@ package foodcoup.driver.demand.FCDFragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -35,6 +32,7 @@ import java.util.Objects;
 
 import foodcoup.driver.demand.FCDActivity.FCDDashboardActivity.FCD_DashboardActivity;
 import foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView;
+import foodcoup.driver.demand.FCDViews.AC_Textview;
 import foodcoup.driver.demand.FCDViews.CircleImageView;
 import foodcoup.driver.demand.FCDViews.FCD_Common;
 import foodcoup.driver.demand.FCDViews.FCD_SharedPrefManager;
@@ -46,59 +44,72 @@ import foodcoup.driver.demand.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FCD_AccountDetails extends Fragment {
+public class FCD_AccountDetails extends AppCompatActivity {
     private Context context;
     private Snackbar bar;
+    private AC_Textview txt_toolbarOrderNo;
     private CircleImageView lc_circleDriver;
+    private ImageView img_back,img_currentTask,img_notification;
     private LinearLayout ll_main;
     private  LoaderTextView lt_driverName,lt_vehicleInsurance,lt_vehicleNumber,lt_vehicleModel,lt_vehicleName,lt_Email,lt_phone,lt_address,lt_accountName,lt_accountNumber,lt_bankName,lt_IFSC,lt_panCard;
     public FCD_AccountDetails() {
         // Required empty public constructor
     }
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fcd__account_details, container, false);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        context=getActivity();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_fcd__account_details);
+        context = FCD_AccountDetails.this;
         FCD_User user = FCD_SharedPrefManager.getInstance(context).getUser();
         FCD_Common.id = String.valueOf(user.getid());
         FCD_Common.token_type = String.valueOf(user.gettoken_type());
         FCD_Common.access_token = String.valueOf(user.getaccess_token());
-        FindViewById(view);
+
+        FindViewById();
         AccountStatus();
+
+        img_currentTask.setOnClickListener(v -> {
+            Intent intent =new Intent(FCD_AccountDetails.this, FCD_DashboardActivity.class);
+            startActivity(intent);
+        });
+        img_back.setOnClickListener(v -> onBackPressed());
     }
 
-    private void FindViewById(View view) {
-        lc_circleDriver = view.findViewById(R.id.lc_circleDriver);
-        lt_Email = view.findViewById(R.id.lt_Email);
-        lt_phone = view.findViewById(R.id.lt_phone);
-        lt_address = view.findViewById(R.id.lt_address);
-        lt_driverName = view.findViewById(R.id.lt_driverName);
-        lt_accountName = view.findViewById(R.id.lt_accountName);
-        lt_accountNumber = view.findViewById(R.id.lt_accountNumber);
-        lt_bankName = view.findViewById(R.id.lt_bankName);
-        lt_IFSC = view.findViewById(R.id.lt_IFSC);
-        lt_panCard = view.findViewById(R.id.lt_panCard);
-        lt_vehicleName = view.findViewById(R.id.lt_vehicleName);
-        lt_vehicleModel = view.findViewById(R.id.lt_vehicleModel);
-        lt_vehicleNumber = view.findViewById(R.id.lt_vehicleNumber);
-        lt_vehicleInsurance = view.findViewById(R.id.lt_vehicleInsurance);
-        ll_main = view.findViewById(R.id.ll_main);
+    private void FindViewById() {
+
+        lc_circleDriver = findViewById(R.id.lc_circleDriver);
+        lt_Email = findViewById(R.id.lt_Email);
+        lt_phone = findViewById(R.id.lt_phone);
+        lt_address = findViewById(R.id.lt_address);
+        lt_driverName = findViewById(R.id.lt_driverName);
+        lt_accountName = findViewById(R.id.lt_accountName);
+        lt_accountNumber = findViewById(R.id.lt_accountNumber);
+        lt_bankName = findViewById(R.id.lt_bankName);
+        lt_IFSC = findViewById(R.id.lt_IFSC);
+        lt_panCard = findViewById(R.id.lt_panCard);
+        lt_vehicleName = findViewById(R.id.lt_vehicleName);
+        lt_vehicleModel = findViewById(R.id.lt_vehicleModel);
+        lt_vehicleNumber = findViewById(R.id.lt_vehicleNumber);
+        lt_vehicleInsurance = findViewById(R.id.lt_vehicleInsurance);
+        ll_main = findViewById(R.id.ll_main);
+
+        txt_toolbarOrderNo = findViewById(R.id.txt_toolbarOrderNo);
+        img_currentTask = findViewById(R.id.img_currentTask);
+        img_notification = findViewById(R.id.img_notification);
+        img_back = findViewById(R.id.img_back);
+        img_back.setVisibility(View.VISIBLE);
+        img_notification.setVisibility(View.GONE);
+        img_currentTask.setVisibility(View.VISIBLE);
+        txt_toolbarOrderNo.setVisibility(View.VISIBLE);
+        txt_toolbarOrderNo.setText(getResources().getString(R.string.my_account));
+
         FCD_DashboardActivity.txt_toolbarOrderNo.setVisibility(View.GONE);
     }
 
 
     @SuppressLint({"DefaultLocale", "SetTextI18n"})
     private void AccountStatus() {
-        Utils.playProgressBar(getActivity());
+        Utils.playProgressBar(FCD_AccountDetails.this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, FCD_URL.URL_DETAILUSER,
                 ServerResponse -> {
 
@@ -165,7 +176,7 @@ public class FCD_AccountDetails extends Fragment {
             }
 
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
+        RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(context));
         requestQueue.add(stringRequest);
         requestQueue.getCache().clear();
     }

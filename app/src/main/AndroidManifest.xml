@@ -38,6 +38,7 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="foodcoup.driver.demand.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+
     <permission
         android:name="foodcoup.driver.demand.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
@@ -58,48 +59,125 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,InnerclassSeparator,MissingApplicationIcon,UnusedAttribute">
-        <activity android:name="foodcoup.driver.FCPushNotifications.MainActivity"/>
-        <activity
+        <activity android:name=".FCDWallet.FCD_Wallet"
             android:launchMode="singleTask"
-            android:name=".FCDActivity.FCDLoginActivity.FCD_LoginActivity"
             android:theme="@style/FCDAppStatusBarChange"
             android:windowSoftInputMode="stateAlwaysHidden"
             tools:ignore="InnerclassSeparator"/>
-        <activity
+        <activity android:name=".FCDFragment.FCD_WalletHistory"
             android:launchMode="singleTask"
+            android:theme="@style/FCDAppStatusBarChange"
+            android:label="History"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="InnerclassSeparator"/>
+
+        <activity android:name=".FCDFragment.FCD_AccountDetails"
+            android:launchMode="singleTask"
+            android:theme="@style/FCDAppStatusBarChange"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="InnerclassSeparator"/>
+        <activity android:name=".FCDFragment.FCD_ReferAFriend"
+            android:launchMode="singleTask"
+            android:theme="@style/FCDAppStatusBarChange"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="InnerclassSeparator"/>
+
+        <activity android:name=".FCDFragment.FCD_TodaysEarnings"
+            android:launchMode="singleTask"
+            android:theme="@style/FCDAppStatusBarChange"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="InnerclassSeparator"/>
+
+        <activity android:name=".FCDFragment.FCDWeeklyEarnings.FCD_WeeklyEarnings"
+            android:launchMode="singleTask"
+            android:theme="@style/FCDAppStatusBarChange"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="InnerclassSeparator"/>
+
+        <activity android:name=".FCDFragment.FCDIncentives.FCD_Incentives"
+            android:launchMode="singleTask"
+            android:theme="@style/FCDAppStatusBarChange"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="InnerclassSeparator"/>
+
+        <activity android:name=".FCDFragment.FCD_RideHistory"
+            android:launchMode="singleTask"
+            android:theme="@style/FCDAppStatusBarChange"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="InnerclassSeparator"/>
+
+
+        <activity android:name=".FCDFragment.FCDLoginDuration.FCD_LoginDuration"
+            android:launchMode="singleTask"
+            android:theme="@style/FCDAppStatusBarChange"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="InnerclassSeparator"/>
+
+        <activity android:name=".FCDFragment.FCD_FloatingCash"
+            android:launchMode="singleTask"
+            android:theme="@style/FCDAppStatusBarChange"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="InnerclassSeparator"/>
+
+        <activity android:name=".FCDWallet.FCD_WithDrawRequest"
+            android:launchMode="singleTask"
+            android:theme="@style/FCDAppStatusBarChange"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="InnerclassSeparator"/>
+
+        <activity android:name="foodcoup.driver.FCPushNotifications.MainActivity" />
+        <activity
+            android:name=".FCDActivity.FCDLoginActivity.FCD_LoginActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/FCDAppStatusBarChange"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="InnerclassSeparator" />
+        <activity
             android:name=".FCDActivity.FCDSplashActivity.FCD_SplashActivity"
+            android:launchMode="singleTask"
             android:theme="@style/FCDAppStatusBarChange"
             android:windowSoftInputMode="stateAlwaysHidden"
             tools:ignore="InnerclassSeparator">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".FCDActivity.Testing.TestingLayout"
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".FCDActivity.FCDDashboardActivity.FCD_DashboardActivity"
-            android:theme="@style/FCDAppStatusBarChange"
             android:launchMode="singleTask"
+            android:theme="@style/FCDAppStatusBarChange"
             android:windowSoftInputMode="stateAlwaysHidden"
             tools:ignore="InnerclassSeparator">
-            <!-- <intent-filter>
+            <intent-filter>
+                <action android:name=".FCDActivity.FCDDashboardActivity.FCD_DashboardActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <!--
+             <intent-filter>
                  <action android:name="android.intent.action.MAIN" />
 
                  <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>-->
+             </intent-filter>
+            -->
         </activity>
-
+        <service
+            android:name="foodcoup.driver.FCPushNotifications.MyFirebaseMessagingService"
+            android:exported="false"
+            android:directBootAware="true"
+            tools:ignore="InnerclassSeparator">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
         <receiver
             android:name=".FCDUtils.NetworkChecking.NetworkChangeReceiver"
             android:enabled="true"
             tools:ignore="InnerclassSeparator" />
-
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -109,6 +187,7 @@
             android:value="AIzaSyBUj3_ktkREGDLSuYB-0Xf5ChZ2J1xj_tM" />
 
         <service android:name="foodcoup.driver.FCPushNotifications.GPSTracker" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

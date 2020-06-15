@@ -3,6 +3,7 @@ package foodcoup.driver.demand.FCDFragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -239,43 +240,52 @@ public class FCD_HomeFragment extends Fragment implements View.OnClickListener {
 
             case R.id.ll_todaysEarnings :
 
-                FCD_TodaysEarnings todaysEarnings = new FCD_TodaysEarnings();
+               /* FCD_TodaysEarnings todaysEarnings = new FCD_TodaysEarnings();
                 FragmentTransaction fragmentTransactiontodaysEarnings = fragmentManager.beginTransaction();
                 fragmentTransactiontodaysEarnings.add(R.id.content_frame, todaysEarnings);
                 fragmentTransactiontodaysEarnings.addToBackStack("homeFragment");
                 fragmentTransactiontodaysEarnings.commit();
-                FCD_DashboardActivity.txt_toolbar.setText(R.string.todays_earnings);
+                FCD_DashboardActivity.txt_toolbar.setText(R.string.todays_earnings);*/
+                Intent intent = new Intent(getActivity(), FCD_TodaysEarnings.class);
+                startActivity(intent);
 
                 break;
 
             case R.id.ll_weeksEarnings:
 
-                FCD_WeeklyEarnings weeklyEarnings = new FCD_WeeklyEarnings();
+            /*    FCD_WeeklyEarnings weeklyEarnings = new FCD_WeeklyEarnings();
                 FragmentTransaction fragmentTransactionweeklyEarnings = fragmentManager.beginTransaction();
                 fragmentTransactionweeklyEarnings.add(R.id.content_frame, weeklyEarnings , "weeklyEarnings");
                 fragmentTransactionweeklyEarnings.addToBackStack("homeFragment");
                 fragmentTransactionweeklyEarnings.commit();
-                FCD_DashboardActivity.txt_toolbar.setText(R.string.week_earning);
+                FCD_DashboardActivity.txt_toolbar.setText(R.string.week_earning);*/
+
+                Intent intent1 = new Intent(getActivity(), FCD_WeeklyEarnings.class);
+                startActivity(intent1);
                 break;
 
             case R.id.ll_loginDuration:
 
-                FCD_LoginDuration loginDuration = new FCD_LoginDuration();
+             /*   FCD_LoginDuration loginDuration = new FCD_LoginDuration();
                 FragmentTransaction fragmentTransactionloginDuration = fragmentManager.beginTransaction();
                 fragmentTransactionloginDuration.add(R.id.content_frame, loginDuration , "loginDuration");
                 fragmentTransactionloginDuration.addToBackStack("homeFragment");
                 fragmentTransactionloginDuration.commit();
-                FCD_DashboardActivity.txt_toolbar.setText(R.string.login_duration);
+                FCD_DashboardActivity.txt_toolbar.setText(R.string.login_duration);*/
+                Intent login = new Intent(getActivity(), FCD_LoginDuration.class);
+                startActivity(login);
                 break;
 
             case R.id.ll_floatingCash:
 
-                FCD_FloatingCash floatingCash = new FCD_FloatingCash();
+               /* FCD_FloatingCash floatingCash = new FCD_FloatingCash();
                 FragmentTransaction fragmentTransactionfloatingCash = fragmentManager.beginTransaction();
                 fragmentTransactionfloatingCash.add(R.id.content_frame, floatingCash , "floatingCash");
                 fragmentTransactionfloatingCash.addToBackStack("homeFragment");
                 fragmentTransactionfloatingCash.commit();
-                FCD_DashboardActivity.txt_toolbar.setText(R.string.floating_cash);
+                FCD_DashboardActivity.txt_toolbar.setText(R.string.floating_cash);*/
+                Intent floating = new Intent(getActivity(), FCD_FloatingCash.class);
+                startActivity(floating);
                 break;
 
         }

@@ -535,22 +535,10 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
     };
 
     private void writeNewPost(String userId, String username, String title, String body) {
-        // Create new post at /user-posts/$userid/$postid and at
-        // /posts/$postid simultaneously
-        //String key = mDatabase.child("posts").push().getKey();
         WriteDatabase_Driver post = new WriteDatabase_Driver(userId, username, title, body);
         Map<String, Object> postValues = post.toMap();
-
         Map<String, Object> childUpdates = new HashMap<>();
-        /*childUpdates.put("/dev/" + key, postValues);
-        childUpdates.put("/drivers/" + userId + "/" + key, postValues);*/
-       /* childUpdates.put("/foodcoup/" +  userId,postValues);
-        childUpdates.put("/dev/" +  userId,postValues);
-        childUpdates.put("/drivers/" + userId + "/" , postValues);*/
-        /*childUpdates.put("/foodcoup/" +  userId,postValues);
-        childUpdates.put("/foodcoup/"+"/dev/"+"/drivers/" +  userId,postValues);*/
         childUpdates.put("/foodcoup/"+"/dev/"+"/drivers/" + userId + "/" , postValues);
-
         mDatabase.updateChildren(childUpdates);
     }
     private Bitmap getBitmapFromDrawable(Drawable drawable) {

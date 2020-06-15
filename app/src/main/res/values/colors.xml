@@ -17,6 +17,9 @@
     <color name="appnotification">#8190a5</color>
     <color name="mb_white">#ffffff</color>
     <color name="mb_green">#ff99cc00</color>
+    <color name="pale_green">#98FB98</color>
+    <color name="pale_red">#FFA07A</color>
+    <color name="pale_blue">#cff5f5</color>
     <color name="mb_green_dark">#ff6d9b00</color>
     <color name="mb_gray">#ededed</color>
     <color name="progress">#ff9a10</color>

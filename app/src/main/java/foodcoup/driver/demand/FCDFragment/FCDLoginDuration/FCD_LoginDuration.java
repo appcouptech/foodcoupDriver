@@ -3,10 +3,11 @@ package foodcoup.driver.demand.FCDFragment.FCDLoginDuration;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.android.volley.Request;
@@ -47,51 +49,61 @@ import foodcoup.driver.demand.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FCD_LoginDuration extends Fragment {
+public class FCD_LoginDuration extends AppCompatActivity {
 
     private RecyclerView rv_pastLoginInformation ;
     private Snackbar bar;
     private Context context;
-    private  AC_Textview txt_emptyview;
+    private  AC_Textview txt_toolbarOrderNo,txt_emptyview;
     private LoaderTextView lt_totalhrs;
     private LinearLayout  ll_main;
+    private ImageView img_back,img_currentTask,img_notification;
     private PastLoginInfoAdpater pastLoginInfoAdpater ;
     private ArrayList<LoginDurationObject> loginDurationObjects = new ArrayList<>();
 
-    public FCD_LoginDuration() {
-        // Required empty public constructor
-    }
+
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fcd__login_duration, container, false);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        context = getActivity();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_fcd__login_duration);
+        context = FCD_LoginDuration.this;
         FCD_User user = FCD_SharedPrefManager.getInstance(context).getUser();
         FCD_Common.id = String.valueOf(user.getid());
         FCD_Common.token_type = String.valueOf(user.gettoken_type());
         FCD_Common.access_token = String.valueOf(user.getaccess_token());
-        FindViewById(view);
+
+        FindViewById();
 
         pastLoginInfoAdpater = new PastLoginInfoAdpater(loginDurationObjects);
         rv_pastLoginInformation.setAdapter(pastLoginInfoAdpater);
-        rv_pastLoginInformation.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        rv_pastLoginInformation.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         LoginList();
+
+        img_currentTask.setOnClickListener(v -> {
+            Intent intent =new Intent(FCD_LoginDuration.this, FCD_DashboardActivity.class);
+            startActivity(intent);
+        });
+        img_back.setOnClickListener(v -> onBackPressed());
     }
 
-    private void FindViewById(View view) {
-        rv_pastLoginInformation = view.findViewById(R.id.rv_pastLoginInformation);
-        txt_emptyview = view.findViewById(R.id.txt_emptyview);
-        lt_totalhrs = view.findViewById(R.id.lt_totalhrs);
-        ll_main = view.findViewById(R.id.ll_main);
+    private void FindViewById() {
+        rv_pastLoginInformation = findViewById(R.id.rv_pastLoginInformation);
+        txt_emptyview = findViewById(R.id.txt_emptyview);
+        lt_totalhrs = findViewById(R.id.lt_totalhrs);
+        ll_main = findViewById(R.id.ll_main);
+
+        txt_toolbarOrderNo = findViewById(R.id.txt_toolbarOrderNo);
+        img_currentTask = findViewById(R.id.img_currentTask);
+        img_notification = findViewById(R.id.img_notification);
+        img_back = findViewById(R.id.img_back);
+        img_back.setVisibility(View.VISIBLE);
+        img_notification.setVisibility(View.GONE);
+        img_currentTask.setVisibility(View.VISIBLE);
+        txt_toolbarOrderNo.setVisibility(View.VISIBLE);
+        txt_toolbarOrderNo.setText(getResources().getString(R.string.login_duration));
+
 
         LoginDurationObject durationObject = new LoginDurationObject();
         durationObject.setD_image("");
@@ -114,7 +126,7 @@ public class FCD_LoginDuration extends Fragment {
 
     @SuppressLint("SetTextI18n")
     private void  LoginList() {
-        Utils.playProgressBar(getActivity());
+        Utils.playProgressBar(FCD_LoginDuration.this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, FCD_URL.URL_LOGINLIST,
                 response -> {
                     try {
@@ -224,21 +236,18 @@ public class FCD_LoginDuration extends Fragment {
                 }
                 holder.lt_totalTime.setText(loginDurationObjects.get(position).getTotal_duration());
                 holder.lt_logincount.setText(getResources().getString(R.string.logincount)+" "+loginDurationObjects.get(position).getDuty_count());
-            holder.ll_login.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            holder.ll_login.setOnClickListener(v -> {
 
-                    Bundle bundle = new Bundle();
-                    bundle.putString("duty_date", loginDurationObjects.get(position).getDate());
+                Bundle bundle = new Bundle();
+                bundle.putString("duty_date", loginDurationObjects.get(position).getDate());
 
-                    FCD_particularLoginDuration particularLoginDuration = new FCD_particularLoginDuration();
-                    particularLoginDuration.setArguments(bundle);
-                    FragmentTransaction fragmentTransactionparticularLoginDuration = FCD_DashboardActivity.fragmentManager.beginTransaction();
-                    fragmentTransactionparticularLoginDuration.add(R.id.content_frame, particularLoginDuration , "particularLoginDuration");
-                    fragmentTransactionparticularLoginDuration.addToBackStack("loginDuration");
-                    fragmentTransactionparticularLoginDuration.commit();
-                    FCD_DashboardActivity.txt_toolbar.setText(R.string.login_duration);
-                }
+                FCD_particularLoginDuration particularLoginDuration = new FCD_particularLoginDuration();
+                particularLoginDuration.setArguments(bundle);
+                FragmentTransaction fragmentTransactionparticularLoginDuration = FCD_DashboardActivity.fragmentManager.beginTransaction();
+                fragmentTransactionparticularLoginDuration.add(R.id.content_frame, particularLoginDuration , "particularLoginDuration");
+                fragmentTransactionparticularLoginDuration.addToBackStack("loginDuration");
+                fragmentTransactionparticularLoginDuration.commit();
+                FCD_DashboardActivity.txt_toolbar.setText(R.string.login_duration);
             });
             }
 
@@ -263,7 +272,7 @@ public class FCD_LoginDuration extends Fragment {
             notifyDataSetChanged();
         }
         class ViewHolder extends RecyclerView.ViewHolder {
-            LoaderTextView lt_date,lt_totalTime,lt_logincount,lt_status;
+            LoaderTextView lt_date,lt_totalTime,lt_logincount;
             LinearLayout ll_login;
             ViewHolder(@NonNull View itemView)
             {

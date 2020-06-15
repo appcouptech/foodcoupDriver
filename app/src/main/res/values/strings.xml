@@ -27,8 +27,14 @@
     <string name="weeks_earnings">Week\'s Earnings</string>
     <string name="login_duration">Login Duration</string>
     <string name="floating_cash">Floating Cash</string>
+    <string name="wallet_history">Wallet History</string>
     <string name="withdraw_request">WithDraw Request</string>
+    <string name="withdraw">WithDraw</string>
+    <string name="recharge">Recharge</string>
+    <string name="wallet">Wallet</string>
+    <string name="recent">Recent Transaction</string>
     <string name="search_orders">SEARCH ORDERS</string>
+    <string name="ride_history">Ride History</string>
     <string name="week_earning">Week Earning\'s</string>
 
     <!-- Bottom Sheet Start Duty-->
@@ -66,6 +72,10 @@
     <string name="last_mile_distance">LAST MILE DISTANCE</string>
     <string name="are_you_sure_deliver">Are you sure delivered the order ?</string>
     <string name="are_you_sure_request">Are you sure Request the Amount ?</string>
+    <string name="enter_withdraw">Enter the Amount to Withdraw</string>
+    <string name="enter_recharge">Enter the Amount to Recharge</string>
+    <string name="minimumbalance">* You should have maintain minimum balance</string>
+    <string name="enter_amt">Enter Amount</string>
     <string name="request_amt">Request Amount</string>
     <string name="wallet_amt">Wallet Amount</string>
 
@@ -116,6 +126,7 @@
 
     <!--TodaysEariningsFragment-->
     <string name="today">Today </string>
+    <string name="today_earning">Today Earnings</string>
     <string name="rupees_symbol">₹</string>
     <string name="eaqrnings">Earnings</string>
     <string name="incentives">Incentives</string>
@@ -136,6 +147,7 @@
     <!--FloatingCash-->
 
     <string name="current_balance">Current Balance</string>
+    <string name="balance">Balance</string>
     <string name="limit">Limit</string>
 
     <!--Refer A Friend-->
@@ -150,8 +162,6 @@
     <string name="conn_check">Check your connection</string>
     <string name="conn_try_again">or try again</string>
     <string name="title_activity_maps">Map</string>
-
-
 
 
     ///
@@ -359,7 +369,6 @@
     <string name="conform_logout">Are You Sure Want To Logout</string>
 
 
-
     <!--bottom sheet dailog for filter-->
 
     <string name="f_apply">Apply</string>
@@ -413,7 +422,7 @@
     <string name="orderno">ORD.No : </string>
     <string name="register">Register</string>
     <string name="deliver_to">Deliver To-</string>
-    <string name="registerdriver">Your number is not registered \n Register to continue Your duty "</string>
+    <string name="registerdriver">Your number is not Approved \n After Updated to continue Your duty "</string>
     <string name="current_loc">Current location is Off kindly Enable the current Location</string>
     <string name="logincount">Login Count : </string>
     <string name="floatlimit">Limit :</string>

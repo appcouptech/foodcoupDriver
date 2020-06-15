@@ -4,11 +4,13 @@ package foodcoup.driver.demand.FCDFragment.FCDWeeklyEarnings;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +20,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -50,12 +53,13 @@ import foodcoup.driver.demand.FCDViews.FCD_SharedPrefManager;
 import foodcoup.driver.demand.FCDViews.FCD_URL;
 import foodcoup.driver.demand.FCDViews.FCD_User;
 import foodcoup.driver.demand.FCDViews.Utils;
+import foodcoup.driver.demand.FCDWallet.FCD_Wallet;
 import foodcoup.driver.demand.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FCD_WeeklyEarnings extends Fragment {
+public class FCD_WeeklyEarnings extends AppCompatActivity {
 
     private WeeklyEarningAdapter weeklyEarningAdapter;
     private RecyclerView rv_weekEarnings ;
@@ -64,37 +68,28 @@ public class FCD_WeeklyEarnings extends Fragment {
     private int mYear, mMonth, mDay;
     private Snackbar bar;
     private LoaderTextView lt_mainTotal;
-    private AC_Textview txt_toDate,txt_fromDate,txt_emptyview;
+    private AC_Textview txt_toolbarOrderNo,txt_wkdate,txt_toDate,txt_fromDate,txt_emptyview;
     private static String compareFromDate;
+    private ImageView img_back,img_currentTask,img_notification;
     private static String compareToDate;
     private Context context;
-    public FCD_WeeklyEarnings() {
-        // Required empty public constructor
-    }
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fcd__weekly_earnings, container, false);
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_fcd__weekly_earnings);
+        context = FCD_WeeklyEarnings.this;
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-
-        context = getActivity();
         FCD_User user = FCD_SharedPrefManager.getInstance(context).getUser();
         FCD_Common.id = String.valueOf(user.getid());
         FCD_Common.token_type = String.valueOf(user.gettoken_type());
         FCD_Common.access_token = String.valueOf(user.getaccess_token());
-        FindViewById(view);
+
+
+        FindViewById();
 
         weeklyEarningAdapter = new WeeklyEarningAdapter( weeklyEarningsObjects);
         rv_weekEarnings.setAdapter(weeklyEarningAdapter);
-        rv_weekEarnings.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        rv_weekEarnings.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
 
         ll_thisWeek.setOnClickListener(view1 -> {
 
@@ -108,17 +103,34 @@ public class FCD_WeeklyEarnings extends Fragment {
 
         datemethod();
         dailyearnings();
+
+        img_currentTask.setOnClickListener(v -> {
+            Intent intent =new Intent(FCD_WeeklyEarnings.this, FCD_DashboardActivity.class);
+            startActivity(intent);
+        });
+        img_back.setOnClickListener(v -> onBackPressed());
     }
 
-    private void FindViewById(View view) {
+    private void FindViewById() {
 
-        ll_main = view.findViewById(R.id.ll_main);
-        txt_toDate = view.findViewById(R.id.txt_toDate);
-        txt_fromDate = view.findViewById(R.id.txt_fromDate);
-        rv_weekEarnings = view.findViewById(R.id.rv_weekEarnings);
-        txt_emptyview = view.findViewById(R.id.txt_emptyview);
-        lt_mainTotal = view.findViewById(R.id.lt_mainTotal);
-        ll_thisWeek = view.findViewById(R.id.ll_thisWeek);
+        ll_main = findViewById(R.id.ll_main);
+        txt_wkdate = findViewById(R.id.txt_wkdate);
+        txt_toDate = findViewById(R.id.txt_toDate);
+        txt_fromDate = findViewById(R.id.txt_fromDate);
+        rv_weekEarnings = findViewById(R.id.rv_weekEarnings);
+        txt_emptyview = findViewById(R.id.txt_emptyview);
+        lt_mainTotal = findViewById(R.id.lt_mainTotal);
+        ll_thisWeek = findViewById(R.id.ll_thisWeek);
+
+        txt_toolbarOrderNo = findViewById(R.id.txt_toolbarOrderNo);
+        img_currentTask = findViewById(R.id.img_currentTask);
+        img_notification = findViewById(R.id.img_notification);
+        img_back = findViewById(R.id.img_back);
+        img_back.setVisibility(View.VISIBLE);
+        img_notification.setVisibility(View.GONE);
+        img_currentTask.setVisibility(View.VISIBLE);
+        txt_toolbarOrderNo.setVisibility(View.VISIBLE);
+        txt_toolbarOrderNo.setText(getResources().getString(R.string.week_earning));
 
         WeeklyEarningsObject earningsObject = new WeeklyEarningsObject();
         earningsObject.setD_image("");
@@ -146,7 +158,7 @@ public class FCD_WeeklyEarnings extends Fragment {
 
     @SuppressLint("SetTextI18n")
     private void  dailyearnings() {
-        Utils.playProgressBar(getActivity());
+        Utils.playProgressBar(FCD_WeeklyEarnings.this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, FCD_URL.URL_WEEKEARNING,
                 response -> {
                     try {
@@ -157,12 +169,12 @@ public class FCD_WeeklyEarnings extends Fragment {
                             Log.d("fghfghfg","fhfghfg"+dataArray);
 
                             Utils.stopProgressBar();
-                            //FCD_Common.WeeklyTotal=obj.getString("total");
+                            FCD_Common.WeeklyTotal=obj.getString("total");
                             FCD_Common.Weeklycurrency=obj.getString("currency");
                             weeklyEarningsObjects.clear();
                             rv_weekEarnings.setVisibility(View.VISIBLE);
                             txt_emptyview.setVisibility(View.GONE);
-                            //lt_mainTotal.setText(FCD_Common.Weeklycurrency+" "+FCD_Common.WeeklyTotal);
+                            lt_mainTotal.setText(FCD_Common.Weeklycurrency+" "+FCD_Common.WeeklyTotal);
                             for (int i = 0; i < dataArray.length(); i++) {
                                 WeeklyEarningsObject playerModel = new WeeklyEarningsObject();
                                 JSONObject product = dataArray.getJSONObject(i);
@@ -249,7 +261,7 @@ public class FCD_WeeklyEarnings extends Fragment {
 
 
             if (visible) {
-                holder.lt_count.setText(getResources().getString(R.string.driverdelivered)+""+weeklyEarningsObjects.get(position).getCount());
+                holder.lt_count.setText(getResources().getString(R.string.driverdelivered)+" "+weeklyEarningsObjects.get(position).getCount());
                 holder.lt_currency.setText(FCD_Common.Weeklycurrency+" "+weeklyEarningsObjects.get(position).getTotal());
                 Log.d("dfghfdgfd", "dfgdfg" + weeklyEarningsObjects.get(position).getCreated());
             @SuppressLint("SimpleDateFormat") SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
@@ -296,6 +308,7 @@ public class FCD_WeeklyEarnings extends Fragment {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void datemethod() {
         try {
             @SuppressLint("SimpleDateFormat")
@@ -325,7 +338,7 @@ public class FCD_WeeklyEarnings extends Fragment {
                 mYear = c.get(Calendar.YEAR);
                 mMonth = c.get(Calendar.MONTH);
                 mDay = c.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog datePickerDialog = new DatePickerDialog(Objects.requireNonNull(getContext()),
+                DatePickerDialog datePickerDialog = new DatePickerDialog(Objects.requireNonNull(context),
                         (view, year12, monthOfYear, dayOfMonth) -> {
                             compareFromDate = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year12;
                             FCD_Common.DateFromItem= year12 +"-"+ (monthOfYear + 1)+"-"+dayOfMonth;
@@ -340,7 +353,7 @@ public class FCD_WeeklyEarnings extends Fragment {
                 mYear = c.get(Calendar.YEAR);
                 mMonth = c.get(Calendar.MONTH);
                 mDay = c.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog datePickerDialog = new DatePickerDialog(Objects.requireNonNull(getContext()),
+                DatePickerDialog datePickerDialog = new DatePickerDialog(Objects.requireNonNull(context),
                         (view, year1, monthOfYear, dayOfMonth) -> {
                             compareToDate=dayOfMonth+"-"+(monthOfYear + 1)+"-"+ year1;
                             FCD_Common.DateToItem= year1 +"-"+ (monthOfYear + 1)+"-"+dayOfMonth;
@@ -351,6 +364,8 @@ public class FCD_WeeklyEarnings extends Fragment {
             });
             String date_from = txt_fromDate.getText().toString();
             String date1 = txt_toDate.getText().toString();
+
+            txt_wkdate.setText(date_from+" - "+date1);
             @SuppressLint("SimpleDateFormat")
             SimpleDateFormat input = new SimpleDateFormat("dd-MM-yy");
             @SuppressLint("SimpleDateFormat")
@@ -374,6 +389,7 @@ public class FCD_WeeklyEarnings extends Fragment {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void compare_date() {
         try{
             @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -389,6 +405,8 @@ public class FCD_WeeklyEarnings extends Fragment {
             if(date1.before(date2)) {
                 txt_fromDate.setText(compareFromDate);
                 txt_toDate.setText(compareToDate);
+
+                txt_wkdate.setText(compareFromDate+" - "+compareToDate);
                 Log.d("fghfghfgh","DateFromItem"+FCD_Common.DateFromItem);
                 Log.d("fghfghfgh","DateToItem"+FCD_Common.DateToItem);
                 dailyearnings();
@@ -397,6 +415,7 @@ public class FCD_WeeklyEarnings extends Fragment {
             if(date1.equals(date2)){
                 txt_fromDate.setText(compareFromDate);
                 txt_toDate.setText(compareToDate);
+                txt_wkdate.setText(compareFromDate+" - "+compareToDate);
                 Log.d("fghfghfgh","DateFromItem"+FCD_Common.DateFromItem);
                 Log.d("fghfghfgh","DateToItem"+FCD_Common.DateToItem);
                 dailyearnings();

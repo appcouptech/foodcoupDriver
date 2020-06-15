@@ -2,7 +2,6 @@
     <menu xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         tools:showIn="navigation_view">
-
         <group android:checkableBehavior="single">
 
             <item
@@ -10,6 +9,10 @@
                 android:icon="@drawable/profile"
                 android:title="@string/profile"
                 android:checked="true"/>
+            <item
+                android:id="@+id/wallet"
+                android:icon="@drawable/wallet_history"
+                android:title="@string/wallet" />
 
             <item
                 android:id="@+id/referAFriend"
@@ -45,9 +48,16 @@
                     android:icon="@drawable/floating_cash"
                     android:title="@string/floating_cash" />
                 <item
-                    android:id="@+id/withdraw_request"
-                    android:icon="@drawable/floating_cash"
-                    android:title="@string/withdraw_request" />
+                    android:id="@+id/wallethistory"
+                    android:icon="@drawable/rider_history"
+                    android:title="@string/ride_history" />
+
+                <item
+                    android:visible="true"
+                    android:id="@+id/incentive"
+                    android:icon="@drawable/todays_earning"
+                    android:title="@string/incentives" />
+
                 <item
                     android:id="@+id/logout"
                     android:icon="@drawable/logout"

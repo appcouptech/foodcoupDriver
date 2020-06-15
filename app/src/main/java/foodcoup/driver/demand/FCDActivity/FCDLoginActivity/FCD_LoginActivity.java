@@ -83,7 +83,7 @@ public class FCD_LoginActivity extends AppCompatActivity implements NetworkChang
     private LinearLayout ll_login ,ll_recentOtp ;
     ProgressBar progressbar;
     CountryCodePicker countrypicker;
-    LinearLayout lin_country;
+    LinearLayout lin_country,ll_register;
     IntentFilter intentFilter;
     String selected_country_code;
     InputMethodManager inputMgr;
@@ -122,6 +122,7 @@ public class FCD_LoginActivity extends AppCompatActivity implements NetworkChang
 
 
         lin_country = findViewById(R.id.lin_country);
+        ll_register = findViewById(R.id.ll_register);
         txtotp = findViewById(R.id.txtotp);
         txt_number = findViewById(R.id.txt_number);
         txtotpverify = findViewById(R.id.txtotpverify);
@@ -207,6 +208,12 @@ public class FCD_LoginActivity extends AppCompatActivity implements NetworkChang
             //txtsignin.setVisibility(View.VISIBLE);
         });
 
+        ll_register.setOnClickListener(v -> {
+            String url = "https://foodcoup.appcoup.com/driver/register";
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
+        });
         ll_login.setOnClickListener(v -> {
             inputMgr.hideSoftInputFromWindow(ll_login.getWindowToken(), 0);
             //lin_country.setVisibility(View.GONE);
@@ -508,6 +515,7 @@ public class FCD_LoginActivity extends AppCompatActivity implements NetworkChang
 
                         } else {
                             Utils.stopProgressBar();
+                            snackBar(FCD_Common.message);
                             //Utils.showExitDialog(FCD_LoginActivity.this, "Your number is not registered \n Please try again");
                             progressbar.setVisibility(View.GONE);
                             snackBar(FCD_Common.message);
@@ -522,6 +530,8 @@ public class FCD_LoginActivity extends AppCompatActivity implements NetworkChang
                             txt_alertMessage.setText(getResources().getString(R.string.registerdriver));
                             AC_BoldTextview txt_no = dialogView.findViewById(R.id.txt_no);
                             AC_BoldTextview txt_yes = dialogView.findViewById(R.id.txt_yes);
+                            LinearLayout ll_cancel = dialogView.findViewById(R.id.ll_cancel);
+                            ll_cancel.setVisibility(View.VISIBLE);
                             txt_yes.setText(getResources().getString(R.string.register));
 
                             final AlertDialog alertDialog = dialogBuilder.create();
@@ -533,12 +543,7 @@ public class FCD_LoginActivity extends AppCompatActivity implements NetworkChang
 
                             txt_no.setOnClickListener(view12 -> alertDialog.dismiss());
 
-                            txt_yes.setOnClickListener(view1 -> {
-
-                                String url = "http://www.google.com";
-                                Intent i = new Intent(Intent.ACTION_VIEW);
-                                i.setData(Uri.parse(url));
-                                startActivity(i);
+                            ll_cancel.setOnClickListener(view1 -> {
                                 alertDialog.dismiss();
                             });
                             alertDialog.show();

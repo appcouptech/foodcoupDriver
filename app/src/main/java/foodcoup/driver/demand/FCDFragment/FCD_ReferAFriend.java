@@ -8,12 +8,14 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +32,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import foodcoup.driver.demand.FCDActivity.FCDDashboardActivity.FCD_DashboardActivity;
 import foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView;
 import foodcoup.driver.demand.FCDViews.AC_Textview;
 import foodcoup.driver.demand.FCDViews.FCD_Common;
@@ -42,35 +45,26 @@ import foodcoup.driver.demand.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FCD_ReferAFriend extends Fragment {
+public class FCD_ReferAFriend extends AppCompatActivity {
 
     private Context context;
     private Snackbar bar;
     private LoaderTextView lt_referralCode;
     private LinearLayout ll_main;
-    private AC_Textview txt_inviteFrnds;
-
-    public FCD_ReferAFriend() {
-        // Required empty public constructor
-    }
-
+    private ImageView img_back,img_currentTask,img_notification;
+    private AC_Textview txt_toolbarOrderNo,txt_inviteFrnds;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fcd__refer_afriend, container, false);
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_fcd__refer_afriend);
+        context = FCD_ReferAFriend.this;
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        context=getActivity();
         FCD_User user = FCD_SharedPrefManager.getInstance(context).getUser();
         FCD_Common.id = String.valueOf(user.getid());
         FCD_Common.token_type = String.valueOf(user.gettoken_type());
         FCD_Common.access_token = String.valueOf(user.getaccess_token());
-        FindViewById(view);
+        FindViewById();
         GetUserDetails();
 
         txt_inviteFrnds.setOnClickListener(v -> {
@@ -88,16 +82,32 @@ public class FCD_ReferAFriend extends Fragment {
                 Toast.makeText(context, "App not found", Toast.LENGTH_SHORT).show();
             }
         });
+
+        img_currentTask.setOnClickListener(v -> {
+            Intent intent =new Intent(FCD_ReferAFriend.this, FCD_DashboardActivity.class);
+            startActivity(intent);
+        });
+        img_back.setOnClickListener(v -> onBackPressed());
     }
 
 
-    private void FindViewById(View view) {
-        lt_referralCode = view.findViewById(R.id.lt_referralCode);
-        ll_main = view.findViewById(R.id.ll_main);
-        txt_inviteFrnds = view.findViewById(R.id.txt_inviteFrnds);
+    private void FindViewById() {
+        lt_referralCode = findViewById(R.id.lt_referralCode);
+        ll_main = findViewById(R.id.ll_main);
+        txt_inviteFrnds = findViewById(R.id.txt_inviteFrnds);
+
+        txt_toolbarOrderNo = findViewById(R.id.txt_toolbarOrderNo);
+        img_currentTask = findViewById(R.id.img_currentTask);
+        img_notification = findViewById(R.id.img_notification);
+        img_back = findViewById(R.id.img_back);
+        img_back.setVisibility(View.VISIBLE);
+        img_notification.setVisibility(View.GONE);
+        img_currentTask.setVisibility(View.VISIBLE);
+        txt_toolbarOrderNo.setVisibility(View.VISIBLE);
+        txt_toolbarOrderNo.setText(getResources().getString(R.string.refer_a_friend));
     }
     private void GetUserDetails() {
-        Utils.playProgressBar(getActivity());
+        Utils.playProgressBar(FCD_ReferAFriend.this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, FCD_URL.URL_DETAILUSER,
                 ServerResponse -> {
 

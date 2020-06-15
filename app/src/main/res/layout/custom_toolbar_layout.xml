@@ -35,7 +35,7 @@
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
                     android:layout_marginEnd="@dimen/_15sdp"
-                    android:src="@drawable/notofication"/>
+                    android:src="@drawable/wallet_history"/>
 
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -56,9 +56,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|left"
             android:layout_marginStart="@dimen/_20sdp"
+            android:background="@color/color_red"
             android:src="@drawable/back_white"
+            android:visibility="gone"
             tools:ignore="RtlHardcoded"
-            android:visibility="gone"/>
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -70,6 +72,7 @@
 
             <foodcoup.driver.demand.FCDViews.AC_Textview
                 android:id="@+id/txt_toolbar"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -77,9 +80,10 @@
 
             <foodcoup.driver.demand.FCDViews.AC_Textview
                 android:id="@+id/txt_toolbarOrderNo"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
+                android:gravity="center"
                 android:textColor="@color/txt_site_red_color"
                 android:textSize="@dimen/_12ssp"/>
 

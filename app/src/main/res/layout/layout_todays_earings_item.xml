@@ -7,9 +7,11 @@
 
 
     <LinearLayout
+        android:id="@+id/ll_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:padding="@dimen/_10ssp"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:weightSum="2">
@@ -19,15 +21,15 @@
             android:id="@+id/lt_restaurantName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"
+            android:layout_weight="1.2"
             style="@style/FCD_RegularThickTextView"
             android:textStyle="bold"/>
 
         <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
-            android:id="@+id/lt_currency"
+            android:id="@+id/lt_dateTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1.5"
+            android:layout_weight="0.7"
             android:gravity="right"
             style="@style/FCD_RegularThickTextView"
             android:textStyle="bold"/>
@@ -42,25 +44,26 @@
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
+        android:paddingLeft="@dimen/_10ssp"
+        android:paddingRight="@dimen/_10ssp"
         android:weightSum="2">
 
 
       <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
-          android:id="@+id/lt_dateTime"
+          android:id="@+id/lt_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"
+            android:layout_weight="1.2"
             style="@style/FCD_SmallTextView"
             android:textStyle="bold"/>
 
         <foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView
-            android:id="@+id/lt_status"
+            android:id="@+id/lt_currency"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1.5"
+            android:layout_weight="0.8"
             android:gravity="right"
-            android:text="@string/cancelled"
-            style="@style/FCD_SmallTextView"
+            style="@style/FCD_RegularThickTextView"
             android:textStyle="bold"/>
 
     </LinearLayout>

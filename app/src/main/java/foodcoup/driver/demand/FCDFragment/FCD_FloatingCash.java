@@ -3,15 +3,14 @@ package foodcoup.driver.demand.FCDFragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -28,7 +27,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import foodcoup.driver.demand.FCDActivity.FCDDashboardActivity.FCD_DashboardActivity;
+import foodcoup.driver.demand.FCDFragment.FCDLoginDuration.FCD_LoginDuration;
 import foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView;
+import foodcoup.driver.demand.FCDViews.AC_Textview;
 import foodcoup.driver.demand.FCDViews.FCD_Common;
 import foodcoup.driver.demand.FCDViews.FCD_SharedPrefManager;
 import foodcoup.driver.demand.FCDViews.FCD_URL;
@@ -39,47 +41,53 @@ import foodcoup.driver.demand.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FCD_FloatingCash extends Fragment {
+public class FCD_FloatingCash extends AppCompatActivity {
 
     private LoaderTextView lt_floatCash,lt_limitCash;
     private LinearLayout ll_main;
     private Snackbar bar;
-    public FCD_FloatingCash() {
-        // Required empty public constructor
-    }
-
-
+    private Context context;
+    private AC_Textview txt_toolbarOrderNo;
+    private ImageView img_back,img_currentTask,img_notification;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fcd__floating_cash, container, false);
-
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        Context context = getActivity();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_fcd__floating_cash);
+        context = FCD_FloatingCash.this;
         FCD_User user = FCD_SharedPrefManager.getInstance(context).getUser();
         FCD_Common.id = String.valueOf(user.getid());
         FCD_Common.token_type = String.valueOf(user.gettoken_type());
         FCD_Common.access_token = String.valueOf(user.getaccess_token());
-        FindViewById(view);
+
+        FindViewById();
         ConfirmOrder();
+        img_currentTask.setOnClickListener(v -> {
+            Intent intent =new Intent(FCD_FloatingCash.this, FCD_DashboardActivity.class);
+            startActivity(intent);
+        });
+        img_back.setOnClickListener(v -> onBackPressed());
     }
 
-    private void FindViewById(View view) {
+    private void FindViewById() {
 
-        lt_floatCash = view.findViewById(R.id.lt_floatCash);
-        lt_limitCash = view.findViewById(R.id.lt_limitCash);
-        ll_main = view.findViewById(R.id.ll_main);
+        lt_floatCash = findViewById(R.id.lt_floatCash);
+        lt_limitCash = findViewById(R.id.lt_limitCash);
+        ll_main = findViewById(R.id.ll_main);
+
+        txt_toolbarOrderNo = findViewById(R.id.txt_toolbarOrderNo);
+        img_currentTask = findViewById(R.id.img_currentTask);
+        img_notification = findViewById(R.id.img_notification);
+        img_back = findViewById(R.id.img_back);
+        img_back.setVisibility(View.VISIBLE);
+        img_notification.setVisibility(View.GONE);
+        img_currentTask.setVisibility(View.VISIBLE);
+        txt_toolbarOrderNo.setVisibility(View.VISIBLE);
+        txt_toolbarOrderNo.setText(getResources().getString(R.string.floating_cash));
         //snackBar("dfsdfsdf");
     }
     @SuppressLint("SetTextI18n")
     private void ConfirmOrder() {
-        Utils.playProgressBar(getActivity());
+        Utils.playProgressBar(FCD_FloatingCash.this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, FCD_URL.URL_FLOATCASH,
                 ServerResponse -> {
 
@@ -116,7 +124,7 @@ public class FCD_FloatingCash extends Fragment {
             }
 
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
+        RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(context));
         requestQueue.add(stringRequest);
         requestQueue.getCache().clear();
 

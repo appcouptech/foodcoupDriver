@@ -1,21 +1,20 @@
 package foodcoup.driver.demand.FCDFragment;
 
-
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -36,6 +35,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
+import foodcoup.driver.demand.FCDActivity.FCDDashboardActivity.FCD_DashboardActivity;
+import foodcoup.driver.demand.FCDFragment.FCDWeeklyEarnings.FCD_WeeklyEarnings;
 import foodcoup.driver.demand.FCDPojo.FCDTodaysEarnings.TodaysEarningsObject;
 import foodcoup.driver.demand.FCDUtils.Loader.LoaderTextView;
 import foodcoup.driver.demand.FCDViews.AC_Textview;
@@ -48,55 +50,45 @@ import foodcoup.driver.demand.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FCD_TodaysEarnings extends Fragment {
+public class FCD_TodaysEarnings extends AppCompatActivity {
 
     private RecyclerView rv_earningList ;
     private EarningsAdapter earningsAdapter ;
     private ArrayList<TodaysEarningsObject> todaysEarningsObjects = new ArrayList<>();
-    private AC_Textview txt_earnings ,txt_incentives,txt_emptyview;
+    private AC_Textview txt_toolbarOrderNo,txt_earnings ,txt_incentives,txt_emptyview;
     private LinearLayout ll_main;
     private LoaderTextView lt_mainTotal;
     private LinearLayout ll_incentiveLayout ;
     private Snackbar bar;
+    private ImageView img_back,img_currentTask,img_notification;
     private Context context;
-    public FCD_TodaysEarnings() {
-        // Required empty public constructor
-    }
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fcd__todays_earnings, container, false);
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_fcd__todays_earnings);
+        context = FCD_TodaysEarnings.this;
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-
-        context = getActivity();
         FCD_User user = FCD_SharedPrefManager.getInstance(context).getUser();
         FCD_Common.id = String.valueOf(user.getid());
         FCD_Common.token_type = String.valueOf(user.gettoken_type());
         FCD_Common.access_token = String.valueOf(user.getaccess_token());
 
-        FindViewById(view);
+
+        FindViewById();
 
         earningsAdapter = new EarningsAdapter(todaysEarningsObjects);
         rv_earningList.setAdapter(earningsAdapter);
-        rv_earningList.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        rv_earningList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
 
         dailyearnings();
         txt_earnings.setOnClickListener(view1 -> {
 
             rv_earningList.setVisibility(View.VISIBLE);
-            earningsAdapter.visibleContentLayout();
-            txt_earnings.setTextColor(Objects.requireNonNull(getActivity()).getResources().getColor(R.color.white));
-            txt_earnings.setBackground(Objects.requireNonNull(getActivity()).getResources().getDrawable(R.drawable.rec_bg_green_layout));
-            txt_incentives.setTextColor(getActivity().getResources().getColor(R.color.colordarkgrey));
-            txt_incentives.setBackground(Objects.requireNonNull(getActivity()).getResources().getDrawable(R.drawable.rec_bg_stroke_green_layout));
+            //earningsAdapter.visibleContentLayout();
+            txt_earnings.setTextColor(Objects.requireNonNull(context).getResources().getColor(R.color.white));
+            txt_earnings.setBackground(Objects.requireNonNull(context).getResources().getDrawable(R.drawable.rec_bg_green_layout));
+            txt_incentives.setTextColor(context.getResources().getColor(R.color.colordarkgrey));
+            txt_incentives.setBackground(Objects.requireNonNull(context).getResources().getDrawable(R.drawable.rec_bg_stroke_green_layout));
             ll_incentiveLayout.setVisibility(View.GONE);
             dailyearnings();
         });
@@ -105,24 +97,40 @@ public class FCD_TodaysEarnings extends Fragment {
         txt_incentives.setOnClickListener(view12 -> {
 
             rv_earningList.setVisibility(View.GONE);
-            txt_incentives.setTextColor(Objects.requireNonNull(getActivity()).getResources().getColor(R.color.white));
-            txt_incentives.setBackground(Objects.requireNonNull(getActivity()).getResources().getDrawable(R.drawable.rec_bg_green_layout));
-            txt_earnings.setTextColor(getActivity().getResources().getColor(R.color.colordarkgrey));
-            txt_earnings.setBackground(Objects.requireNonNull(getActivity()).getResources().getDrawable(R.drawable.rec_bg_stroke_green_layout));
+            txt_incentives.setTextColor(Objects.requireNonNull(context).getResources().getColor(R.color.white));
+            txt_incentives.setBackground(Objects.requireNonNull(context).getResources().getDrawable(R.drawable.rec_bg_green_layout));
+            txt_earnings.setTextColor(context.getResources().getColor(R.color.colordarkgrey));
+            txt_earnings.setBackground(Objects.requireNonNull(context).getResources().getDrawable(R.drawable.rec_bg_stroke_green_layout));
             ll_incentiveLayout.setVisibility(View.VISIBLE);
         });
+
+        img_currentTask.setOnClickListener(v -> {
+            Intent intent =new Intent(FCD_TodaysEarnings.this, FCD_DashboardActivity.class);
+            startActivity(intent);
+        });
+        img_back.setOnClickListener(v -> onBackPressed());
     }
 
-    private void FindViewById(View view) {
+    private void FindViewById() {
 
-        ll_main = view.findViewById(R.id.ll_main);
-        rv_earningList = view.findViewById(R.id.rv_earningList);
-        txt_earnings = view.findViewById(R.id.txt_earnings);
-        txt_incentives = view.findViewById(R.id.txt_incentives);
+        ll_main = findViewById(R.id.ll_main);
+        rv_earningList = findViewById(R.id.rv_earningList);
+        txt_earnings = findViewById(R.id.txt_earnings);
+        txt_incentives = findViewById(R.id.txt_incentives);
 
-        ll_incentiveLayout = view.findViewById(R.id.ll_incentiveLayout);
-        lt_mainTotal = view.findViewById(R.id.lt_mainTotal);
-        txt_emptyview = view.findViewById(R.id.txt_emptyview);
+        ll_incentiveLayout = findViewById(R.id.ll_incentiveLayout);
+        lt_mainTotal = findViewById(R.id.lt_mainTotal);
+        txt_emptyview = findViewById(R.id.txt_emptyview);
+
+        txt_toolbarOrderNo = findViewById(R.id.txt_toolbarOrderNo);
+        img_currentTask = findViewById(R.id.img_currentTask);
+        img_notification = findViewById(R.id.img_notification);
+        img_back = findViewById(R.id.img_back);
+        img_back.setVisibility(View.VISIBLE);
+        img_notification.setVisibility(View.GONE);
+        img_currentTask.setVisibility(View.VISIBLE);
+        txt_toolbarOrderNo.setVisibility(View.VISIBLE);
+        txt_toolbarOrderNo.setText(getResources().getString(R.string.today_earning));
 
         TodaysEarningsObject earningsObject = new TodaysEarningsObject();
         earningsObject.setD_image("");
@@ -219,7 +227,7 @@ public class FCD_TodaysEarnings extends Fragment {
             ex.printStackTrace();
         }
     }
-    private class EarningsAdapter extends RecyclerView.Adapter<EarningsAdapter.ViewHolder>{
+    private static class EarningsAdapter extends RecyclerView.Adapter<EarningsAdapter.ViewHolder>{
         private final ArrayList<TodaysEarningsObject> todaysEarningsObjects;
         boolean visible;
         EarningsAdapter(ArrayList<TodaysEarningsObject> todaysEarningsObjects) {
@@ -288,7 +296,7 @@ public class FCD_TodaysEarnings extends Fragment {
             notifyDataSetChanged();
         }
 
-        class ViewHolder extends RecyclerView.ViewHolder {
+        static class ViewHolder extends RecyclerView.ViewHolder {
             View viewLine ;
             LoaderTextView lt_restaurantName,lt_dateTime,lt_currency,lt_status;
             ViewHolder(@NonNull View itemView) {

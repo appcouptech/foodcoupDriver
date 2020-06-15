@@ -1,125 +1,111 @@
 package foodcoup.driver.FCPushNotifications;
 
 import android.annotation.SuppressLint;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.media.RingtoneManager;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
-
-import androidx.core.app.NotificationCompat;
-
+import android.util.Log;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
-import java.util.Map;
-import foodcoup.driver.demand.R;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-
-@SuppressLint("Registered")
+@SuppressLint({"Registered", "MissingFirebaseInstanceTokenRefresh"})
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
-
-    private static final String TAG = "MyFirebaseMessagingServ";
-
-    Target target = new Target() {
-        @Override
-        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-            sendNotification(bitmap);
-        }
-
-        @Override
-        public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-
-        }
-
-        @Override
-        public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-        }
-    };
-
+    private static final String TAG = MyFirebaseMessagingService.class.getSimpleName();
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        super.onMessageReceived(remoteMessage);
+        Log.e(TAG, "gzvdzxvzxvxz " + remoteMessage.getFrom());
+        Log.e(TAG, "gzvdzxvzxvxz " + remoteMessage.getData());
+        Log.d("dfgsdfgsd","9note"+remoteMessage.getFrom());
 
-        if(remoteMessage.getData()!=null)
-            getImage(remoteMessage);
-    }
+        if (remoteMessage == null)
+            return;
 
-    private void sendNotification(Bitmap bitmap){
-
-
-        NotificationCompat.BigPictureStyle style = new NotificationCompat.BigPictureStyle();
-        style.bigPicture(bitmap);
-
-        Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent,0);
-
-        NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        String NOTIFICATION_CHANNEL_ID = "101";
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            @SuppressLint("WrongConstant") NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "Notification", NotificationManager.IMPORTANCE_MAX);
-
-            //Configure Notification Channel
-            notificationChannel.setDescription("Game Notifications");
-            notificationChannel.enableLights(true);
-            notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
-            notificationChannel.enableVibration(true);
-
-            notificationManager.createNotificationChannel(notificationChannel);
+        // Check if message contains a notification payload.
+        if (remoteMessage.getNotification() != null) {
+            Log.e(TAG, "Notification Body: " + remoteMessage.getNotification().getBody());
+            handleNotification(remoteMessage.getNotification().getBody());
+            // handleNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("message"));
         }
 
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
-                .setSmallIcon(R.mipmap.ic_launcher_round)
-                .setContentTitle(Config.title)
-                .setAutoCancel(true)
-                .setSound(defaultSound)
-                .setContentText(Config.content)
-                .setContentIntent(pendingIntent)
-                .setStyle(style)
-                .setLargeIcon(bitmap)
-                .setWhen(System.currentTimeMillis())
-                .setPriority(Notification.PRIORITY_MAX);
+        // Check if message contains a data payload.
+        if (remoteMessage.getData().size() > 0) {
+            Log.e(TAG, "Data Payload: " + remoteMessage.getData().toString());
 
 
-        notificationManager.notify(1, notificationBuilder.build());
 
-
+            try {
+                JSONObject json = new JSONObject(remoteMessage.getData().toString());
+                Log.d("dfgsdfg","fdgfd"+json);
+                handleDataMessage(json);
+            } catch (Exception e) {
+                Log.e(TAG, "zxgbzxvczxc: " + e.getMessage());
+            }
+        }
     }
 
-    private void getImage(final RemoteMessage remoteMessage) {
+    private void handleNotification(String message) {
+        Intent pushNotification = new Intent(Config.PUSH_NOTIFICATION);
+        pushNotification.putExtra("message", message);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(pushNotification);
 
-        Map<String, String> data = remoteMessage.getData();
-        Config.title = data.get("title");
-        Config.content = data.get("content");
-        Config.imageUrl = data.get("imageUrl");
-        Config.gameUrl = data.get("gameUrl");
-        //Create thread to fetch image from notification
-        if(remoteMessage.getData()!=null){
+        // play notification sound
+        NotificationUtils notificationUtils = new NotificationUtils(getApplicationContext());
+        notificationUtils.playNotificationSound();
 
-            Handler uiHandler = new Handler(Looper.getMainLooper());
-            uiHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    // Get image from data Notification
-                    Picasso.get()
-                            .load(Config.imageUrl)
-                            .into(target);
-                }
-            }) ;
+
+        Log.d("dfgsdfgsd","3note"+message);
+    }
+
+    /* private void handleNotification(String message) {
+         if (!NotificationUtils.isAppIsInBackground(getApplicationContext())) {
+             // app is in foreground, broadcast the push message
+ //            LocalBroadcastManager.getInstance(this).sendBroadcast(pushNotification);
+
+             Intent intent = new Intent( this , MainActivity.class );
+             intent.putExtra("message", message);
+             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+             PendingIntent resultIntent = PendingIntent.getActivity( this , 0, intent,
+                     PendingIntent.FLAG_ONE_SHOT);
+
+             Uri notificationSoundURI = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+             NotificationCompat.Builder mNotificationBuilder = new NotificationCompat.Builder( this)
+                     .setSmallIcon(R.mipmap.ic_launcher)
+                     .setContentTitle("Android Tutorial Point FCM Tutorial")
+                     .setContentText(message)
+                     .setAutoCancel( true )
+                     .setSound(notificationSoundURI)
+                     .setContentIntent(resultIntent);
+
+             NotificationManager notificationManager =
+                     (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+             notificationManager.notify(0, mNotificationBuilder.build());
+
+         }else{
+             // If the app is in background, firebase itself handles the notification
+             Log.d("fdgdfgfd","fdgfd");
+         }
+     }*/
+    private void handleDataMessage(JSONObject json) {
+        Log.e(TAG, "push json: " + json.toString());
+
+        try {
+            //JSONObject data = json.getJSONObject("data");
+            String order_id = json.getString("order_id");
+            Log.e(TAG, "title: " +"order_id"+ order_id);
+           /* FC_Common.order_id=order_id;
+            Intent intent = new Intent(this, FC_OrderPickedUpActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("order_id", FC_Common.order_id);
+            startActivity(intent);*/
+
+
+        } catch (JSONException e) {
+            Log.e(TAG, "ghdxfgbxcg" + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e(TAG, "ghdxfgbxcg" + e.getMessage());
         }
     }
 }

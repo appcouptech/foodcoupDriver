@@ -9,8 +9,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
+        <foodcoup.driver.demand.FCDViews.AC_Textview
+            android:id="@+id/txt_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
+            android:gravity="center"
+            android:text="@string/withdraw"
+            android:visibility="gone"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/txt_alltxtcolor"
+            android:textStyle="bold"/>
+        <View
+            android:id="@+id/vv_header"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:visibility="gone"
+            android:background="@color/colorgrey"/>
         <ImageView
+            android:id="@+id/img_tick"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_100sdp"
             android:src="@drawable/got_it"
@@ -34,31 +51,38 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20ssp"
             android:visibility="gone"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <foodcoup.driver.demand.FCDViews.AC_Textview
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
                 android:layout_gravity="center"
-                android:text="@string/request_amt"
+                android:text="@string/enter_withdraw"
                 android:textSize="@dimen/_14ssp"
-                android:textColor="@color/colorAppBackground_lite"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:textColor="@color/txt_alltxtcolor"
                 android:textStyle="bold"/>
             <foodcoup.driver.demand.FCDViews.AC_Edittext
                 android:id="@+id/edt_commentres"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/_5sdp"
                 android:background="@drawable/rec_bg_stroke_gray_layout"
                 android:cursorVisible="true"
-                android:hint="@string/request_amt"
-                android:gravity="center"
-                android:layout_margin="@dimen/_10sdp"
+                android:hint="@string/enter_amt"
+                android:layout_margin="@dimen/_15sdp"
+                android:textSize="@dimen/_20ssp"
                 android:padding="@dimen/_5sdp"
                 style="@style/FC_SmallThickTextView"/>
+            <foodcoup.driver.demand.FCDViews.AC_Textview
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:text="@string/minimumbalance"
+                android:textSize="@dimen/_14ssp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:textColor="@color/colorgrey" />
         </LinearLayout>
 
 

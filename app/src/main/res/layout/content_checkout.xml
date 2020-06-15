@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_50ssp"
+    android:layout_marginTop="@dimen/_10ssp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+    <LinearLayout
+        android:id="@+id/ll_request"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20ssp"
+        android:visibility="visible"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+        <foodcoup.driver.demand.FCDViews.AC_Textview
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:text="@string/enter_recharge"
+            android:textSize="@dimen/_14ssp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:textColor="@color/txt_alltxtcolor"
+            android:textStyle="bold"/>
+        <foodcoup.driver.demand.FCDViews.AC_Edittext
+            android:id="@+id/edt_amt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rec_bg_stroke_gray_layout"
+            android:cursorVisible="true"
+            android:inputType="number"
+            android:hint="@string/enter_amt"
+            android:layout_margin="@dimen/_15sdp"
+            android:textSize="@dimen/_20ssp"
+            android:padding="@dimen/_5sdp"
+            style="@style/FC_SmallThickTextView"/>
+        <foodcoup.driver.demand.FCDViews.AC_Textview
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:text="@string/minimumbalance"
+            android:textSize="@dimen/_14ssp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:textColor="@color/colorgrey" />
+
+        <com.stripe.android.view.CardInputWidget
+            android:id="@+id/cardInputWidget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+android:layout_marginTop="@dimen/_20ssp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            tools:ignore="MissingConstraints" />
+        <Button
+            android:text="Pay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/payButton"
+            android:layout_marginTop="@dimen/_20ssp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="@android:color/holo_green_light"
+            app:layout_constraintTop_toBottomOf="@+id/cardInputWidget"
+            app:layout_constraintStart_toStartOf="@+id/cardInputWidget"
+            app:layout_constraintEnd_toEndOf="@+id/cardInputWidget"/>
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

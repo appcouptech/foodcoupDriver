@@ -16,7 +16,13 @@ public class FCD_Common extends Activity {
     public static int count = 0;
 
     public static String success = "";
+    public static String Incentivecurrency = "";
+    public static String IncentiveTotal = "";
+    public static String recharge_amt = "";
     public static String wallet_amt = "";
+    public static String WalletCurrency = "";
+    public static String Walletbalance = "";
+    public static String Historycurrency = "";
     public static String phone = "";
     public static String mobilenumber = "";
     public static String address_set = "";
@@ -25,6 +31,7 @@ public class FCD_Common extends Activity {
     public static String longitude_set = "";
     public static String change_address = "intro";
     public static String status = "";
+    public static String stripe_publickey = "";
     public static String id = "";
     public static String name = "";
     public static String email = "";
@@ -153,7 +160,9 @@ public class FCD_Common extends Activity {
     public static String Weeklycurrency = "";
     public static String todayDate = "";
     public static String DateFromItem = "";
+    public static String DateWithdrawFromItem = "";
     public static String DateToItem = "";
+    public static String DateWithdrawToItem = "";
     public static String duty_date = "";
     public static String LoginHRS = "";
     public static String Loginnet_time = "";
