@@ -179,7 +179,7 @@ public class FCD_Wallet extends AppCompatActivity {
             bt_rechargecancel.setOnClickListener(view12 -> {
                 rechargeDialog.dismiss();
                 txt_recharge.setEnabled(true);
-                Log.d("fdhsfdgsdfg","dfhgsdgsd");
+                //Log.d("fdhsfdgsdfg","dfhgsdgsd");
             });
             payButton.setOnClickListener(v12 -> {
                 if (edt_amt.getText().toString().trim().equalsIgnoreCase("")||
