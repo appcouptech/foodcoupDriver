@@ -552,7 +552,7 @@ public class FCD_PickUpTaskToDeliver extends Fragment implements OnMapReadyCallb
                 try {
 
 
-                    Bitmap b = getBitmapFromDrawable(getResources().getDrawable(R.drawable.ic_driver_marker));
+                    Bitmap b = getBitmapFromDrawable(getResources().getDrawable(R.drawable.rider_history));
                     Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
 
                     MarkerOptions markerOptions = new MarkerOptions();
@@ -607,7 +607,7 @@ public class FCD_PickUpTaskToDeliver extends Fragment implements OnMapReadyCallb
         int width1 = (int) FCD_DashboardActivity.dashContext.getResources().getDimension(R.dimen.bitmap_iconSize);
      /*   BitmapDrawable bitmapdraw1 = (BitmapDrawable) getResources().getDrawable(R.drawable.to_location);
         Bitmap b1 = bitmapdraw1.getBitmap();*/
-        Bitmap b1 = getBitmapFromDrawable(getResources().getDrawable(R.drawable.ic_customer_marker));
+        Bitmap b1 = getBitmapFromDrawable(getResources().getDrawable(R.drawable.customer_map));
         Bitmap smallMarker1 = Bitmap.createScaledBitmap(b1, width1, height1, false);
 
         try {

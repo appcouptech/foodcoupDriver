@@ -5,13 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -61,10 +65,13 @@ public class FCD_Wallet extends AppCompatActivity {
     private LoaderTextView lt_wallet;
     private ImageView img_currentTask,img_notification,img_back;
     private AC_Textview txt_toolbarOrderNo,txt_cancel;
+    private Button bt_rechargecancel;
     private AC_Textview txt_confirm;
     private AC_Edittext edt_commentres;
-    private BottomSheetDialog paymentdialog;
+   // private BottomSheetDialog paymentdialog;
     private Button payButton;
+    AlertDialog alertDialog;
+    AlertDialog rechargeDialog;
     private CardInputWidget cardInputWidget;
     private Stripe stripe;
 
@@ -87,7 +94,7 @@ public class FCD_Wallet extends AppCompatActivity {
         walletAmount();
         txt_withdraw.setOnClickListener(v -> {
 
-            @SuppressLint("InflateParams") View view1 = getLayoutInflater().inflate(R.layout.bottom_sheet_deliver_complete, null);
+           /* @SuppressLint("InflateParams") View view1 = getLayoutInflater().inflate(R.layout.bottom_sheet_deliver_complete, null);
             FindViewByIdBottomdialogWithdraw(view1);
             paymentdialog = new BottomSheetDialog(context);
             paymentdialog.setContentView(view1);
@@ -105,20 +112,39 @@ public class FCD_Wallet extends AppCompatActivity {
                 else {
                     ConfirmOrder();
                 }
-            });
+            });*/
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(FCD_Wallet.this);
+            LayoutInflater inflater = getLayoutInflater();
+           // @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.bottom_sheet_deliver_complete, null);
+            @SuppressLint("InflateParams") View view1 = getLayoutInflater().inflate(R.layout.bottom_sheet_deliver_complete, null);
+            FindViewByIdBottomdialogWithdraw(view1);
+            dialogBuilder.setView(view1);
 
-            /*WalletOrderDialog deliverdTheOrderDialog = WalletOrderDialog.newInstance();
-            deliverdTheOrderDialog.show(Objects.requireNonNull(FCD_Wallet.this).getSupportFragmentManager(),
-                    "requestOrderDialog");*/
+            alertDialog = dialogBuilder.create();
+            alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            alertDialog.setCancelable(false);
+            Objects.requireNonNull(alertDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+            txt_cancel.setOnClickListener(view12 -> alertDialog.dismiss());
+            txt_confirm.setOnClickListener(view11 -> {
+
+
+                FCD_Common.wallet_amt= edt_commentres.getText().toString();
+                if ( FCD_Common.wallet_amt.equalsIgnoreCase("0")|| FCD_Common.wallet_amt.equalsIgnoreCase(""))
+                {
+                    Utils.toast(context,"Wallent Amount cannot be Empty");
+                }
+                else {
+                    ConfirmOrder();
+                }
+            });
+            alertDialog.show();
 
         });
 
         txt_recharge.setOnClickListener(v -> {
-           /* WalletRechargeDialog walletDialog = WalletRechargeDialog.newInstance();
-            walletDialog.show(Objects.requireNonNull(FCD_Wallet.this).getSupportFragmentManager(),
-                    "walletDialog");*/
 
-            @SuppressLint("InflateParams") View view1 = getLayoutInflater().inflate(R.layout.activity_checkout, null);
+          /*  @SuppressLint("InflateParams") View view1 = getLayoutInflater().inflate(R.layout.activity_checkout, null);
             FindViewByIdBottomDialogRating1(view1);
             paymentdialog = new BottomSheetDialog(context);
             paymentdialog.setContentView(view1);
@@ -135,7 +161,41 @@ public class FCD_Wallet extends AppCompatActivity {
                     payButton.setEnabled(false);
                     pay();
                 }
+            });*/
+
+            txt_recharge.setEnabled(false);
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(FCD_Wallet.this);
+            LayoutInflater inflater = getLayoutInflater();
+            // @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.bottom_sheet_deliver_complete, null);
+            @SuppressLint("InflateParams") View view1 = getLayoutInflater().inflate(R.layout.activity_checkout, null);
+            FindViewByIdBottomDialogRating1(view1);
+            dialogBuilder.setView(view1);
+
+            rechargeDialog = dialogBuilder.create();
+            rechargeDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            rechargeDialog.setCancelable(false);
+            Objects.requireNonNull(rechargeDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+            bt_rechargecancel.setOnClickListener(view12 -> {
+                rechargeDialog.dismiss();
+                txt_recharge.setEnabled(true);
+                Log.d("fdhsfdgsdfg","dfhgsdgsd");
             });
+            payButton.setOnClickListener(v12 -> {
+                if (edt_amt.getText().toString().trim().equalsIgnoreCase("")||
+                        edt_amt.getText().toString().trim().equalsIgnoreCase("0"))
+                {
+                    Utils.toast(context,getResources().getString(R.string.enter_amt));
+                }
+                else {
+                    FCD_Common.recharge_amt=edt_amt.getText().toString().trim();
+                    payButton.setEnabled(false);
+                    txt_recharge.setEnabled(true);
+                    pay();
+                }
+            });
+            rechargeDialog.show();
+
 
         });
         img_currentTask.setOnClickListener(v -> {
@@ -154,6 +214,7 @@ public class FCD_Wallet extends AppCompatActivity {
         payButton = view.findViewById(R.id.payButton);
         cardInputWidget = view.findViewById(R.id.cardInputWidget);
         edt_amt = view.findViewById(R.id.edt_amt);
+        bt_rechargecancel = view.findViewById(R.id.bt_rechargecancel);
        // toolbar = view.findViewById(R.id.toolbar);
         //toolbar.setTitle(getResources().getString(R.string.recharge));
     }
@@ -456,6 +517,7 @@ public class FCD_Wallet extends AppCompatActivity {
 
     private void Payment(String paymentid) {
 
+        Utils.playProgressBar(FCD_Wallet.this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, FCD_URL.URL_WALLETPAYMENT,
                 ServerResponse -> {
 
@@ -465,20 +527,27 @@ public class FCD_Wallet extends AppCompatActivity {
                         JSONObject jsonResponse1 = new JSONObject(ServerResponse);
                         FCD_Common.status = jsonResponse1.getString("success");
                         if (FCD_Common.status.equalsIgnoreCase("1")) {
+                            Utils.stopProgressBar();
                             payButton.setEnabled(true);
-                            paymentdialog.dismiss();
+                            rechargeDialog.dismiss();
+                            txt_recharge.setEnabled(true);
                             walletAmount();
                         }
                         else{
+                            Utils.stopProgressBar();
                             payButton.setEnabled(true);
+                            txt_recharge.setEnabled(true);
                         }
 
                     } catch (JSONException e) {
+                        Utils.stopProgressBar();
                         e.printStackTrace();
                         payButton.setEnabled(true);
+                        txt_recharge.setEnabled(true);
                         Log.d("xcgsdgsdgsd", "dfhdf" + e);
                     }
                 }, volleyError -> {
+            Utils.stopProgressBar();
             String value = volleyError.toString();
             payButton.setEnabled(true);
             Log.d("dfgdffgd","dfgdf"+value);
@@ -535,7 +604,8 @@ public class FCD_Wallet extends AppCompatActivity {
 
                             Utils.stopProgressBar();
 
-                            paymentdialog.dismiss();
+                           // paymentdialog.dismiss();
+                            alertDialog.dismiss();
                             walletAmount();
                         }
                         else {

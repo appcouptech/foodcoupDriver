@@ -189,6 +189,10 @@ public class FCD_ConfirmOrders extends Fragment {
                             lt_restaurantPhone.setText(getResources().getString(R.string.pick_up)+""+FCD_Common.confirmrestaurant_phone);
                             lt_customerPhone.setText(getResources().getString(R.string.deliver_to)+""+FCD_Common.confirmmobile);
                             txt_cashCard.setText(getResources().getString(R.string.pay)+" "+FCD_Common.confirmpayment_mode);
+                            if(FCD_Common.confirmpayment_mode.equalsIgnoreCase("CARD"))
+                            {
+                                lt_currency.setVisibility(View.GONE);
+                            }
                         }
 
 

@@ -156,9 +156,8 @@ public class FCD_Incentives extends AppCompatActivity {
                     try {
                         JSONObject obj = new JSONObject(response);
                         Log.d("fdghfdgfdgd","fdgfd"+obj);
-                        FCD_Common.IncentiveTotal=obj.getString("total");
-                        FCD_Common.Incentivecurrency=obj.getString("currency");
-                        lt_mainTotal.setText(FCD_Common.Incentivecurrency+" "+FCD_Common.IncentiveTotal);
+
+
                         if (obj.optString("success").equals("1")) {
                             JSONArray dataArray = obj.getJSONArray("data");
                             Log.d("fghfghfg","fhfghfg"+dataArray);
@@ -168,6 +167,9 @@ public class FCD_Incentives extends AppCompatActivity {
                             IncentiveObjects.clear();
                             rv_weekEarnings.setVisibility(View.VISIBLE);
                             txt_emptyview.setVisibility(View.GONE);
+                            FCD_Common.IncentiveTotal=obj.getString("total");
+                            FCD_Common.Incentivecurrency=obj.getString("currency");
+                            lt_mainTotal.setText(FCD_Common.Incentivecurrency+" "+FCD_Common.IncentiveTotal);
                             //lt_mainTotal.setText(FCD_Common.Historycurrency+" "+FCD_Common.WeeklyTotal);
                             for (int i = 0; i < dataArray.length(); i++) {
                                 IncentiveObject playerModel = new IncentiveObject();

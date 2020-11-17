@@ -199,6 +199,10 @@ public class FCD_ConfirmOrderFromHotel extends Fragment {
                             lt_customerAddress.setText(FCD_Common.confirmmap_address);
                             lt_currency.setText(FCD_Common.confirmcurrency+" "+FCD_Common.confirmpayable);
 
+                            if(FCD_Common.confirmpayment_mode.equalsIgnoreCase("CARD"))
+                            {
+                                lt_currency.setVisibility(View.GONE);
+                            }
                         }
 
 

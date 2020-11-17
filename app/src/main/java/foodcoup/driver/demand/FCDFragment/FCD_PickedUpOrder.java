@@ -476,7 +476,7 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
                 int width = (int) FCD_DashboardActivity.dashContext.getResources().getDimension(R.dimen.bitmap_iconSize);
                /* BitmapDrawable bitmapdraw = (BitmapDrawable) getResources().getDrawable(R.drawable.ic_driver_marker);
                 Bitmap b = bitmapdraw.getBitmap();*/
-                Bitmap b =  getBitmapFromDrawable(FCD_DashboardActivity.dashContext.getResources().getDrawable(R.drawable.ic_driver_marker));
+                Bitmap b =  getBitmapFromDrawable(FCD_DashboardActivity.dashContext.getResources().getDrawable(R.drawable.rider_history));
                 Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
 
                 MarkerOptions markerOptions = new MarkerOptions();

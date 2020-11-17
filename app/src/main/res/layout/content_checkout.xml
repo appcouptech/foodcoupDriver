@@ -55,22 +55,48 @@
             android:id="@+id/cardInputWidget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-android:layout_marginTop="@dimen/_20ssp"
+            android:layout_marginTop="@dimen/_20ssp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             tools:ignore="MissingConstraints" />
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/cardInputWidget"
+            app:layout_constraintStart_toStartOf="@+id/cardInputWidget"
+            app:layout_constraintEnd_toEndOf="@+id/cardInputWidget">
+
+
+
         <Button
-            android:text="Pay"
+            android:id="@+id/bt_rechargecancel"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20ssp"
+            android:layout_marginLeft="20dp"
+            android:text="@string/cancel"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@android:color/holo_red_light"/>
+        <Button
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/payButton"
             android:layout_marginTop="@dimen/_20ssp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:textColor="@color/white"
+            android:text="@string/payment"
             android:backgroundTint="@android:color/holo_green_light"
             app:layout_constraintTop_toBottomOf="@+id/cardInputWidget"
             app:layout_constraintStart_toStartOf="@+id/cardInputWidget"
             app:layout_constraintEnd_toEndOf="@+id/cardInputWidget"/>
+        </LinearLayout>
     </LinearLayout>
 
 
