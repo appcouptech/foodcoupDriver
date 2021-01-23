@@ -125,7 +125,7 @@ public class WalletRechargeDialog extends BottomSheetDialogFragment {
                         FCD_Common.status = jsonResponse1.getString("success");
                         FCD_Common.stripe_publickey = jsonResponse1.getString("stripe_publickey");
 
-                        final Context applicationContext = Objects.requireNonNull(getActivity()).getApplicationContext();
+                        final Context applicationContext = getActivity().getApplicationContext();
                         PaymentConfiguration.init(applicationContext, FCD_Common.stripe_publickey);
                         stripe = new Stripe(applicationContext, FCD_Common.stripe_publickey);
 
@@ -148,7 +148,7 @@ public class WalletRechargeDialog extends BottomSheetDialogFragment {
             }
 
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(stringRequest);
         requestQueue.getCache().clear();
     }

@@ -89,7 +89,7 @@ public class FCD_orderPickedUpFromHotel extends Fragment {
         FCD_Common.currentTask =  6;
         txt_orderPickUp.setOnClickListener(view1 -> {
 
-            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
             LayoutInflater inflater = getLayoutInflater();
             @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.confirmation_alert, null);
             dialogBuilder.setView(dialogView);
@@ -130,10 +130,13 @@ public class FCD_orderPickedUpFromHotel extends Fragment {
 
         lt_restaurantName.setOnClickListener(v -> {
             FCD_Common.phone=FCD_Common.confirmrestaurant_phone;
-            if (Build.VERSION.SDK_INT < 23) {
+            Intent inSOS = new Intent(Intent.ACTION_DIAL);
+            inSOS.setData(Uri.parse("tel:" + FCD_Common.phone));
+            startActivity(inSOS);
+          /*  if (Build.VERSION.SDK_INT < 23) {
                 phoneCall();
             }else {
-                if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()),
+                if (ActivityCompat.checkSelfPermission(getActivity(),
                         Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
                     phoneCall();
                 }else {
@@ -141,12 +144,15 @@ public class FCD_orderPickedUpFromHotel extends Fragment {
                     //Asking request Permissions
                     ActivityCompat.requestPermissions(getActivity(), PERMISSIONS_STORAGE, 9);
                 }
-            }
+            }*/
         });
 
         lt_customerName.setOnClickListener(v -> {
             FCD_Common.phone=FCD_Common.confirmmobile;
-            if (Build.VERSION.SDK_INT < 23) {
+            Intent inSOS = new Intent(Intent.ACTION_DIAL);
+            inSOS.setData(Uri.parse("tel:" + FCD_Common.phone));
+            startActivity(inSOS);
+          /*  if (Build.VERSION.SDK_INT < 23) {
                 phoneCall();
             }else {
                 if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()),
@@ -157,7 +163,7 @@ public class FCD_orderPickedUpFromHotel extends Fragment {
                     //Asking request Permissions
                     ActivityCompat.requestPermissions(getActivity(), PERMISSIONS_STORAGE, 9);
                 }
-            }
+            }*/
         });
     }
 
@@ -252,7 +258,7 @@ public class FCD_orderPickedUpFromHotel extends Fragment {
         };
 
         // request queue
-        RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(context).getApplicationContext());
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
         requestQueue.add(stringRequest);
 
     }
@@ -322,7 +328,7 @@ public class FCD_orderPickedUpFromHotel extends Fragment {
             }
 
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(stringRequest);
         requestQueue.getCache().clear();
 
@@ -344,7 +350,7 @@ public class FCD_orderPickedUpFromHotel extends Fragment {
                 } }};
         timerThread.start();
     }*/
-    private void phoneCall() {
+   /* private void phoneCall() {
         if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()),
                 Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
             Intent callIntent = new Intent(Intent.ACTION_CALL);
@@ -353,7 +359,7 @@ public class FCD_orderPickedUpFromHotel extends Fragment {
         } else {
             Toast.makeText(getActivity(), "You don't assign permission.", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
     @Override
     public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults) {
         boolean permissionGranted = false;
@@ -361,7 +367,7 @@ public class FCD_orderPickedUpFromHotel extends Fragment {
             permissionGranted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
         }
         if(permissionGranted){
-            phoneCall();
+            //phoneCall();
         }else {
             Toast.makeText(getActivity(), "You don't assign permission.", Toast.LENGTH_SHORT).show();
         }
@@ -463,7 +469,7 @@ public class FCD_orderPickedUpFromHotel extends Fragment {
         };
 
         // request queue
-        RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(context).getApplicationContext());
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
         requestQueue.add(stringRequest);
 
     }

@@ -202,7 +202,7 @@ public class FCD_HomeFragment extends Fragment implements View.OnClickListener {
             }
 
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(stringRequest);
         requestQueue.getCache().clear();
     }
@@ -216,7 +216,7 @@ public class FCD_HomeFragment extends Fragment implements View.OnClickListener {
 
                 StartDutyDialog startDutyDialog =
                         StartDutyDialog.newInstance();
-                startDutyDialog.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(),
+                startDutyDialog.show(getActivity().getSupportFragmentManager(),
                         "startDutyDialog");
 
                 break;

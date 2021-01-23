@@ -143,7 +143,7 @@ public class WalletOrderDialog extends BottomSheetDialogFragment {
             }
 
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(stringRequest);
         requestQueue.getCache().clear();
 

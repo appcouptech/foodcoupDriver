@@ -45,7 +45,7 @@ public class FCD_Help extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getLayoutInflater();
         @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.help_alert, null);
         dialogBuilder.setView(dialogView);

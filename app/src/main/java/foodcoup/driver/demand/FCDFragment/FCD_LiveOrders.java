@@ -184,7 +184,7 @@ public class FCD_LiveOrders extends Fragment {
             }
 
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(stringRequest);
         requestQueue.getCache().clear();
     }
@@ -204,7 +204,7 @@ public class FCD_LiveOrders extends Fragment {
                         Log.d("ServerResponse","count"+ FCD_Common.order_id_check);
                     if (FCD_Common.count==1) {
                         if (check < FCD_Common.order_id_check) {
-                            vibrator = (Vibrator) Objects.requireNonNull(getActivity()).getSystemService(VIBRATOR_SERVICE);
+                            vibrator = (Vibrator) getActivity().getSystemService(VIBRATOR_SERVICE);
                             MediaPlayer ring = MediaPlayer.create(context, R.raw.alert);
                             ring.start();
                             if (Build.VERSION.SDK_INT >= 26) {
@@ -291,7 +291,7 @@ public class FCD_LiveOrders extends Fragment {
 
         };
         try{
-            RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
+            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
             requestQueue.add(stringRequest);
             requestQueue.getCache().clear();
         }
@@ -306,7 +306,7 @@ public class FCD_LiveOrders extends Fragment {
         try {
 
 
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getLayoutInflater();
         @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.confirmation_alert, null);
         dialogBuilder.setView(dialogView);
@@ -421,7 +421,7 @@ public class FCD_LiveOrders extends Fragment {
                 Log.d("dfhgdfgfd","dfgdfgfd"+order_check);
                 Log.d("dfhgdfgfd","count"+FCD_Common.count);
                 if (check<FCD_Common.order_id_check){
-                    vibrator = (Vibrator) Objects.requireNonNull(getActivity()).getSystemService(VIBRATOR_SERVICE);
+                    vibrator = (Vibrator) getActivity().getSystemService(VIBRATOR_SERVICE);
                     MediaPlayer ring=MediaPlayer.create(context,R.raw.alert);
                     ring.start();
                     if (Build.VERSION.SDK_INT >= 26) {
@@ -447,10 +447,13 @@ public class FCD_LiveOrders extends Fragment {
                 holder.txt_restaurantPhone.setOnClickListener(v -> {
                     Log.d("fghfghfgh","dfhgdfg");
                     FCD_Common.phone=liveOrdersObjects.get(position).getRestaurant_phone();
-                    if (Build.VERSION.SDK_INT < 23) {
+                    Intent inSOS = new Intent(Intent.ACTION_DIAL);
+                    inSOS.setData(Uri.parse("tel:" + FCD_Common.phone));
+                    startActivity(inSOS);
+                 /*   if (Build.VERSION.SDK_INT < 23) {
                         phoneCall();
                     }else {
-                        if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()),
+                        if (ActivityCompat.checkSelfPermission(getActivity(),
                                 Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
                             phoneCall();
                         }else {
@@ -458,15 +461,18 @@ public class FCD_LiveOrders extends Fragment {
                             //Asking request Permissions
                             ActivityCompat.requestPermissions(getActivity(), PERMISSIONS_STORAGE, 9);
                         }
-                    }
+                    }*/
                 });
                 holder.txt_customerPhone.setOnClickListener(v -> {
                     Log.d("fghfghfgh","dfhgdfg");
                     FCD_Common.phone=liveOrdersObjects.get(position).getMobile();
-                    if (Build.VERSION.SDK_INT < 23) {
+                    Intent inSOS = new Intent(Intent.ACTION_DIAL);
+                    inSOS.setData(Uri.parse("tel:" + FCD_Common.phone));
+                    startActivity(inSOS);
+                    /*if (Build.VERSION.SDK_INT < 23) {
                         phoneCall();
                     }else {
-                        if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()),
+                        if (ActivityCompat.checkSelfPermission(getActivity(),
                                 Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
                             phoneCall();
                         }else {
@@ -474,7 +480,7 @@ public class FCD_LiveOrders extends Fragment {
                             //Asking request Permissions
                             ActivityCompat.requestPermissions(getActivity(), PERMISSIONS_STORAGE, 9);
                         }
-                    }
+                    }*/
                 });
                 holder.txt_confirm.setOnClickListener(view -> {
 
@@ -489,7 +495,7 @@ public class FCD_LiveOrders extends Fragment {
                     } else {
 
                         FCD_Common.currentTask = 1;
-                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
                         LayoutInflater inflater = getLayoutInflater();
                         @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.confirmation_alert, null);
                         dialogBuilder.setView(dialogView);
@@ -545,7 +551,7 @@ public class FCD_LiveOrders extends Fragment {
                     } else {
 
                         FCD_Common.currentTask = 1;
-                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
                         LayoutInflater inflater = getLayoutInflater();
                         @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.confirmation_alert, null);
                         dialogBuilder.setView(dialogView);
@@ -653,7 +659,7 @@ public class FCD_LiveOrders extends Fragment {
                 }
 
             };
-            RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
+            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
             requestQueue.add(stringRequest);
             requestQueue.getCache().clear();
 
@@ -707,7 +713,7 @@ public class FCD_LiveOrders extends Fragment {
                 }
 
             };
-            RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
+            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
             requestQueue.add(stringRequest);
             requestQueue.getCache().clear();
 
@@ -780,8 +786,8 @@ public class FCD_LiveOrders extends Fragment {
         timerThread.start();
     }*/
 
-    private void phoneCall() {
-        if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()),
+   /* private void phoneCall() {
+        if (ActivityCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
             Intent callIntent = new Intent(Intent.ACTION_CALL);
             callIntent.setData(Uri.parse("tel:" +  FCD_Common.phone));
@@ -789,7 +795,7 @@ public class FCD_LiveOrders extends Fragment {
         } else {
             Toast.makeText(getActivity(), "You don't assign permission.", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
     @Override
     public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults) {
         boolean permissionGranted = false;
@@ -797,7 +803,7 @@ public class FCD_LiveOrders extends Fragment {
             permissionGranted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
         }
         if(permissionGranted){
-            phoneCall();
+           // phoneCall();
         }else {
             Toast.makeText(getActivity(), "You don't assign permission.", Toast.LENGTH_SHORT).show();
         }

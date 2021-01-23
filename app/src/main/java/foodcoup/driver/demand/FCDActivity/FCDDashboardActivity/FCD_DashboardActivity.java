@@ -760,7 +760,10 @@ public class FCD_DashboardActivity extends AppCompatActivity implements Navigati
 
             txt_call.setOnClickListener(v -> {
                 FCD_Common.phone=FCD_Common.Driverhelp;
-                if (Build.VERSION.SDK_INT < 23) {
+                Intent inSOS = new Intent(Intent.ACTION_DIAL);
+                inSOS.setData(Uri.parse("tel:" +  FCD_Common.phone));
+                startActivity(inSOS);
+              /*  if (Build.VERSION.SDK_INT < 23) {
                     phoneCall();
                 }else {
                     if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(dashContext),
@@ -771,7 +774,7 @@ public class FCD_DashboardActivity extends AppCompatActivity implements Navigati
                         //Asking request Permissions
                         ActivityCompat.requestPermissions(FCD_DashboardActivity.this, PERMISSIONS_STORAGE, 9);
                     }
-                }
+                }*/
 
         });
             alertDialog.show();
@@ -1073,7 +1076,7 @@ public class FCD_DashboardActivity extends AppCompatActivity implements Navigati
             permissionGranted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
         }
         if(permissionGranted){
-            phoneCall();
+           // phoneCall();
         }
     }
 
@@ -1107,7 +1110,7 @@ public class FCD_DashboardActivity extends AppCompatActivity implements Navigati
 
     }
 
-    private void phoneCall() {
+   /* private void phoneCall() {
         if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(dashContext),
                 Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
             Intent callIntent = new Intent(Intent.ACTION_CALL);
@@ -1116,7 +1119,7 @@ public class FCD_DashboardActivity extends AppCompatActivity implements Navigati
         } else {
             Toast.makeText(dashContext, "You don't assign permission.", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
 
 }

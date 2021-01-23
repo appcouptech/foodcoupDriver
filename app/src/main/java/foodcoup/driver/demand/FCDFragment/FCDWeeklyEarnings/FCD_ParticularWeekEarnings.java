@@ -1,6 +1,7 @@
 package foodcoup.driver.demand.FCDFragment.FCDWeeklyEarnings;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -64,15 +65,16 @@ public class FCD_ParticularWeekEarnings extends Fragment {
         rv_incentives.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
 
         txt_earnings.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onClick(View view) {
 
                 rv_earnings.setVisibility(View.VISIBLE);
                 earningsAdapter.loadData();
-                txt_earnings.setTextColor(Objects.requireNonNull(getActivity()).getResources().getColor(R.color.white));
-                txt_earnings.setBackground(Objects.requireNonNull(getActivity()).getResources().getDrawable(R.drawable.rec_bg_green_layout));
+                txt_earnings.setTextColor(getActivity().getResources().getColor(R.color.white));
+                txt_earnings.setBackground(getActivity().getResources().getDrawable(R.drawable.rec_bg_green_layout));
                 txt_incentives.setTextColor(getActivity().getResources().getColor(R.color.colordarkgrey));
-                txt_incentives.setBackground(Objects.requireNonNull(getActivity()).getResources().getDrawable(R.drawable.rec_bg_stroke_green_layout));
+                txt_incentives.setBackground(getActivity().getResources().getDrawable(R.drawable.rec_bg_stroke_green_layout));
                 rv_incentives.setVisibility(View.GONE);
             }
         });
@@ -84,10 +86,10 @@ public class FCD_ParticularWeekEarnings extends Fragment {
 
                 rv_earnings.setVisibility(View.GONE);
                 incentivesAdapter.loadData();
-                txt_incentives.setTextColor(Objects.requireNonNull(getActivity()).getResources().getColor(R.color.white));
-                txt_incentives.setBackground(Objects.requireNonNull(getActivity()).getResources().getDrawable(R.drawable.rec_bg_green_layout));
+                txt_incentives.setTextColor(getActivity().getResources().getColor(R.color.white));
+                txt_incentives.setBackground(getActivity().getResources().getDrawable(R.drawable.rec_bg_green_layout));
                 txt_earnings.setTextColor(getActivity().getResources().getColor(R.color.colordarkgrey));
-                txt_earnings.setBackground(Objects.requireNonNull(getActivity()).getResources().getDrawable(R.drawable.rec_bg_stroke_green_layout));
+                txt_earnings.setBackground(getActivity().getResources().getDrawable(R.drawable.rec_bg_stroke_green_layout));
                 rv_incentives.setVisibility(View.VISIBLE);
             }
         });

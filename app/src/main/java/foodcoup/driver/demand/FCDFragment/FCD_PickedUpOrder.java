@@ -167,7 +167,7 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
         FCD_Common.currentTask =  5;
 
 
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(Objects.requireNonNull(getActivity()));
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
 
@@ -243,7 +243,7 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
 
         txt_arrivedAtRestaurant.setOnClickListener(view1 -> {
 
-            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
             LayoutInflater inflater = getLayoutInflater();
             @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.confirmation_alert, null);
             dialogBuilder.setView(dialogView);
@@ -273,10 +273,13 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
 
         lt_restaurantName.setOnClickListener(v -> {
             FCD_Common.phone=FCD_Common.confirmrestaurant_phone;
-            if (Build.VERSION.SDK_INT < 23) {
+            Intent inSOS = new Intent(Intent.ACTION_DIAL);
+            inSOS.setData(Uri.parse("tel:" + FCD_Common.phone));
+            startActivity(inSOS);
+          /*  if (Build.VERSION.SDK_INT < 23) {
                 phoneCall();
             }else {
-                if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()),
+                if (ActivityCompat.checkSelfPermission(getActivity(),
                         Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
                     phoneCall();
                 }else {
@@ -284,15 +287,18 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
                     //Asking request Permissions
                     ActivityCompat.requestPermissions(getActivity(), PERMISSIONS_STORAGE, 9);
                 }
-            }
+            }*/
         });
 
         lt_customerName.setOnClickListener(v -> {
             FCD_Common.phone=FCD_Common.confirmmobile;
-            if (Build.VERSION.SDK_INT < 23) {
+            Intent inSOS = new Intent(Intent.ACTION_DIAL);
+            inSOS.setData(Uri.parse("tel:" + FCD_Common.phone));
+            startActivity(inSOS);
+          /*  if (Build.VERSION.SDK_INT < 23) {
                 phoneCall();
             }else {
-                if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()),
+                if (ActivityCompat.checkSelfPermission(getActivity(),
                         Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
                     phoneCall();
                 }else {
@@ -300,7 +306,7 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
                     //Asking request Permissions
                     ActivityCompat.requestPermissions(getActivity(), PERMISSIONS_STORAGE, 9);
                 }
-            }
+            }*/
         });
 
       /*  myRef.addValueEventListener(new ValueEventListener() {
@@ -363,7 +369,7 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
                 .build();
 
         // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = GoogleSignIn.getClient(Objects.requireNonNull(getActivity()), gso);
+        mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
 
         LocationRequest locationRequest = LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -375,7 +381,7 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
         SettingsClient client = LocationServices.getSettingsClient(getActivity());
         Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
 
-        task.addOnSuccessListener(Objects.requireNonNull(getActivity()), locationSettingsResponse -> {
+        task.addOnSuccessListener(getActivity(), locationSettingsResponse -> {
             // All location settings are satisfied. The client can initialize
             // location requests here.
             // ...
@@ -401,7 +407,7 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
     public void onResume() {
         super.onResume();
 
-        if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getActivity()),
+        if (ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             //Location Permission already granted
@@ -429,7 +435,7 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getActivity()),
+            if (ContextCompat.checkSelfPermission(getActivity(),
                     Manifest.permission.ACCESS_FINE_LOCATION)
                     == PackageManager.PERMISSION_GRANTED) {
                 //Location Permission already granted
@@ -669,7 +675,7 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
     private void checkLocationPermission() {
-        if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
 
             // Should we show an explanation?
@@ -682,7 +688,7 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //Prompt the user once explanation has been shown
-                                ActivityCompat.requestPermissions(Objects.requireNonNull(getActivity()),
+                                ActivityCompat.requestPermissions(getActivity(),
                                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                                         MY_PERMISSIONS_REQUEST_LOCATION);
                             }
@@ -707,7 +713,7 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
         if (requestCode == MY_PERMISSIONS_REQUEST_LOCATION) {
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getActivity()),
+                if (ContextCompat.checkSelfPermission(getActivity(),
                         Manifest.permission.ACCESS_FINE_LOCATION)
                         == PackageManager.PERMISSION_GRANTED) {
 
@@ -727,7 +733,7 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
             permissionGranted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
         }
         if(permissionGranted){
-            phoneCall();
+           // phoneCall();
         }else {
             Toast.makeText(getActivity(), "You don't assign permission.", Toast.LENGTH_SHORT).show();
         }
@@ -907,7 +913,7 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
         };
 
         // request queue
-        RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(context).getApplicationContext());
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
         requestQueue.add(stringRequest);
 
     }
@@ -963,7 +969,7 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
             }
 
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(stringRequest);
         requestQueue.getCache().clear();
 
@@ -986,8 +992,8 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
        timerThread.start();
    }*/
 
-    private void phoneCall() {
-        if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()),
+  /*  private void phoneCall() {
+        if (ActivityCompat.checkSelfPermission(getActivity()),
                 Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
             Intent callIntent = new Intent(Intent.ACTION_CALL);
             callIntent.setData(Uri.parse("tel:" +  FCD_Common.phone));
@@ -995,6 +1001,6 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
         } else {
             Toast.makeText(getActivity(), "You don't assign permission.", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
 }
