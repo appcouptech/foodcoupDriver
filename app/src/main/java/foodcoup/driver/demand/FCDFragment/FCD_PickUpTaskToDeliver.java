@@ -171,7 +171,7 @@ public class FCD_PickUpTaskToDeliver extends Fragment implements OnMapReadyCallb
         // Todo Location Already on  ... start
         final LocationManager manager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         if (Objects.requireNonNull(manager).isProviderEnabled(LocationManager.GPS_PROVIDER) && hasGPSDevice(getActivity())) {
-            Toast.makeText(getActivity(), "Gps already enabled", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getActivity(), "Gps already enabled", Toast.LENGTH_SHORT).show();
         }
         // Todo Location Already on  ... end
 
@@ -185,7 +185,7 @@ public class FCD_PickUpTaskToDeliver extends Fragment implements OnMapReadyCallb
             enableLoc();
         } else {
             Log.e("TAG", "Gps already enabled");
-            Toast.makeText(getActivity(), "Gps already enabled", Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(getActivity(), "Gps already enabled", Toast.LENGTH_SHORT).show();
         }
 
         final BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(mBottomSheet);

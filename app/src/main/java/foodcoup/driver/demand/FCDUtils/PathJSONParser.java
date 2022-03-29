@@ -9,7 +9,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+@SuppressWarnings("unchecked")
 public class PathJSONParser {
 
     public List<List<HashMap<String,String>>> parse(JSONObject jObject){

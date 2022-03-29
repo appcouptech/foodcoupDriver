@@ -184,7 +184,7 @@ public class FCD_PickedUpOrder extends Fragment  implements OnMapReadyCallback {
         // Todo Location Already on  ... start
         final LocationManager manager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
         if (Objects.requireNonNull(manager).isProviderEnabled(LocationManager.GPS_PROVIDER) && hasGPSDevice(getActivity())) {
-            Toast.makeText(getActivity(), "Gps already enabled", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getActivity(), "Gps already enabled", Toast.LENGTH_SHORT).show();
         }
         // Todo Location Already on  ... end
 

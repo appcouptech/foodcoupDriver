@@ -537,6 +537,8 @@ public class FCD_Wallet extends AppCompatActivity {
                             Utils.stopProgressBar();
                             payButton.setEnabled(true);
                             txt_recharge.setEnabled(true);
+                            rechargeDialog.dismiss();
+                            walletAmount();
                         }
 
                     } catch (JSONException e) {
